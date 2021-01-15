@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/views/depart/adddepart.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/depart/listdepart.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/index.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/record/addrecord.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/record/listrecord.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/staff/addstaff.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/staff/liststaff.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/user/adduser.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/user/listuser.jsp=UTF-8
+encoding//src/poly/dao/ConnectDB.java=UTF-8
+encoding//src/poly/dao/Xdate.java=UTF-8
