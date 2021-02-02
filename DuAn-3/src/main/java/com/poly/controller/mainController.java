@@ -10,14 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.poly.model.User;
-import com.poly.services.UserService;
 
 @Controller
-public class mainController {
-	
-	@Autowired
-	private UserService userService;
+public class mainController {	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -30,21 +25,5 @@ public class mainController {
 		return "admin/login";
 	}
 
-	@RequestMapping(value = "/login",method = RequestMethod.POST)
-	public String loginCheck(@ModelAttribute(name="loginForm") User user, ModelMap model) {
-		String username = user.getUsername().toString();
-		String password = user.getPassword().toString();		
-		
-		List<User> list = (List<User>) userService.findAll();
-		
-		for(Iterator<User> iterator = list.iterator(); iterator.hasNext();) {
-			User user1 = (User) iterator.next();
-			if (user1.getUsername().equals(username) && user1.getPassword().equals(password)) {
-				model.addAttribute("users", list);
-				return "admin/account/listaccount";
-			}
-		}
-		return "login";
-	}
 
 }

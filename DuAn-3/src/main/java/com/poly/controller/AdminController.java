@@ -14,13 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/account")
 public class AdminController {
-	@Autowired
-	private UserService userService;
+
 	
 	@RequestMapping("/list")
 	public String list(ModelMap model) {
-		List<User> list = (List<User>) userService.findAll();
-		model.addAttribute("users", list);
+		
 		
 		return "admin/account/listaccount";
 	}
