@@ -8,11 +8,12 @@
 <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
-	rel="stylesheet">
+  rel="stylesheet">
+  
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" th:href="@{/css/admin.css}">
+<link rel="stylesheet" href="css/admin.css">
 </head>
 <style>
 body {
@@ -38,9 +39,9 @@ body {
 						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-file-invoice-dollar"></i> 
 									Quản lý đơn hàng</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu1">
-							<li><a th:href="@{/order/add}"><i class="fa fa-plus-square"></i>
+							<li><a th:href="@{/record/Add}"><i class="fa fa-plus-square"></i>
 									Danh sách đơn hàng</a></li>
-							<li><a th:href="@{/order/list}"><i class="fa fa-list-alt"></i>
+							<li><a th:href="@{/record/List}"><i class="fa fa-list-alt"></i>
 									Tạo đơn hàng</a></li>
 						</ul></li>
 					<li><a href="#pageSubmenu2" data-toggle="collapse"
@@ -113,7 +114,23 @@ body {
 		<!-- Page Content  -->
 		<div id="content" class="p-4 p-md-5 pt-5">
 
-			<h2 class="mb-4">THÊM TÀI KHOẢN</h2>
+      <h2 class="mb-4">THÊM TÀI KHOẢN</h2>
+        
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Admin Name</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Insert</button>
+      </form>
+    
+			
 
 		</div>
 	</div>
@@ -122,6 +139,19 @@ body {
 	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 	<script th:src="@{/js/popper.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
-	<script th:src="@{/js/main.js}"></script>
+  <script th:src="@{/js/main.js}"></script>
+  
 </body>
 </html>
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
