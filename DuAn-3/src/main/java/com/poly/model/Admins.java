@@ -14,27 +14,27 @@ import javax.persistence.Table;
 public class Admins implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int AdminId;
+	private Integer AdminId;
 	@Column(name = "AdminName", length = 50)
     private String AdminName;
 	@Column(name = "Password", length = 50)
     private String Password;
-		
+			
 	public Admins() {
 		super();
 	}
-	
-	public Admins(int adminId, String adminName, String password) {
+		
+	public Admins(Integer adminId, String adminName, String password) {
 		super();
 		AdminId = adminId;
 		AdminName = adminName;
 		Password = password;
 	}
 
-	public int getAdminId() {
+	public Integer getAdminId() {
 		return AdminId;
 	}
-	public void setAdminId(int adminId) {
+	public void setAdminId(Integer adminId) {
 		AdminId = adminId;
 	}
 	public String getAdminName() {
@@ -49,5 +49,6 @@ public class Admins implements Serializable{
 	public void setPassword(String password) {
 		Password = password;
 	}
+	
 	
 }
