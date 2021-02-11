@@ -14,41 +14,44 @@ import javax.persistence.Table;
 public class Admins implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer AdminId;
-	@Column(name = "AdminName", length = 50)
-    private String AdminName;
+	private Integer Id;
+	@Column(name = "Name", length = 50)
+    private String Name;
 	@Column(name = "Password", length = 50)
     private String Password;
-			
+	
 	public Admins() {
 		super();
 	}
-		
-	public Admins(Integer adminId, String adminName, String password) {
+
+	public Admins(Integer id, String name, String password) {
 		super();
-		AdminId = adminId;
-		AdminName = adminName;
+		Id = id;
+		Name = name;
 		Password = password;
 	}
 
-	public Integer getAdminId() {
-		return AdminId;
+	public Integer getId() {
+		return Id;
 	}
-	public void setAdminId(Integer adminId) {
-		AdminId = adminId;
+
+	public void setId(Integer id) {
+		Id = id;
 	}
-	public String getAdminName() {
-		return AdminName;
+
+	public String getName() {
+		return Name;
 	}
-	public void setAdminName(String adminName) {
-		AdminName = adminName;
+
+	public void setName(String name) {
+		Name = name;
 	}
+
 	public String getPassword() {
 		return Password;
 	}
+
 	public void setPassword(String password) {
 		Password = password;
 	}
-	
-	
 }
