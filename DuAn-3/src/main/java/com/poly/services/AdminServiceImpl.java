@@ -68,7 +68,7 @@ public class AdminServiceImpl implements AdminService {
 	public void deleteAll() {
 		adminRepository.deleteAll();
 	}
-	
+
 	
 	
 	

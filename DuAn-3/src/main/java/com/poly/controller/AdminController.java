@@ -1,5 +1,6 @@
 package com.poly.controller;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,14 +8,18 @@ import com.poly.model.Admins;
 import com.poly.repositories.AdminRepository;
 import com.poly.services.AdminService;
 
+import ch.qos.logback.core.status.StatusListenerAsList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,9 +35,8 @@ public class AdminController {
 	}
 	
 	@PostMapping("/newacc")
-	public String add(ModelMap model, Admins admins) {
-		List<Admins> list = (List<Admins>) adminService.findAll();	
-		adminService.save(admins);	
+	public String add(ModelMap model, Admins admins, @RequestParam(value = "name") String username) {
+		adminService.save(admins);
 		return "redirect:/admin/account";
 	}
 	

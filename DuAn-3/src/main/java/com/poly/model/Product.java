@@ -14,84 +14,93 @@ import javax.persistence.Table;
 public class Product implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ProductId;
-	@Column(name = "ProductName", length = 50)
-	private String ProductName;
-	@Column(name = "ProductPrice")
-	private int ProductPrice;
-	@Column(name = "ProductImage", length = 50)
-	private String ProductImage;
-	@Column(name = "ProductDescription", length = 200)
-	private String ProductDescription;
-	@Column(name = "ProductBrand", length = 50)
-	private String ProductBrand;
-	@Column(name = "ProductQuanlity")
-	private int ProductQuanlity;
-	@Column(name = "CategoryName", length = 50)
-	private String CategoryName;
-
-	public int getProductId() {
-		return ProductId;
+	private int Id;
+	@Column(name = "Name", length = 50)
+	private String Name;
+	@Column(name = "Price")
+	private int Price;
+	@Column(name = "Image", length = 50)
+	private String Image;
+	@Column(name = "Description", length = 200)
+	private String Description;
+	@Column(name = "Status", length = 50)
+	private String Status;
+	@Column(name = "Brand", length = 50)
+	private String Brand;
+	@Column(name = "Quantity")
+	private int Quantity;
+	@Column(name = "Category", length = 50)
+	private String Category;
+	
+	public Product() {
+		super();
 	}
-
-	public void setProductId(int productId) {
-		ProductId = productId;
+	
+	public Product(int id, String name, int price, String image, String description, String status, String brand,
+			int quantity, String category) {
+		super();
+		Id = id;
+		Name = name;
+		Price = price;
+		Image = image;
+		Description = description;
+		Status = status;
+		Brand = brand;
+		Quantity = quantity;
+		Category = category;
 	}
-
-	public String getProductName() {
-		return ProductName;
+	public int getId() {
+		return Id;
 	}
-
-	public void setProductName(String productName) {
-		ProductName = productName;
+	public void setId(int id) {
+		Id = id;
 	}
-
-	public int getProductPrice() {
-		return ProductPrice;
+	public String getName() {
+		return Name;
 	}
-
-	public void setProductPrice(int productPrice) {
-		ProductPrice = productPrice;
+	public void setName(String name) {
+		Name = name;
 	}
-
-	public String getProductImage() {
-		return ProductImage;
+	public int getPrice() {
+		return Price;
 	}
-
-	public void setProductImage(String productImage) {
-		ProductImage = productImage;
+	public void setPrice(int price) {
+		Price = price;
 	}
-
-	public String getProductDescription() {
-		return ProductDescription;
+	public String getImage() {
+		return Image;
 	}
-
-	public void setProductDescription(String productDescription) {
-		ProductDescription = productDescription;
+	public void setImage(String image) {
+		Image = image;
 	}
-
-	public String getProductBrand() {
-		return ProductBrand;
+	public String getDescription() {
+		return Description;
 	}
-
-	public void setProductBrand(String productBrand) {
-		ProductBrand = productBrand;
+	public void setDescription(String description) {
+		Description = description;
 	}
-
-	public int getProductQuanlity() {
-		return ProductQuanlity;
+	public String getStatus() {
+		return Status;
 	}
-
-	public void setProductQuanlity(int productQuanlity) {
-		ProductQuanlity = productQuanlity;
+	public void setStatus(String status) {
+		Status = status;
 	}
-
-	public String getCategoryName() {
-		return CategoryName;
+	public String getBrand() {
+		return Brand;
 	}
-
-	public void setCategoryName(String categoryName) {
-		CategoryName = categoryName;
+	public void setBrand(String brand) {
+		Brand = brand;
 	}
-
+	public int getQuantity() {
+		return Quantity;
+	}
+	public void setQuantity(int quantity) {
+		Quantity = quantity;
+	}
+	public String getCategory() {
+		return Category;
+	}
+	public void setCategory(String category) {
+		Category = category;
+	}
 }

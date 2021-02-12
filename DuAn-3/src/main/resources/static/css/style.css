@@ -1003,6 +1003,22 @@
      background: #000000;
      color: #ffffff;
 }
+ .mask-icon button.cart{
+     background: #b0b435;
+     position: absolute;
+     bottom: 0;
+     left: 0px;
+     padding: 4px 20px;
+     color: #ffffff;
+}
+ .mask-icon button.cart:hover{
+     background: #000000;
+     color: #ffffff;
+}
+ .mask-icon ul li button:hover{
+     background: #000000;
+     color: #ffffff;
+}
  .products-single .mask-icon{
      background: rgba(1,1,1, 0.5);
      top: -100%;
@@ -1645,7 +1661,7 @@
 }
  .our-team img{
      width: 100%;
-     height: auto;
+     height: 350px;
      transition: all 0.3s ease-in-out 0s;
 }
  .our-team:hover img{
@@ -2189,7 +2205,7 @@
 }
  .new-account-login h5 {
      font-size: 18px;
-     color: #1111111;
+     color: #111111;
      font-weight: 600;
 }
  .new-account-login h5 a:hover{
