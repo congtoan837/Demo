@@ -1,24 +1,19 @@
 package com.poly.controller;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import com.poly.model.Admins;
-import com.poly.repositories.AdminRepository;
+import com.poly.model.Product;
 import com.poly.services.AdminService;
-
-import ch.qos.logback.core.status.StatusListenerAsList;
+import com.poly.services.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -26,30 +21,62 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private ProductService productService;
 	
+	// ACCOUNT CONTROLLER
 	@RequestMapping("/account")
-	public String list(ModelMap model) {
+	public String listaccount(ModelMap model) {
 		List<Admins> list = (List<Admins>) adminService.findAll();
 		model.addAttribute("Admins", list);
 		return "admin/account/listaccount";
 	}
 	
 	@PostMapping("/newacc")
-	public String add(ModelMap model, Admins admins, @RequestParam(value = "name") String username) {
+	public String addaccount(ModelMap model, Admins admins, @RequestParam(value = "name") String username) {
 		adminService.save(admins);
 		return "redirect:/admin/account";
 	}
 	
 	@GetMapping("/editacc/{id}")
-	public String edit(ModelMap model, @PathVariable(name = "id") Integer id) {
-		
+	public String editaccount(ModelMap model, @PathVariable(name = "id") Integer id) {
+		Admins list = adminService.findById(id).get();
+		model.addAttribute("account", list);
 		return "redirect:/admin/account";
 	}
 	
 	
 	@PostMapping(value = "/deleteacc/{id}")
-	public String delete(ModelMap model, @PathVariable(name = "id") Integer id) {
+	public String deleteaccount(ModelMap model, @PathVariable(name = "id") Integer id) {
 		adminService.deleteById(id);
 		return "redirect:/admin/account";
 	}
+	// ACCOUNT CONTROLLER
+	
+	// PRODUCT CONTROLLER
+	@RequestMapping("/product")
+	public String listproduct(ModelMap model) {
+		List<Product> list = (List<Product>) productService.findAll();
+		model.addAttribute("Product", list);
+		return "admin/product/listproduct";
+	}
+	
+	@PostMapping("/newproduct")
+	public String addproduct(ModelMap model, Product product) {
+		productService.save(product);
+		return "redirect:/admin/product";
+	}
+	
+	@GetMapping("/editproduct/{id}")
+	public String editproduct(ModelMap model) {
+		
+		return "redirect:/admin/account";
+	}
+	
+	@PostMapping(value = "/deleteproduct/{id}")
+	public String deleteproduct(ModelMap model, @PathVariable(name = "id") Integer id) {
+		productService.deleteById(id);
+		return "redirect:/admin/product";
+	}
+	// PRODUCT CONTROLLER
 }

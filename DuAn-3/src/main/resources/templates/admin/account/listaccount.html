@@ -117,8 +117,8 @@ body {
 					data-toggle="modal" data-target="#Add">Thêm
 					tài khoản</button>
 			</div>
-			<table class="table">
-				<thead>
+			<table class="table table-striped">
+				<thead class="thead-dark">
 					<tr>
 						<th scope="col">Id</th>
 						<th scope="col">Tên tài khoản</th>
@@ -133,7 +133,7 @@ body {
 						<td th:text=${item.password}></td>
 						<td>
 							<form th:action="@{deleteacc/{id}(id = ${item.Id})}" method="post">
-							<button type="button" class="btn btn-primary btn-sm" title="sửa" data-toggle="modal" data-target="#Edit"><i class="fa fa-edit"></i></button>
+							<button type="button" class="btn btn-primary btn-sm" name="btnedit" title="sửa" data-toggle="modal" data-target="#Edit" th:data-id="${item.Id}"><i class="fa fa-edit"></i></button>
 							<button type="submit" class="btn btn-primary btn-sm" title="xoá"><i class="fa fa-trash"></i></button>
 							</form>
 						</td>
@@ -191,7 +191,7 @@ body {
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
-		<form th:object="${admins}" th:action="@{/account/edit/}" method="post">
+		<form th:object="${admin}" th:action="@{/account/edit/}" method="post">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLongTitle">Thêm tài khoản</h5>
 				<button type="button" class="close" data-dismiss="modal"
@@ -201,12 +201,12 @@ body {
 			</div>
 			<div class="modal-body">	
 						<div class="form-group">
-							<label for="exampleInputEmail1">Tên tài khoản</label> <input
-								type="text" th:name="adminName" class="form-control" placeholder="Enter Name">
+							<label>Tên tài khoản</label> <input
+								type="text" th:text=${account.name} th:name="adminName" class="form-control" placeholder="Enter Name">
 						</div>	
 						<div class="form-group">
-							<label for="exampleInputPassword1">Mật khẩu</label> 
-							<input type="text" th:name="password" class="form-control" placeholder="Enter Password">
+							<label>Mật khẩu</label> 
+							<input type="text" th:text=${account.password} th:name="password" class="form-control" placeholder="Enter Password">
 						</div>
 			</div>
 			<div class="modal-footer">

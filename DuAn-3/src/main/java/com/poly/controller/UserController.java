@@ -44,10 +44,15 @@ public class UserController {
 		return "user/news";
 	}
 	
+	@GetMapping("/cart")
+	public String cart() {
+		return "user/cart";
+	}
+	
 	@GetMapping("/detail/{id}")
-	public String detais(ModelMap model, @PathVariable(name = "id") Integer id) {
-		Optional<Product> list = productService.findById(id);
-		System.out.print(list);
+	public String detais(ModelMap model, @PathVariable(name = "id") Integer id) {	
+		Product list = productService.findById(id).get();
+		model.addAttribute("Product", list);
 		return "user/shop-detail";
 	}
 }

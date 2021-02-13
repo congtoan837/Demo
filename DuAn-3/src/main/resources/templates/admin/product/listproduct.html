@@ -35,51 +35,55 @@ body {
 					<li><a th:href="@{/stats}"><i class="fas fa-chart-line"></i>
 							Thống kê</a></li>
 					<li><a href="#pageSubmenu1" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-file-invoice-dollar"></i> 
-									Quản lý đơn hàng</a>
+						aria-expanded="false" class="dropdown-toggle"><i
+							class="fas fa-file-invoice-dollar"></i> Quản lý đơn hàng</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu1">
-							<li><a th:href="@{/record/Add}"><i class="fa fa-plus-square"></i>
-									Danh sách đơn hàng</a></li>
-							<li><a th:href="@{/record/List}"><i class="fa fa-list-alt"></i>
-									Tạo đơn hàng</a></li>
+							<li><a th:href="@{/record/Add}"><i
+									class="fa fa-plus-square"></i> Danh sách đơn hàng</a></li>
+							<li><a th:href="@{/record/List}"><i
+									class="fa fa-list-alt"></i> Tạo đơn hàng</a></li>
 						</ul></li>
 					<li><a href="#pageSubmenu2" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Quản lý sản phẩm</a>
+						aria-expanded="false" class="dropdown-toggle"><i
+							class="fas fa-archive"></i> Quản lý sản phẩm</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu2">
-							<li><a th:href="@{/product/add}"><i class="fa fa-plus-square"></i>
-									Thêm sản phẩm</a></li>
-							<li><a th:href="@{/product/list}"><i class="fa fa-list-alt"></i>
-									Danh sách sản phẩm</a></li>
-							<li><a th:href="@{/product/list2}"><i class="fa fa-list-alt"></i>
-									Danh mục sản phẩm</a></li>
+							<li><a th:href="@{/product/add}"><i
+									class="fa fa-plus-square"></i> Thêm sản phẩm</a></li>
+							<li><a th:href="@{/product/list}"><i
+									class="fa fa-list-alt"></i> Danh sách sản phẩm</a></li>
+							<li><a th:href="@{/product/list2}"><i
+									class="fa fa-list-alt"></i> Danh mục sản phẩm</a></li>
 						</ul></li>
 					<li><a th:href="@{/customer/list}"><i class="fas fa-user"></i>
-									Quản lý khách hàng</a></li>
+							Quản lý khách hàng</a></li>
 					<li><a href="#pageSubmenu3" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle">
-						<i class="fas fa-gifts" aria-hidden="true"></i> Khuyến mãi</a>
+						aria-expanded="false" class="dropdown-toggle"> <i
+							class="fas fa-gifts" aria-hidden="true"></i> Khuyến mãi
+					</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu3">
-							<li><a th:href="@{/promotion/add}"><i class="fa fa-plus-square"></i>
-									Thêm mã khuyến mãi</a></li>
-							<li><a th:href="@{/promotion/list}"><i class="fa fa-plus-square"></i>
-									Danh sách khuyến mãi</a></li>
+							<li><a th:href="@{/promotion/add}"><i
+									class="fa fa-plus-square"></i> Thêm mã khuyến mãi</a></li>
+							<li><a th:href="@{/promotion/list}"><i
+									class="fa fa-plus-square"></i> Danh sách khuyến mãi</a></li>
 						</ul></li>
 					<li><a href="#pageSubmenu4" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle"><i class="fab fa-blogger-b" aria-hidden="true"></i> Blog</a>
+						aria-expanded="false" class="dropdown-toggle"><i
+							class="fab fa-blogger-b" aria-hidden="true"></i> Blog</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu4">
-							<li><a th:href="@{/blog/list}"><i class="fa fa-plus-square"></i>
-									Danh sách Blog</a></li>
+							<li><a th:href="@{/blog/list}"><i
+									class="fa fa-plus-square"></i> Danh sách Blog</a></li>
 							<li><a th:href="@{/blog/add}"><i class="fa fa-list-alt"></i>
 									Thêm Blog</a></li>
 						</ul></li>
 					<li><a href="#pageSubmenu5" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle">
-						<i class="fas fa-key"></i></i> Quản lý tài khoản</a>
+						aria-expanded="false" class="dropdown-toggle"> <i
+							class="fas fa-key"></i></i> Quản lý tài khoản
+					</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu5">
-							<li><a th:href="@{/account/add}"><i class="fa fa-plus-square"></i>
-									Thêm tài khoản</a></li>
-							<li><a th:href="@{/account/list}"><i class="fa fa-plus-square"></i>
-									Danh sách tài khoản</a></li>
+							<li><a th:href="@{/account/add}"><i
+									class="fa fa-plus-square"></i> Thêm tài khoản</a></li>
+							<li><a th:href="@{/account/list}"><i
+									class="fa fa-plus-square"></i> Danh sách tài khoản</a></li>
 						</ul></li>
 				</ul>
 
@@ -104,7 +108,8 @@ body {
 					</p>
 				</div>
 				<div class="col text-center" style="padding-top: 50px">
-					<a href="logout"><button type="button" class="btn btn-info btn-lg"> Đăng Xuất</button></a>
+					<a href="logout"><button type="button"
+							class="btn btn-info btn-lg">Đăng Xuất</button></a>
 				</div>
 
 			</div>
@@ -112,17 +117,212 @@ body {
 
 		<!-- Page Content  -->
 		<div id="content" class="p-4 p-md-5 pt-5">
-
-			<h2 class="mb-4">THÊM TÀI KHOẢN</h2>
-			
+			<div>
+				<h2 class="mb-4 float-left">DANH SÁCH SẢN PHẨM</h2>
+				<button type="button" class="btn btn-primary float-right"
+					data-toggle="modal" data-target="#Add">Thêm sản phẩm</button>
+			</div>
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Hình</th>
+						<th scope="col">Tên sản phẩm</th>
+						<th scope="col">Giá</th>
+						<th scope="col">Thương hiệu</th>
+						<th scope="col">Số lượng</th>
+						<th scope="col">Loại</th>
+						<th scope="col">Trạng thái</th>
+						<th scope="col">Mô tả</th>
+						<th scope="col" style="width: 100px"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${Product}">
+						<th th:text=${item.id}></th>
+						<th><img th:src="@{'../images/' + ${item.image}}"
+							height="50px"></th>
+						<td th:text=${item.name}></td>
+						<td th:text=${item.price}></td>
+						<td th:text=${item.brand}></td>
+						<td th:text=${item.quantity}></td>
+						<td th:text=${item.category}></td>
+						<td th:text=${item.status}></td>
+						<td th:text=${item.description}></td>
+						<td>
+							<form th:action="@{deleteproduct/{id}(id = ${item.Id})}"
+								method="post">
+								<button type="button" class="btn btn-primary btn-sm" title="sửa"
+									data-toggle="modal" data-target="#Edit">
+									<i class="fa fa-edit"></i>
+								</button>
+								<button type="submit" class="btn btn-primary btn-sm" title="xoá">
+									<i class="fa fa-trash"></i>
+								</button>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 
 		</div>
 	</div>
 
-	<script src="https://kit.fontawesome.com/bc9d44c30b.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/bc9d44c30b.js"
+		crossorigin="anonymous"></script>
 	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 	<script th:src="@{/js/popper.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 </body>
+<!-- Modal Add-->
+<div class="modal fade" id="Add" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered " role="document">
+		<div class="modal-content">
+			<form th:action="@{/admin/newproduct}" method="post" th:object="${product}">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Thêm sản phẩm</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Tên SP</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" th:name="name" class="form-control" placeholder="Enter name product">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Giá</label>
+	    				<div class="col-sm-9">
+	      					<input type="number" th:name="price" class="form-control" placeholder="Enter price">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Thương hiệu</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" th:name="brand" class="form-control" placeholder="Enter brand">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+  							<label class="col-sm-3 col-form-label">Hình ảnh</label>
+					<div class="custom-file col-sm-9">
+					    <input type="file" th:name="image" class="custom-file-input" id="customFile">
+					    <label class="custom-file-label" for="customFile">Chọn tệp</label>
+				  	</div>
+				  	</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Số lượng</label>
+	    				<div class="col-sm-9">
+	      					<input type="number" th:name="quantity" class="form-control" placeholder="Enter quantity">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Loại</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" th:name="category" class="form-control" placeholder="Enter category">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Trạng thái</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" th:name="status" class="form-control" placeholder="Enter status">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Mô tả</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" th:name="description" class="form-control" placeholder="Enter description">
+	    				</div>
+  					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Hủy</button>
+					<button type="submit" class="btn btn-primary">Lưu</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="Edit" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered " role="document">
+		<div class="modal-content">
+			<form th:action="@{/admin/newproduct}" method="post" th:object="${product}">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Sửa sản phẩm</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Tên SP</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" th:name="name" class="form-control" placeholder="Enter name product">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Giá</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" th:name="name" class="form-control" placeholder="Enter price">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Thương hiệu</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" th:name="name" class="form-control" placeholder="Enter brand">
+	    				</div>
+  					</div>
+  					
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Số lượng</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" th:name="name" class="form-control" placeholder="Enter quantity">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Loại</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" th:name="name" class="form-control" placeholder="Enter category">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Trạng thái</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" th:name="name" class="form-control" placeholder="Enter status">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Mô tả</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" th:name="name" class="form-control" placeholder="Enter description">
+	    				</div>
+  					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Hủy</button>
+					<button type="submit" class="btn btn-primary">Lưu</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+		$(".custom-file-input").on(
+				"change",
+				function() {
+					var fileName = $(this).val().split("\\").pop();
+					$(this).siblings(".custom-file-label").addClass("selected")
+							.html(fileName);
+				});
+	</script>
 </html>
