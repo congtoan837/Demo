@@ -3,10 +3,7 @@ package com.poly.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.poly.model.Admins;
-import com.poly.repositories.AdminRepository;
 
 public interface AdminService {
 
