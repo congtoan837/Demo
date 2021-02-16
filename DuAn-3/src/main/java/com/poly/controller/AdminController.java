@@ -1,20 +1,21 @@
 package com.poly.controller;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext.Empty;
 import com.poly.model.Admins;
+import com.poly.model.Brand;
+import com.poly.model.Category;
 import com.poly.model.Customer;
 import com.poly.model.Product;
 import com.poly.services.AdminService;
+import com.poly.services.BrandService;
+import com.poly.services.CategoryService;
 import com.poly.services.CustomerService;
 import com.poly.services.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,10 @@ public class AdminController {
 	private AdminService adminService;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private BrandService brandService;
+	@Autowired
+	private CategoryService categoryService;
 	@Autowired
 	private CustomerService customerService;
 	
@@ -102,7 +107,11 @@ public class AdminController {
 	@RequestMapping("/product")
 	public String listproduct(ModelMap model) {
 		List<Product> list = (List<Product>) productService.findAll();
+		List<Brand> listbrand = (List<Brand>) brandService.findAll();
+		List<Category> listcategory = (List<Category>) categoryService.findAll();
 		model.addAttribute("Product", list);
+		model.addAttribute("Brand", listbrand);
+		model.addAttribute("Category", listcategory);
 		return "admin/listproduct";
 	}
 
@@ -123,7 +132,43 @@ public class AdminController {
 		}
 		return "redirect:/admin/product";
 	}
-
+	
+	@PostMapping("/newbrand")
+	public String addbrand(Brand brand, RedirectAttributes redirectAttributes) {
+		try{
+			if(brand.getName() != ("")) {
+				brandService.save(brand);
+				redirectAttributes.addFlashAttribute("status", "1");
+				redirectAttributes.addFlashAttribute("message", "Thêm thành công !");
+			}else {
+				redirectAttributes.addFlashAttribute("status", "0");
+				redirectAttributes.addFlashAttribute("message", "Thêm thất bại !");
+			}
+		}catch(Exception e) {
+			redirectAttributes.addFlashAttribute("status", "0");
+			redirectAttributes.addFlashAttribute("message", "Thêm thất bại !");
+		}
+		return "redirect:/admin/product";
+	}
+	
+	@PostMapping("/newcategory")
+	public String addcategory(Category category, RedirectAttributes redirectAttributes) {
+		try{
+			if(category.getName() != ("")) {
+				categoryService.save(category);
+				redirectAttributes.addFlashAttribute("status", "1");
+				redirectAttributes.addFlashAttribute("message", "Thêm thành công !");
+			}else {
+				redirectAttributes.addFlashAttribute("status", "0");
+				redirectAttributes.addFlashAttribute("message", "Thêm thất bại !");
+			}
+		}catch(Exception e) {
+			redirectAttributes.addFlashAttribute("status", "0");
+			redirectAttributes.addFlashAttribute("message", "Thêm thất bại !");
+		}
+		return "redirect:/admin/product";
+	}
+	
 	@PostMapping("/editproduct/{id}")
 	public String editproduct(ModelMap model, @PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes,
 			@RequestParam(name = "editname") String name, 
@@ -175,6 +220,19 @@ public class AdminController {
 	public String deleteproduct(ModelMap model, @PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
 		if(id != null) {
 			productService.deleteById(id);
+			redirectAttributes.addFlashAttribute("message", "Xóa thành công !");
+			redirectAttributes.addFlashAttribute("status", "1");
+		}else {
+			redirectAttributes.addFlashAttribute("message", "Xóa thất bại !");
+			redirectAttributes.addFlashAttribute("status", "0");
+		}
+		return "redirect:/admin/product";
+	}
+	
+	@PostMapping(value = "/deletebrand/{id}")
+	public String deletebrand(ModelMap model, @PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {		
+		if(id != null) {
+			brandService.deleteById(id);
 			redirectAttributes.addFlashAttribute("message", "Xóa thành công !");
 			redirectAttributes.addFlashAttribute("status", "1");
 		}else {

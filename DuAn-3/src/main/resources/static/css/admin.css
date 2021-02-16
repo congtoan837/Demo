@@ -4690,11 +4690,6 @@ a.close.disabled {
 .toast-body {
   padding: 0.75rem; }
 
-.modal-open {
-  overflow: hidden; }
-  .modal-open .modal {
-    overflow-x: hidden;
-    overflow-y: auto; }
 
 .modal {
   position: fixed;
@@ -4870,7 +4865,8 @@ a.close.disabled {
     .modal-dialog-centered::before {
       height: calc(100vh - 3.5rem); }
   .modal-sm {
-    max-width: 300px; } }
+    max-width: 300px;
+    left: 27%;} }
 
 @media (min-width: 992px) {
   .modal-lg,

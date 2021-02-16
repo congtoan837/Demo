@@ -186,7 +186,11 @@ body {
 					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Thương hiệu</label>
 	    				<div class="col-sm-9">
-	      					<input type="text" id="3" th:name="brand" class="form-control" placeholder="Enter brand">
+	    					<select class="form-control float-left w-75" id="3" th:name="brand">
+						      <option th:each="item : ${Brand}" th:value="${item.name}" th:text="${item.name}"></option>
+				    		</select>
+	    					<button type="button" class="btn btn-info ml-2" title="sửa"
+									id="newbrand" data-toggle="modal" data-target="#Newbrand">Thêm</button>
 	    				</div>
   					</div>
   					<div class="form-group row">
@@ -204,8 +208,12 @@ body {
   					</div>
 					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Loại</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="5" th:name="category" class="form-control" placeholder="Enter category">
+	    				<div class="col-sm-9">			
+	    					<select class="form-control float-left w-75" id="5" th:name="category">
+						      <option th:each="item : ${Category}" th:value="${item.name}" th:text="${item.name}"></option>
+				    		</select>
+	    					<button type="button" class="btn btn-info ml-2" title="sửa"
+									id="newcategory" data-toggle="modal" data-target="#Newcategory">Thêm</button>
 	    				</div>
   					</div>
 					<div class="form-group row">
@@ -260,7 +268,9 @@ body {
 					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Thương hiệu</label>
 	    				<div class="col-sm-9">
-	      					<input type="text" id="brand" th:name="editbrand" class="form-control" placeholder="Enter brand">
+	    					<select class="form-control float-left" th:name="editbrand">
+						      <option th:each="item : ${Brand}" th:value="${item.name}" th:text="${item.name}"></option>
+				    		</select>
 	    				</div>
   					</div>
   					<div class="form-group row">
@@ -279,7 +289,9 @@ body {
 					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Loại</label>
 	    				<div class="col-sm-9">
-	      					<input type="text" id="category" th:name="editcategory" class="form-control" placeholder="Enter category">
+	      					<select class="form-control float-left" th:name="editcategory">
+						      <option th:each="item : ${Category}" th:value="${item.name}" th:text="${item.name}"></option>
+				    		</select>
 	    				</div>
   					</div>
 					<div class="form-group row">
@@ -304,6 +316,56 @@ body {
 		</div>
 	</div>
 </div>
+
+<!-- Modal New Brand-->
+<div class="modal fade" id="Newbrand" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+		<div class="modal-content">	
+				<div class="modal-body">
+					<form th:action="@{/admin/new}" method="post" id="newformbrand">		
+						<div class="form-group row">				
+		    				<div class="col-sm-9">
+		      					<input type="text" id="Brand2" th:name="name" class="form-control" placeholder="Enter name">
+		    				</div>
+		    				<button type="submit" class="btn btn-info ml-2">OK</button>
+	  					</div>
+  					</form>
+  					<div class="form-group row" th:each="item : ${Brand}">
+  						<form th:action="@{deletebrand/{id}(id = ${item.Id})}" method="post"> 								
+		    				<label class="col-5" th:text="${item.name}"></label>
+		    				<button type="submit" class="float-right">Xóa</button>			
+  						</form>		
+  					</div>	
+				</div>			
+		</div>
+	</div>
+</div>
+
+<!-- Modal New Category-->
+<div class="modal fade" id="Newcategory" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+		<div class="modal-content">	
+				<div class="modal-body">
+					<form th:action="@{/admin/new}" method="post" id="newformcategory">		
+						<div class="form-group row">				
+		    				<div class="col-sm-9">
+		      					<input type="text" id="Brand3" th:name="name" class="form-control" placeholder="Enter name">
+		    				</div>
+		    				<button type="submit" class="btn btn-info ml-2">OK</button>
+	  					</div>
+  					</form>
+  					<div class="form-group row" th:each="item : ${Category}">
+  						<form th:action="@{deletebrand/{id}(id = ${item.Id})}" method="post"> 								
+		    				<label class="col-5" th:text="${item.name}"></label>
+		    				<button type="submit" class="float-right">Xóa</button>			
+  						</form>		
+  					</div>	
+				</div>			
+		</div>
+	</div>
+</div>
 <script th:src="@{/js/product.js}"></script>
 <script th:inline="javascript">
 		window.onload = function() {
@@ -315,6 +377,15 @@ body {
 			}if(message != null && status == "0"){
 				toastr.error(message)
 			}
-		};
+		};	
+
+		$("#newbrand").click(function() {
+			$("#Brand2").val("");
+			$("#newformbrand").attr("action", "/admin/newbrand");
+});
+		$("#newcategory").click(function() {
+			$("#Brand3").val("");
+			$("#newformcategory").attr("action", "/admin/newcategory");
+});
 </script>
 </html>
