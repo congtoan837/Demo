@@ -14,6 +14,7 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" th:href="@{/css/admin.css}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
 body {
@@ -101,7 +102,7 @@ body {
 			<div>
 				<h2 class="mb-4 float-left">DANH SÁCH SẢN PHẨM</h2>
 				<button type="button" class="btn btn-primary float-right"
-					data-toggle="modal" id="btnadd" data-target="#Add">Thêm sản phẩm</button>
+					data-toggle="modal" onclick="add()" id="btnadd" data-target="#Add">Thêm sản phẩm</button>
 			</div>
 			<table class="table table-striped">
 				<thead class="thead-dark">
@@ -118,31 +119,8 @@ body {
 						<th scope="col" style="width: 120px"></th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr th:each="item : ${Product}">
-						<th th:text=${item.id}></th>
-						<th><img th:src="@{'../images/' + ${item.image}}"
-							height="50px"></th>
-						<td th:text=${item.name}></td>
-						<td th:text=${item.price}></td>
-						<td th:text=${item.brand}></td>
-						<td th:text=${item.quantity}></td>
-						<td th:text=${item.category}></td>
-						<td th:text=${item.status}></td>
-						<td th:text=${item.description}></td>
-						<td>
-							<form th:action="@{deleteproduct/{id}(id = ${item.Id})}"
-								method="post">
-								<button type="button" class="btn btn-primary btn-sm" title="sửa"
-									id="btnedit" data-toggle="modal" data-target="#Edit" th:data-id="${item.Id}">
-									Sửa
-								</button>
-								<button type="submit" class="btn btn-primary btn-sm" title="xoá">
-									Xóa
-								</button>
-							</form>
-						</td>
-					</tr>
+				<tbody id="datatable">
+					
 				</tbody>
 			</table>
 
@@ -162,9 +140,8 @@ body {
 	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered " role="document">
 		<div class="modal-content">
-			<form th:action="@{/admin/newproduct}" method="post" th:object="${product}">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Thêm sản phẩm</h5>
+					<h5 class="modal-title" id="Title-Popup">Thêm sản phẩm</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -174,145 +151,67 @@ body {
 					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Tên SP</label>
 	    				<div class="col-sm-9">
-	      					<input type="text" id="1" th:name="name" class="form-control" placeholder="Enter name product">
+	      					<input type="text" id="1" class="form-control" placeholder="Enter name product">
 	    				</div>
   					</div>
 					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Giá</label>
 	    				<div class="col-sm-9">
-	      					<input type="number" id="2" min="1" th:name="price" class="form-control" placeholder="Enter price">
+	      					<input type="number" id="2" min="1" class="form-control" placeholder="Enter price">
 	    				</div>
   					</div>
 					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Thương hiệu</label>
 	    				<div class="col-sm-9">
-	    					<select class="form-control float-left w-75" id="3" th:name="brand">
-						      <option th:each="item : ${Brand}" th:value="${item.name}" th:text="${item.name}"></option>
+	    					<select class="form-control float-left w-75" id="3">
+						      
 				    		</select>
 	    					<button type="button" class="btn btn-info ml-2" title="sửa"
-									id="newbrand" data-toggle="modal" data-target="#Newbrand">Thêm</button>
+									id="newbrand" data-toggle="modal" onclick="loadlistComboBox()" data-target="#Newbrand">Thêm</button>
 	    				</div>
   					</div>
   					<div class="form-group row">
   							<label class="col-sm-3 col-form-label">Hình ảnh</label>
 					<div class="custom-file col-sm-9">
-					    <input type="file" th:name="image" class="custom-file-input" id="customFile">
+					    <input type="file" th:name="image" class="custom-file-input" id="4">
 					    <label class="custom-file-label" for="customFile">Chọn tệp</label>
 				  	</div>
 				  	</div>
 					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Số lượng</label>
 	    				<div class="col-sm-9">
-	      					<input type="number" id="4" min="1" th:name="quantity" class="form-control" placeholder="Enter quantity">
+	      					<input type="number" id="5" min="1" th:name="quantity" class="form-control" placeholder="Enter quantity">
 	    				</div>
   					</div>
 					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Loại</label>
 	    				<div class="col-sm-9">			
-	    					<select class="form-control float-left w-75" id="5" th:name="category">
-						      <option th:each="item : ${Category}" th:value="${item.name}" th:text="${item.name}"></option>
+	    					<select class="form-control float-left w-75" id="6">
+						      
 				    		</select>
 	    					<button type="button" class="btn btn-info ml-2" title="sửa"
-									id="newcategory" data-toggle="modal" data-target="#Newcategory">Thêm</button>
+									id="newcategory" data-toggle="modal" onclick="loadlistComboBox2()" data-target="#Newbrand">Thêm</button>
 	    				</div>
   					</div>
 					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Trạng thái</label>
 	    				<div class="col-sm-9">
-	      					<input type="text" id="6" th:name="status" class="form-control" placeholder="Enter status">
+	      					<select class="form-control float-left" id="7" th:name="status">
+						      <option value="NEW">NEW</option>
+						      <option value="SALE">SALE</option>
+				    		</select>
 	    				</div>
   					</div>
 					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Mô tả</label>
 	    				<div class="col-sm-9">
-	      					<input type="text" id="7" th:name="description" class="form-control" placeholder="Enter description">
+	      					<input type="text" id="8" th:name="description" class="form-control" placeholder="Enter description">
 	    				</div>
   					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Hủy</button>
-					<button type="submit" class="btn btn-primary">Lưu</button>
+				<div class="modal-footer" id="modal-footer">
+					
 				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
-<!-- Modal Edit -->
-<div class="modal fade" id="Edit" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered " role="document">
-		<div class="modal-content">
-			<form th:action="@{/admin/editproduct}" method="post" id="editform">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Sửa sản phẩm</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Tên SP</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="name" th:name="editname" class="form-control" placeholder="Enter name product">
-	    				</div>
-  					</div>
-					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Giá</label>
-	    				<div class="col-sm-9">
-	      					<input type="number" id="price" th:name="editprice" class="form-control" placeholder="Enter price">
-	    				</div>
-  					</div>
-					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Thương hiệu</label>
-	    				<div class="col-sm-9">
-	    					<select class="form-control float-left" th:name="editbrand">
-						      <option th:each="item : ${Brand}" th:value="${item.name}" th:text="${item.name}"></option>
-				    		</select>
-	    				</div>
-  					</div>
-  					<div class="form-group row">
-  							<label class="col-sm-3 col-form-label">Hình ảnh</label>
-					<div class="custom-file col-sm-9" id="labelcustomFile">
-					    <input type="file" th:name="editimage" class="custom-file-input" id="inputcustomFile">
-					    <label class="custom-file-label" for="customFile">Chọn tệp, bỏ trống nếu muốn giữ</label>
-				  	</div>
-				  	</div>
-					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Số lượng</label>
-	    				<div class="col-sm-9">
-	      					<input type="number" id="quantity" th:name="editquantity" class="form-control" placeholder="Enter quantity">
-	    				</div>
-  					</div>
-					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Loại</label>
-	    				<div class="col-sm-9">
-	      					<select class="form-control float-left" th:name="editcategory">
-						      <option th:each="item : ${Category}" th:value="${item.name}" th:text="${item.name}"></option>
-				    		</select>
-	    				</div>
-  					</div>
-					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Trạng thái</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="status" th:name="editstatus" class="form-control" placeholder="Enter status">
-	    				</div>
-  					</div>
-					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Mô tả</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="description" th:name="editdescription" class="form-control" placeholder="Enter description">
-	    				</div>
-  					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Hủy</button>
-					<button type="submit" class="btn btn-primary">Lưu</button>
-				</div>
-			</form>
 		</div>
 	</div>
 </div>
@@ -323,62 +222,25 @@ body {
 	<div class="modal-dialog modal-dialog-centered modal-sm" role="document">
 		<div class="modal-content">	
 				<div class="modal-body">
-					<form th:action="@{/admin/new}" method="post" id="newformbrand">		
 						<div class="form-group row">				
 		    				<div class="col-sm-9">
-		      					<input type="text" id="Brand2" th:name="name" class="form-control" placeholder="Enter name">
+		      					<input type="text" id="Brand2" class="form-control" placeholder="Enter name">
 		    				</div>
-		    				<button type="submit" class="btn btn-info ml-2">OK</button>
+		    				<div id="addcombobox">
+		    					
+		    				</div>
 	  					</div>
-  					</form>
-  					<div class="form-group row" th:each="item : ${Brand}">
-  						<form th:action="@{deletebrand/{id}(id = ${item.Id})}" method="post"> 								
-		    				<label class="col-5" th:text="${item.name}"></label>
-		    				<button type="submit" class="float-right">Xóa</button>			
-  						</form>		
+  					<div class="form-group row" id="listcombobox">  														
+		    							
   					</div>	
 				</div>			
 		</div>
 	</div>
 </div>
 
-<!-- Modal New Category-->
-<div class="modal fade" id="Newcategory" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-		<div class="modal-content">	
-				<div class="modal-body">
-					<form th:action="@{/admin/new}" method="post" id="newformcategory">		
-						<div class="form-group row">				
-		    				<div class="col-sm-9">
-		      					<input type="text" id="Brand3" th:name="name" class="form-control" placeholder="Enter name">
-		    				</div>
-		    				<button type="submit" class="btn btn-info ml-2">OK</button>
-	  					</div>
-  					</form>
-  					<div class="form-group row" th:each="item : ${Category}">
-  						<form th:action="@{deletebrand/{id}(id = ${item.Id})}" method="post"> 								
-		    				<label class="col-5" th:text="${item.name}"></label>
-		    				<button type="submit" class="float-right">Xóa</button>			
-  						</form>		
-  					</div>	
-				</div>			
-		</div>
-	</div>
-</div>
+
 <script th:src="@{/js/product.js}"></script>
 <script th:inline="javascript">
-		window.onload = function() {
-			let message = /*[[(${message})]]*/ 'default';
-			let status = /*[[(${status})]]*/ 'default';
-		
-			if(message != null && status == "1"){
-				toastr.success(message)
-			}if(message != null && status == "0"){
-				toastr.error(message)
-			}
-		};	
-
 		$("#newbrand").click(function() {
 			$("#Brand2").val("");
 			$("#newformbrand").attr("action", "/admin/newbrand");

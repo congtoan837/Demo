@@ -37,7 +37,7 @@ public class AdminController {
 	private CustomerService customerService;
 	
 	// STATS CONTROLLER
-	@RequestMapping("")
+	@RequestMapping("/")
 	public String stats() {
 		return "admin/stats";
 	}
@@ -106,19 +106,14 @@ public class AdminController {
 	// PRODUCT CONTROLLER
 	@RequestMapping("/product")
 	public String listproduct(ModelMap model) {
-		List<Product> list = (List<Product>) productService.findAll();
-		List<Brand> listbrand = (List<Brand>) brandService.findAll();
-		List<Category> listcategory = (List<Category>) categoryService.findAll();
-		model.addAttribute("Product", list);
-		model.addAttribute("Brand", listbrand);
-		model.addAttribute("Category", listcategory);
+		
 		return "admin/listproduct";
 	}
 
 	@PostMapping("/newproduct")
 	public String addproduct(ModelMap model, Product product, RedirectAttributes redirectAttributes) {
 		try{
-			if(product.getImage() != ("") && product.getName() != ("") && product.getPrice() >=1 && product.getBrand() != ("") && product.getQuantity() >=0 && product.getCategory() != ("") && product.getStatus() != ("") && product.getDescription() != ("")) {
+			if(product.getImage() != ("") && product.getName() != ("") && product.getPrice() >=1 && product.getBrand() != ("") && product.getQuantity() >=0 && product.getCategory() != ("") && product.getStatus() != ("")) {
 				productService.save(product);
 				redirectAttributes.addFlashAttribute("status", "1");
 				redirectAttributes.addFlashAttribute("message", "Thêm thành công !");
@@ -182,7 +177,7 @@ public class AdminController {
 			 
 	{
 		try {
-		if (image != ("") && name != ("") && price >=1 && brand != ("") && quantity >=0 && category != ("") && status != ("") && description != ("")) {
+		if (image != ("") && name != ("") && price >=1 && brand != ("") && quantity >=0 && category != ("") && status != ("")) {
 			Product product = productService.findById(id).get();
 			product.setName(name);
 			product.setPrice(price);
@@ -195,7 +190,7 @@ public class AdminController {
 			productService.save(product);
 			redirectAttributes.addFlashAttribute("message", "Sửa thành công !");
 			redirectAttributes.addFlashAttribute("status", "1");
-		}else if(name != ("") && price >=1 && brand != ("") && quantity >=1 && category != ("") && status != ("") && description != ("")){
+		}else if(name != ("") && price >=1 && brand != ("") && quantity >=1 && category != ("") && status != ("")){
 			Product product = productService.findById(id).get();
 			product.setName(name);
 			product.setPrice(price);
