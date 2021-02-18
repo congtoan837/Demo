@@ -50,7 +50,11 @@ function deletebrand(id) {
         $.ajax({
             cache: false,
             type: "POST",
-            url: "http://localhost:8080/api/deletebrand/" + id,
+            url: "http://localhost:8080/api/deletebrand/",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "id": id                
+            }),
             error: function (request) {
                 toastr.error("Delete fail"); 
             },
@@ -90,7 +94,11 @@ function deletecategory(id) {
         $.ajax({
             cache: false,
             type: "POST",
-            url: "http://localhost:8080/api/deletecategory/" + id,
+            url: "http://localhost:8080/api/deletecategory/",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "id": id                
+            }),
             error: function (request) {
                 toastr.error("Delete fail"); 
             },
@@ -312,9 +320,10 @@ function edit(id) {
         $.ajax({
             cache: false,
             type: "POST",
-            url: "http://localhost:8080/api/edit/" + id,
+            url: "http://localhost:8080/api/edit",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
+                "id": id,
                 "name": name,
                 "description": description,
                 "status": status,
@@ -340,7 +349,11 @@ function delet(id) {
         $.ajax({
             cache: false,
             type: "POST",
-            url: "http://localhost:8080/api/delete/" + id,
+            url: "http://localhost:8080/api/delete/",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "id": id                
+            }),
             error: function (request) {
                 toastr.error("Delete fail"); 
             },

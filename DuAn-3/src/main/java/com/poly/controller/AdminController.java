@@ -37,7 +37,7 @@ public class AdminController {
 	private CustomerService customerService;
 	
 	// STATS CONTROLLER
-	@RequestMapping("/")
+	@RequestMapping("")
 	public String stats() {
 		return "admin/stats";
 	}

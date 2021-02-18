@@ -240,14 +240,4 @@ body {
 
 
 <script th:src="@{/js/product.js}"></script>
-<script th:inline="javascript">
-		$("#newbrand").click(function() {
-			$("#Brand2").val("");
-			$("#newformbrand").attr("action", "/admin/newbrand");
-});
-		$("#newcategory").click(function() {
-			$("#Brand3").val("");
-			$("#newformcategory").attr("action", "/admin/newcategory");
-});
-</script>
 </html>

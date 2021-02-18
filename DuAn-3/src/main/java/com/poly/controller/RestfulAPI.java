@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.model.Brand;
+import com.poly.model.Cart;
 import com.poly.model.Category;
 import com.poly.model.Product;
 import com.poly.repositories.BrandRepository;
 import com.poly.repositories.CategoryRepository;
 import com.poly.repositories.ProductRepository;
+import com.poly.repositories.CartRepository;
 
 @RestController
 @RequestMapping("/api")
@@ -24,7 +26,11 @@ public class RestfulAPI {
 	private BrandRepository brandRepository;
 	@Autowired
 	private CategoryRepository categoryRepository;
+	@Autowired
+	private CartRepository cartRepository;
 	
+	
+	// API PRODUCT //
 	@RequestMapping("/listproduct")
 	  List<Product> allproduct() {
 	    return (List<Product>) productRepository.findAll();
@@ -35,15 +41,16 @@ public class RestfulAPI {
 	    return productRepository.save(newProduct);
 	  }
 	
-	@RequestMapping("/find/{id}")
-	Product one(@PathVariable Integer id) throws Exception {
-	    
+	@RequestMapping("/find")
+	Product one(@RequestBody Product newProduct) throws Exception {
+		Integer id = newProduct.getId();
 	    return productRepository.findById(id)
 	    	.orElseThrow(() -> new Exception("Product " + id +" not found"));	
 	  }
 	
-	@RequestMapping("/edit/{id}")
-	Product replaceEmployee(@RequestBody Product newProduct, @PathVariable Integer id) throws Exception {
+	@RequestMapping("/edit")
+	Product replaceEmployee(@RequestBody Product newProduct) throws Exception {
+		Integer id = newProduct.getId();
 		if(newProduct.getImage() == ("")) {
 	    return productRepository.findById(id)
 	      .map(product -> {
@@ -74,26 +81,31 @@ public class RestfulAPI {
 	}
 	      }
 	
-	@RequestMapping("/delete/{id}")
-	  void deleteProduct(@PathVariable Integer id) {
+	@RequestMapping("/delete")
+	void deleteProduct(@RequestBody Product product) {
+		Integer id = product.getId();
 		productRepository.deleteById(id);
 	  }
+	// API PRODUCT //
 	
+	// API BRAND //
 	@RequestMapping("/listbrand")
 	  List<Brand> listbrand() {
 	    return (List<Brand>) brandRepository.findAll();
 	  }
 	
 	@RequestMapping("/newbrand")
-	  Brand newBrand(@RequestBody Brand newBrand) {
-	    return brandRepository.save(newBrand);
+	  Brand newBrand(@RequestBody Brand brand) {
+	    return brandRepository.save(brand);
 	  }
 	
-	@RequestMapping("/deletebrand/{id}")
-	  void deleteBrand(@PathVariable Integer id) {
-		brandRepository.deleteById(id);
+	@RequestMapping("/deletebrand")
+	  void deleteBrand(@RequestBody Brand brand) {
+		brandRepository.deleteById(brand.getId());
 	  }
+	// API BRAND //
 	
+	// API CATEGORY //
 	@RequestMapping("/listcategory")
 	  List<Category> listcategory() {
 	    return (List<Category>) categoryRepository.findAll();
@@ -104,9 +116,17 @@ public class RestfulAPI {
 	    return categoryRepository.save(newCategory);
 	  }
 	
-	@RequestMapping("/deletecategory/{id}")
-	  void deleteCategory(@PathVariable Integer id) {
-		categoryRepository.deleteById(id);
+	@RequestMapping("/deletecategory")
+	  void deleteCategory(@RequestBody Category newCategory) {
+		categoryRepository.deleteById(newCategory.getId());
 	  }
+	// API CATEGORY //
+	
+	// API CART //
+	@RequestMapping("/cart")
+	  List<Cart> cart() {
+	    return (List<Cart>) cartRepository.findAll();
+	  }
+	// API CART //
 }
 
