@@ -16,6 +16,7 @@ import com.poly.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -321,6 +322,10 @@ public class AdminController {
 	// CUSTOMER CONTROLLER
 	
 	// BLOG CONTROLLER
+	@GetMapping("/listblog")
+	public String blog() {
+		return "admin/blog";
+	}
 	// BLOG CONTROLLER
 	
 	// PROMOTION CONTROLLER	
