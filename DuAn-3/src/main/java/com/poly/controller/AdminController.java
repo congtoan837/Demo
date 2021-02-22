@@ -322,14 +322,14 @@ public class AdminController {
 	// CUSTOMER CONTROLLER
 	
 	// BLOG CONTROLLER
-	@RequestMapping("/listblog")
+	@RequestMapping("/blog")
 	public String list() {
 		return "admin/listblog";
 	}
 	// BLOG CONTROLLER
 	
 	// PROMOTION CONTROLLER	
-	@RequestMapping("/listpromo")
+	@RequestMapping("/promo")
 	public String listpromo() {
 		return "admin/listpromotion";
 	}

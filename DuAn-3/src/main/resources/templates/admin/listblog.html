@@ -101,7 +101,7 @@ body {
 			<div>
 				<h2 class="mb-4 float-left">DANH SÁCH</h2>
 				<button type="button" id="btnadd" class="btn btn-primary float-right"
-					data-toggle="modal" data-target="#Add">Thêm Blog</button>
+					data-toggle="modal" data-target="#Add" onclick="add()">Thêm Blog</button>
 			</div>
 			<table class="table table-striped">
 				<thead class="thead-dark">
@@ -116,30 +116,8 @@ body {
 						<th scope="col" style="width: 120px"></th>
 					</tr>
 				</thead>
-				<tbody id="tbl">
-					<tr th:each="item : ${Blog}">
-						<th th:text=${item.id}></th>
-						<td th:text=${item.Title}></td>
-						<th th:text=${item.id}></th>
-						<th><img th:src="@{'../images/' + ${item.image}}"
-							height="50px"></th>
-						<td th:text=${item.[Content]}></td>
-						<td th:text=${item.Description}></td>
-						<td th:text=${item.CreateBy}></td>
-						<td>
-							<form th:action="@{deleteacc/{id}(id = ${item.Id})}"
-								method="post">
-								<button type="button" class="btn btn-primary btn-sm"
-									id="btnedit" title="sửa" data-toggle="modal"
-									data-target="#Edit" th:data-id="${item.Id}">
-									Sửa
-								</button>
-								<button type="submit" class="btn btn-primary btn-sm" title="xoá">
-									Xóa
-								</button>
-							</form>
-						</td>
-					</tr>
+				<tbody id="datatable">
+					
 				</tbody>
 			</table>
 
@@ -160,7 +138,7 @@ body {
 	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
-			<form th:action="@{/admin/newacc}" method="post">
+			
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLongTitle">Thêm</h5>
 					<button type="button" class="close" data-dismiss="modal"
@@ -201,72 +179,15 @@ body {
 	      					<input type="text" id="4" th:name="CreateBy" class="form-control" placeholder="Enter create by">
 	    				</div>
   					</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Hủy</button>
-					<button type="submit" class="btn btn-primary">Lưu</button>
+				<div class="modal-footer" id="modal-footer">
+					
 				</div>
-			</form>
+			
 		</div>
 	</div>
 </div>
 
-<!-- Modal Edit -->
-<div class="modal fade" id="Edit" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<form id="editform" th:action="@{/admin/editacc}" method="post">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Sửa tài
-						khoản</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="exampleInputEmail1">Title</label> <input
-							type="text" id="1" th:name="Title" class="form-control"
-							placeholder="Enter Name">
-					</div>
-					<div class="form-group row">
-  							<label class="col-sm-3 col-form-label">Image</label>
-					<div class="custom-file col-sm-9">
-					    <input type="file" th:name="image" class="custom-file-input" id="customFile">
-					    <label class="custom-file-label" for="customFile">Chọn tệp</label>
-				  	</div>
-				  	</div>
-					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Content</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="2" th:name="[Content]" class="form-control" placeholder="Enter content">
-	    				</div>
-  					</div>
-  					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Description</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="3" th:name="Description" class="form-control" placeholder="Enter decription">
-	    				</div>
-  					</div>
-  					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Create By</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="4" th:name="CreateBy" class="form-control" placeholder="Enter create by">
-	    				</div>
-  					</div>
-					
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Hủy</button>
-					<button type="submit" class="btn btn-primary">Lưu</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+<script th:src="@{/js/blog.js}"></script>
 <script th:inline="javascript">
 	window.onload = function() {
 		let message = /*[[(${message})]]*/ 'default';
