@@ -1,0 +1,9 @@
+SELECT 
+Cart.Id, Customer.Name as Cus_Name, 
+Product.Name as Prod_Name, 
+Cart.Quantity, Cart.CreateTime
+FROM ((Cart
+INNER JOIN Customer 
+ON Cart.Customer_Id = Customer.Id)
+INNER JOIN Product 
+ON Cart.Product_Id = Product.Id);

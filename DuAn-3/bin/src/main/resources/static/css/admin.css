@@ -1339,7 +1339,8 @@ pre {
   .table td {
     padding: 0.75rem;
     vertical-align: top;
-    border-top: 1px solid #dee2e6; }
+    border-top: 1px solid #dee2e6;
+    text-align: center; }
   .table thead th {
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6; }
@@ -3185,6 +3186,7 @@ input[type="button"].btn-block {
 
 .custom-file-label {
   position: absolute;
+  margin: 0px 15px 0px 15px;
   top: 0;
   right: 0;
   left: 0;
@@ -4688,11 +4690,6 @@ a.close.disabled {
 .toast-body {
   padding: 0.75rem; }
 
-.modal-open {
-  overflow: hidden; }
-  .modal-open .modal {
-    overflow-x: hidden;
-    overflow-y: auto; }
 
 .modal {
   position: fixed;
@@ -4868,7 +4865,8 @@ a.close.disabled {
     .modal-dialog-centered::before {
       height: calc(100vh - 3.5rem); }
   .modal-sm {
-    max-width: 300px; } }
+    max-width: 300px;
+    left: 27%;} }
 
 @media (min-width: 992px) {
   .modal-lg,
