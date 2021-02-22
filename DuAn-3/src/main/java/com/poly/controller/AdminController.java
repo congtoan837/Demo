@@ -322,13 +322,23 @@ public class AdminController {
 	// CUSTOMER CONTROLLER
 	
 	// BLOG CONTROLLER
+<<<<<<< Updated upstream
 	@GetMapping("/listblog")
 	public String blog() {
 		return "admin/blog";
+=======
+	@RequestMapping("/listblog")
+	public String list() {
+		return "admin/listblog";
+>>>>>>> Stashed changes
 	}
 	// BLOG CONTROLLER
 	
 	// PROMOTION CONTROLLER	
+	@RequestMapping("/listpromo")
+	public String listpromo() {
+		return "admin/listpromotion";
+	}
 	// PROMOTION CONTROLLER
 	
 	// ORDER CONTROLLER
