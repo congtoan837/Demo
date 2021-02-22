@@ -15,54 +15,58 @@ import javax.persistence.Table;
 public class Promotion implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int PromotionId;
-	@Column(name = "PromotionPercent")
-	private int PromotionPercent;
-	@Column(name = "PromotionTimeStart")
-	private Date PromotionTimeStart;
-	@Column(name = "PromotionTimeEnd")
-	private Date PromotionTimeEnd;
-	@Column(name = "PromotionDescription", length = 500)
-	private String PromotionDescription;
-
-	public int getPromotionId() {
-		return PromotionId;
+	private int Id;
+	@Column(name = "percents")
+	private int percents;
+	@Column(name = "TimeStart")
+	private Date TimeStart;
+	@Column(name = "TimeEnd")
+	private Date TimeEnd;
+	@Column(name = "Description")
+	private String Description;	
+	
+	
+	
+	public Promotion() {
+		super();
 	}
-
-	public void setPromotionId(int promotionId) {
-		PromotionId = promotionId;
+	public Promotion(int id, int percents, Date timeStart, Date timeEnd, String description) {
+		super();
+		Id = id;
+		this.percents = percents;
+		TimeStart = timeStart;
+		TimeEnd = timeEnd;
+		Description = description;
 	}
-
-	public int getPromotionPercent() {
-		return PromotionPercent;
+	public int getId() {
+		return Id;
 	}
-
-	public void setPromotionPercent(int promotionPercent) {
-		PromotionPercent = promotionPercent;
+	public void setId(int id) {
+		Id = id;
 	}
-
-	public Date getPromotionTimeStart() {
-		return PromotionTimeStart;
+	public int getPercents() {
+		return percents;
 	}
-
-	public void setPromotionTimeStart(Date promotionTimeStart) {
-		PromotionTimeStart = promotionTimeStart;
+	public void setPercents(int percents) {
+		this.percents = percents;
 	}
-
-	public Date getPromotionTimeEnd() {
-		return PromotionTimeEnd;
+	public Date getTimeStart() {
+		return TimeStart;
 	}
-
-	public void setPromotionTimeEnd(Date promotionTimeEnd) {
-		PromotionTimeEnd = promotionTimeEnd;
+	public void setTimeStart(Date timeStart) {
+		TimeStart = timeStart;
 	}
-
-	public String getPromotionDescription() {
-		return PromotionDescription;
+	public Date getTimeEnd() {
+		return TimeEnd;
 	}
-
-	public void setPromotionDescription(String promotionDescription) {
-		PromotionDescription = promotionDescription;
+	public void setTimeEnd(Date timeEnd) {
+		TimeEnd = timeEnd;
+	}
+	public String getDescription() {
+		return Description;
+	}
+	public void setDescription(String description) {
+		Description = description;
 	}
 
 }
