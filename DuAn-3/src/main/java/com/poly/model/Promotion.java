@@ -1,7 +1,6 @@
 package com.poly.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,18 +18,16 @@ public class Promotion implements Serializable {
 	@Column(name = "percents")
 	private int percents;
 	@Column(name = "TimeStart")
-	private Date TimeStart;
+	private String TimeStart;
 	@Column(name = "TimeEnd")
-	private Date TimeEnd;
+	private String TimeEnd;
 	@Column(name = "Description")
-	private String Description;	
-	
-	
+	private String Description;		
 	
 	public Promotion() {
 		super();
 	}
-	public Promotion(int id, int percents, Date timeStart, Date timeEnd, String description) {
+	public Promotion(int id, int percents, String timeStart, String timeEnd, String description) {
 		super();
 		Id = id;
 		this.percents = percents;
@@ -50,16 +47,16 @@ public class Promotion implements Serializable {
 	public void setPercents(int percents) {
 		this.percents = percents;
 	}
-	public Date getTimeStart() {
-		return TimeStart;
+	public String getTimeStart() {		
+	    return TimeStart;
 	}
-	public void setTimeStart(Date timeStart) {
+	public void setTimeStart(String timeStart) {
 		TimeStart = timeStart;
 	}
-	public Date getTimeEnd() {
-		return TimeEnd;
+	public String getTimeEnd() {		
+	    return TimeEnd;
 	}
-	public void setTimeEnd(Date timeEnd) {
+	public void setTimeEnd(String timeEnd) {
 		TimeEnd = timeEnd;
 	}
 	public String getDescription() {

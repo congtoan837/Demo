@@ -1,8 +1,11 @@
 package com.poly.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,25 +28,80 @@ public class RestfulAPI {
 	private BlogRepository blogRepository;
 	@Autowired
 	private PromotionRepository promotionRepository;
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	DateFormat format = new SimpleDateFormat("dd/mm/YYYY");
+	
+	// API CUSTOMER //
+		@PostMapping("/listcustomer")
+		List<Customer> allcustomer() {
+			return (List<Customer>) customerRepository.findAll();
+		}
 
+		@PostMapping("/newcustomer")
+		Customer newProduct(@RequestBody Customer customer) {
+			return customerRepository.save(customer);
+		}
+
+		@PostMapping("/findcustomer")
+		Customer one(@RequestBody Customer customer) throws Exception {
+			Integer id = customer.getId();
+			return customerRepository.findById(id).orElseThrow(() -> new Exception("Customer " + id + " not found"));
+		}
+
+		@PostMapping("/editcustomer")
+		Customer replaceCustomer(@RequestBody Customer customer) throws Exception {
+			Integer id = customer.getId();
+			if (customer.getImage() == ("")) {
+				return customerRepository.findById(id).<Customer>map(mycustomer -> {
+					mycustomer.setName(customer.getName());
+					mycustomer.setEmail(customer.getEmail());
+					mycustomer.setPhone(customer.getPhone());
+					mycustomer.setPassword(customer.getPassword());
+					mycustomer.setAddress(customer.getAddress());
+					mycustomer.setStatus(customer.getStatus());
+					return customerRepository.save(mycustomer);
+				}).orElseThrow(() -> new Exception("Customer " + id + " not found"));
+			} else {
+				return customerRepository.findById(id).<Customer>map(mycustomer -> {
+					mycustomer.setImage(customer.getImage());
+					mycustomer.setName(customer.getName());
+					mycustomer.setEmail(customer.getEmail());
+					mycustomer.setPhone(customer.getPhone());
+					mycustomer.setPassword(customer.getPassword());
+					mycustomer.setAddress(customer.getAddress());
+					mycustomer.setStatus(customer.getStatus());
+					return customerRepository.save(mycustomer);
+				}).orElseThrow(() -> new Exception("Customer " + id + " not found"));
+			}
+		}
+
+		@PostMapping("/deletecustomer")
+		void deleteCustomer(@RequestBody Customer customer) {
+			Integer id = customer.getId();
+			customerRepository.deleteById(id);
+		}
+		// API CUSTOMER //
+	
 	// API PRODUCT //
-	@RequestMapping("/listproduct")
+	@PostMapping("/listproduct")
 	List<Product> allproduct() {
 		return (List<Product>) productRepository.findAll();
 	}
 
-	@RequestMapping("/new")
+	@PostMapping("/newproduct")
 	Product newProduct(@RequestBody Product newProduct) {
 		return productRepository.save(newProduct);
 	}
 
-	@RequestMapping("/find")
+	@PostMapping("/findproduct")
 	Product one(@RequestBody Product newProduct) throws Exception {
 		Integer id = newProduct.getId();
 		return productRepository.findById(id).orElseThrow(() -> new Exception("Product " + id + " not found"));
 	}
 
-	@RequestMapping("/edit")
+	@PostMapping("/editproduct")
 	Product replaceEmployee(@RequestBody Product newProduct) throws Exception {
 		Integer id = newProduct.getId();
 		if (newProduct.getImage() == ("")) {
@@ -72,7 +130,7 @@ public class RestfulAPI {
 		}
 	}
 
-	@RequestMapping("/delete")
+	@PostMapping("/deleteproduct")
 	void deleteProduct(@RequestBody Product product) {
 		Integer id = product.getId();
 		productRepository.deleteById(id);
@@ -80,57 +138,57 @@ public class RestfulAPI {
 	// API PRODUCT //
 
 	// API BRAND //
-	@RequestMapping("/listbrand")
+	@PostMapping("/listbrand")
 	List<Brand> listbrand() {
 		return (List<Brand>) brandRepository.findAll();
 	}
 
-	@RequestMapping("/newbrand")
+	@PostMapping("/newbrand")
 	Brand newBrand(@RequestBody Brand brand) {
 		return brandRepository.save(brand);
 	}
 
-	@RequestMapping("/deletebrand")
+	@PostMapping("/deletebrand")
 	void deleteBrand(@RequestBody Brand brand) {
 		brandRepository.deleteById(brand.getId());
 	}
 	// API BRAND //
 
 	// API CATEGORY //
-	@RequestMapping("/listcategory")
+	@PostMapping("/listcategory")
 	List<Category> listcategory() {
 		return (List<Category>) categoryRepository.findAll();
 	}
 
-	@RequestMapping("/newcategory")
+	@PostMapping("/newcategory")
 	Category newCategory(@RequestBody Category newCategory) {
 		return categoryRepository.save(newCategory);
 	}
 
-	@RequestMapping("/deletecategory")
+	@PostMapping("/deletecategory")
 	void deleteCategory(@RequestBody Category newCategory) {
 		categoryRepository.deleteById(newCategory.getId());
 	}
 	// API CATEGORY //
 
 	// API BLOG //
-	@RequestMapping("/listblog")
+	@PostMapping("/listblog")
 	List<Blog> listBlog() {
 		return (List<Blog>) blogRepository.findAll();
 	}
 
-	@RequestMapping("/newblog")
+	@PostMapping("/newblog")
 	Blog newblog(@RequestBody Blog blog) {
 		return blogRepository.save(blog);
 	}
 
-	@RequestMapping("/findblog")
+	@PostMapping("/findblog")
 	Blog one(@RequestBody Blog blog) throws Exception {
 		Integer id = blog.getId();
 		return blogRepository.findById(id).orElseThrow(() -> new Exception("Product " + id + " not found"));
 	}
 
-	@RequestMapping("/editblog")
+	@PostMapping("/editblog")
 	Blog replaceBlog(@RequestBody Blog blog) throws Exception {
 		Integer id = blog.getId();
 		if (blog.getImage() == ("")) {
@@ -153,7 +211,7 @@ public class RestfulAPI {
 		}
 	}
 
-	@RequestMapping("/deleteblog")
+	@PostMapping("/deleteblog")
 	void deleteBlog(@RequestBody Blog blog) {
 		Integer id = blog.getId();
 		blogRepository.deleteById(id);
@@ -162,17 +220,17 @@ public class RestfulAPI {
 	// API BLOG //
 	
 	// API PROMOTION //
-		@RequestMapping("/listpromo")
+		@PostMapping("/listpromo")
 		List<Promotion> listPromo() {
 			return (List<Promotion>) promotionRepository.findAll();
 		}
 
-		@RequestMapping("/newpromo")
-		Promotion newpromo(@RequestBody Promotion promotion) {
+		@PostMapping("/newpromo")
+		Promotion newpromo(@RequestBody Promotion promotion) {			
 			return promotionRepository.save(promotion);
 		}
 
-		@RequestMapping("/editpromo")
+		@PostMapping("/editpromo")
 		Promotion editpromo(@RequestBody Promotion promotion) throws Exception {
 			Integer id = promotion.getId();
 			
@@ -185,7 +243,7 @@ public class RestfulAPI {
 				}).orElseThrow(() -> new Exception("promotion " + id + " not found"));						
 		}
 
-		@RequestMapping("/deletepromote")
+		@PostMapping("/deletepromo")
 		void deletepromote(@RequestBody Promotion promotion) {
 			Integer id = promotion.getId();
 			promotionRepository.deleteById(id);
@@ -194,7 +252,7 @@ public class RestfulAPI {
 		// API BLOG //
 	
 	// API CART //
-	@RequestMapping("/cart")
+	@PostMapping("/cart")
 	List<Cart> cart() {
 		return (List<Cart>) cartRepository.findAll();
 	}

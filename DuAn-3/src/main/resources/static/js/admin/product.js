@@ -7,11 +7,11 @@ $(".custom-file-input").on("change", function () {
 });
 
 $( document ).ready(function() {
-    loadComboBox();
+    loadDataTable();
 });
 
 function add() {
-    $("#Title-Popup").html('Thêm sản phẩm');
+    $("#Title-Popup").html('Thêm khách hàng');
     $("#1").val("");
     $("#2").val("");
     $("#4").val("");
@@ -22,100 +22,12 @@ function add() {
     $('#modal-footer').html(str);
 }
 
-function addbrand() {
-    var name = $('#Brand2').val();
-    {
-        $.ajax({
-            cache: true,
-            type: "POST",
-            url: "http://localhost:8080/api/newbrand",
-            contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify({
-                "name": name              
-            }),
-            dataType: "json",
-            error: function (request) {
-                toastr.error("fail");
-            },
-            success: function (request) {
-                $('#Newbrand').modal('hide');
-                toastr.success("Success");
-                loadComboBox();
-            }
-        });
-    }
-}
-
-function deletebrand(id) {
-        $.ajax({
-            cache: false,
-            type: "POST",
-            url: "http://localhost:8080/api/deletebrand/",
-            contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify({
-                "id": id                
-            }),
-            error: function (request) {
-                toastr.error("Delete fail"); 
-            },
-            success: function (data) {
-                toastr.success("Delete success");  
-                loadComboBox();
-                loadlistComboBox();
-            }
-        });
-    }
-
-function addcategory() {
-    var name = $('#Brand2').val();
-    {
-        $.ajax({
-            cache: true,
-            type: "POST",
-            url: "http://localhost:8080/api/newcategory",
-            contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify({
-                "name": name              
-            }),
-            dataType: "json",
-            error: function (request) {
-                toastr.error("fail");
-            },
-            success: function (request) {
-                $('#Newbrand').modal('hide');
-                toastr.success("Success");
-                loadComboBox();
-            }
-        });
-    }
-}
-
-function deletecategory(id) {
-        $.ajax({
-            cache: false,
-            type: "POST",
-            url: "http://localhost:8080/api/deletecategory/",
-            contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify({
-                "id": id                
-            }),
-            error: function (request) {
-                toastr.error("Delete fail"); 
-            },
-            success: function (data) {
-                toastr.success("Delete success");  
-                loadComboBox();
-                loadlistComboBox();
-            }
-        });
-    }
-
 function loadDataTable() {
 
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/listproduct",
+        url: "http://localhost:8080/api/listcustomer",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         error: function (request) {
@@ -169,7 +81,7 @@ function insert() {
         $.ajax({
             cache: true,
             type: "POST",
-            url: "http://localhost:8080/api/new",
+            url: "http://localhost:8080/api/newproduct",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "name": name,
@@ -238,54 +150,6 @@ function loadComboBox2() {
     });
 }
 
-function loadlistComboBox() {
-    $('#Brand2').val("");
-    $.ajax({
-        cache: false,
-        type: "POST",
-        url: "http://localhost:8080/api/listbrand",
-        contentType: "application/json;charset=UTF-8",
-        dataType: "json",
-        error: function (request) {
-            toastr.error("fail")
-        },
-        success: function (data) {
-        	$('#listcombobox').html("");
-            data.map((item, index) => {
-                var str = $(`<label class="col-7">${item.name}</label>
-		    				<button type="submit" onclick="deletebrand(${item.id})" class="float-right">Xóa</button>`);
-		    	var box = $(`<button type="submit" onclick="addbrand()" class="btn btn-info ml-2">OK</button>`);
-		    	$('#addcombobox').html(box);			
-                $('#listcombobox').append(str);
-            });
-        }
-    });
-}
-
-function loadlistComboBox2() {
-    $('#Brand2').val("");
-    $.ajax({
-        cache: false,
-        type: "POST",
-        url: "http://localhost:8080/api/listcategory",
-        contentType: "application/json;charset=UTF-8",
-        dataType: "json",
-        error: function (request) {
-            toastr.error("fail")
-        },
-        success: function (data) {
-        	$('#listcombobox').html("");
-            data.map((item, index) => {
-                var str = $(`<label class="col-7">${item.name}</label>
-		    				<button type="submit" onclick="deletecategory(${item.id})" class="float-right">Xóa</button>`);
-		    	var box = $(`<button type="submit" onclick="addcategory()" class="btn btn-info ml-2">OK</button>`);
-		    	$('#addcombobox').html(box);					
-                $('#listcombobox').append(str);
-            });
-        }
-    });
-}
-
 function load_edit(id) {
     dataProduct.map((item, index) => {
         if (item.id === id) {
@@ -293,6 +157,7 @@ function load_edit(id) {
             $("#1").val(item.name);
             $("#2").val(item.price);
             $("#3").val(item.brand);
+            $("#4").val("");
             $(".custom-file-label").html("Chọn tệp, bỏ trống nếu muốn giữ");
             $("#5").val(item.quantity);
             $("#6").val(item.category);
@@ -320,7 +185,7 @@ function edit(id) {
         $.ajax({
             cache: false,
             type: "POST",
-            url: "http://localhost:8080/api/edit",
+            url: "http://localhost:8080/api/editproduct",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "id": id,
@@ -349,7 +214,7 @@ function delet(id) {
         $.ajax({
             cache: false,
             type: "POST",
-            url: "http://localhost:8080/api/delete/",
+            url: "http://localhost:8080/api/deleteproduct/",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "id": id                
