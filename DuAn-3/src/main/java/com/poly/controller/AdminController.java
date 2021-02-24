@@ -329,12 +329,15 @@ public class AdminController {
 	// BLOG CONTROLLER
 	
 	// PROMOTION CONTROLLER	
-	@RequestMapping("/promo")
+	@RequestMapping("/promotion")
 	public String listpromo() {
 		return "admin/listpromotion";
 	}
 	// PROMOTION CONTROLLER
-	
+	@RequestMapping("/order")
+	public String listorderdetails() {
+		return "admin/listorderdetails";
+	}
 	// ORDER CONTROLLER
 	// ORDER CONTROLLER
 }
