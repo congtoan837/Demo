@@ -22,7 +22,7 @@ function loadDataTable() {
         url: "http://localhost:8080/api/listpromo",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
-        error: function() {
+        error: function(request) {
 
         },
         success: function(data) {
@@ -73,10 +73,10 @@ function insert() {
                 "description": description,
             }),
             dataType: "json",
-            error: function() {
+            error: function(request) {
                 toastr.error("fail");
             },
-            success: function() {
+            success: function(request) {
                 $('#Add').modal('hide');
                 toastr.success("Success");
                 loadDataTable();
@@ -122,10 +122,10 @@ function edit(id) {
             "description": description
         }),
         dataType: "json",
-        error: function() {
+        error: function(request) {
             toastr.error("Fail");
         },
-        success: function() {
+        success: function(data) {
             $('#Add').modal('hide')
             toastr.success("Edit success");
             loadDataTable();
@@ -142,10 +142,10 @@ function delet(id) {
         data: JSON.stringify({
             "id": id
         }),
-        error: function() {
+        error: function(request) {
             toastr.error("Delete fail");
         },
-        success: function() {
+        success: function(data) {
             toastr.success("Delete success");
             loadDataTable();
         }
