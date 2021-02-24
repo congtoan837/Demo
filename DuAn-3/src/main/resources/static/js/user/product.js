@@ -1,5 +1,3 @@
-@@ -0,0 +1,52 @@
-
 $(document).ready(function() {
     loadDataTable();
 });

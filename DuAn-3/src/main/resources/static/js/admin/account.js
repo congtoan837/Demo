@@ -1,4 +1,3 @@
-@@ -0,0 +1,140 @@
 var dataProduct = [];
 
 $(document).ready(function() {
