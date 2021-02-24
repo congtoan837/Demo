@@ -1,7 +1,5 @@
 package com.poly.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,12 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.poly.model.Product;
-import com.poly.services.ProductService;
+import com.poly.repositories.ProductRepository;
 
 @Controller
 public class UserController {
 	@Autowired
-	private ProductService productService;
+	private ProductRepository productRepository;
 	
 	@GetMapping("/")
 	public String index() {		
@@ -48,7 +46,7 @@ public class UserController {
 	
 	@GetMapping("/detail/{id}")
 	public String detais(ModelMap model, @PathVariable(name = "id") Integer id) {	
-		Product list = productService.findById(id).get();
+		Product list = productRepository.findById(id).get();
 		model.addAttribute("Product", list);
 		return "user/shop-detail";
 	}
