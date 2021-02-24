@@ -17,9 +17,7 @@ public class UserController {
 	private ProductService productService;
 	
 	@GetMapping("/")
-	public String index(ModelMap model) {
-		List<Product> list = (List<Product>) productService.findAll();
-		model.addAttribute("Product", list);
+	public String index() {		
 		return "user/index";
 	}
 	

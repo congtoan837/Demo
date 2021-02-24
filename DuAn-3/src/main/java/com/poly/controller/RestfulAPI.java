@@ -30,6 +30,8 @@ public class RestfulAPI {
 	private PromotionRepository promotionRepository;
 	@Autowired
 	private CustomerRepository customerRepository;
+	@Autowired
+	private AdminRepository adminRepository;
 	
 	DateFormat format = new SimpleDateFormat("dd/mm/YYYY");
 	
@@ -220,36 +222,65 @@ public class RestfulAPI {
 	// API BLOG //
 	
 	// API PROMOTION //
-		@PostMapping("/listpromo")
-		List<Promotion> listPromo() {
-			return (List<Promotion>) promotionRepository.findAll();
-		}
+	@PostMapping("/listpromo")
+	List<Promotion> listPromo() {
+		return (List<Promotion>) promotionRepository.findAll();
+	}
 
-		@PostMapping("/newpromo")
-		Promotion newpromo(@RequestBody Promotion promotion) {			
-			return promotionRepository.save(promotion);
-		}
+	@PostMapping("/newpromo")
+	Promotion newpromo(@RequestBody Promotion promotion) {			
+		return promotionRepository.save(promotion);
+	}
 
-		@PostMapping("/editpromo")
-		Promotion editpromo(@RequestBody Promotion promotion) throws Exception {
-			Integer id = promotion.getId();
-			
-				return promotionRepository.findById(id).<Promotion>map(mypromo -> {
-					mypromo.setPercents(promotion.getPercents());
-					mypromo.setTimeStart(promotion.getTimeStart());
-					mypromo.setTimeEnd(promotion.getTimeEnd());
-					mypromo.setDescription(promotion.getDescription());
-					return promotionRepository.save(mypromo);
-				}).orElseThrow(() -> new Exception("promotion " + id + " not found"));						
-		}
+	@PostMapping("/editpromo")
+	Promotion editpromo(@RequestBody Promotion promotion) throws Exception {
+		Integer id = promotion.getId();
+		
+			return promotionRepository.findById(id).<Promotion>map(mypromo -> {
+				mypromo.setPercents(promotion.getPercents());
+				mypromo.setTimeStart(promotion.getTimeStart());
+				mypromo.setTimeEnd(promotion.getTimeEnd());
+				mypromo.setDescription(promotion.getDescription());
+				return promotionRepository.save(mypromo);
+			}).orElseThrow(() -> new Exception("promotion " + id + " not found"));						
+	}
 
-		@PostMapping("/deletepromo")
+	@PostMapping("/deletepromo")
 		void deletepromote(@RequestBody Promotion promotion) {
-			Integer id = promotion.getId();
-			promotionRepository.deleteById(id);
-		}
+		Integer id = promotion.getId();
+		promotionRepository.deleteById(id);
+	}
 
-		// API BLOG //
+	// API BLOG //
+	
+	// API ACCOUNT //
+	@PostMapping("/listaccount")
+	List<Admins> listaccount() {
+		return (List<Admins>) adminRepository.findAll();
+	}
+
+	@PostMapping("/newaccount")
+	Admins newaccount(@RequestBody Admins admins) {			
+		return adminRepository.save(admins);
+	}
+
+	@PostMapping("/editaccount")
+	Admins editaccount(@RequestBody Admins admins) throws Exception {
+		Integer id = admins.getId();
+			
+			return adminRepository.findById(id).<Admins>map(myadmin -> {
+				myadmin.setName(admins.getName());
+				myadmin.setPassword(admins.getPassword());					
+				return adminRepository.save(myadmin);
+			}).orElseThrow(() -> new Exception("Account " + id + " not found"));						
+	}
+
+	@PostMapping("/deleteaccount")
+	void deleteaccount(@RequestBody Admins admins) {
+		Integer id = admins.getId();
+		adminRepository.deleteById(id);
+	}	
+	// API ACCOUNT //
 	
 	// API CART //
 	@PostMapping("/cart")
