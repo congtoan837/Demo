@@ -5,10 +5,9 @@ $(document).ready(function() {
 });
 
 function add() {
-    $("#Title-Popup").html('Thêm khuyến mãi');
+    $("#Title-Popup").html('Thêm tài khoản');
+    $("#1").val("");
     $("#2").val("");
-    $("#3").val("");
-    $("#4").val("");
     var str = $(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
 			 <button type="submit" class="btn btn-primary" onclick="insert()">Lưu</button>`);
     $('#modal-footer').html(str);
@@ -19,7 +18,7 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/listpromo",
+        url: "http://localhost:8080/api/listaccount",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         error: function() {
@@ -31,10 +30,8 @@ function loadDataTable() {
             data.map((item, index) => {
                 var str = $(`<tr>
 						<th>${item.id}</th>	                       			
-                        <td>${item.percents}</td>
-						<td>${item.timeStart}</td>
-						<td>${item.timeEnd}</td>
-						<td>${item.description}</td>
+                        <td>${item.name}</td>
+						<td>${item.password}</td>
 						<td>							
 							<button type="button" onclick="load_edit(${item.id})" class="btn btn-primary btn-sm" title="sửa"
 								data-toggle="modal" data-target="#Add">
@@ -55,22 +52,18 @@ function loadDataTable() {
 }
 
 function insert() {
-    var percents = $('#1').val().trim();
-    var timeStart = $("#2").val().trim();
-    var timeEnd = $('#3').val().trim();
-    var description = $('#4').val().trim();
+    var name = $('#1').val().trim();
+    var password = $("#2").val().trim();
 
     {
         $.ajax({
             cache: true,
             type: "POST",
-            url: "http://localhost:8080/api/newpromo",
+            url: "http://localhost:8080/api/newaccount",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
-                "percents": percents,
-                "timeStart": timeStart,
-                "timeEnd": timeEnd,
-                "description": description,
+                "name": name,
+                "password": password,
             }),
             dataType: "json",
             error: function() {
@@ -89,12 +82,10 @@ function insert() {
 function load_edit(id) {
     dataProduct.map((item, index) => {
         if (item.id === id) {
-            $("#Title-Popup").html('Sửa bài viết');
-            $("#demo").html(item.percents + ' %');
-            $("#1").val(item.percents);
-            $("#2").val(item.timeStart.split(' ', 1));
-            $("#3").val(item.timeEnd.split(' ', 1));
-            $("#4").val(item.description);
+            $("#Title-Popup").html('Sửa tài khoản');
+            $("#1").val(item.name);
+            $("#2").val(item.password);
+
             var str = $(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
 			 <button type="submit" class="btn btn-primary" onclick="edit(${item.id})">Lưu</button>`);
             $('#modal-footer').html(str);;
@@ -104,22 +95,18 @@ function load_edit(id) {
 
 function edit(id) {
 
-    var percents = $('#1').val();
-    var timeStart = $('#2').val();
-    var timeEnd = $('#3').val();
-    var description = $('#4').val();
+    var name = $('#1').val();
+    var password = $('#2').val();
 
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/editpromo",
+        url: "http://localhost:8080/api/editaccount",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
             "id": id,
-            "percents": percents,
-            "timeStart": timeStart,
-            "timeEnd": timeEnd,
-            "description": description
+            "name": name,
+            "password": password
         }),
         dataType: "json",
         error: function() {
@@ -137,7 +124,7 @@ function delet(id) {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/deletepromo",
+        url: "http://localhost:8080/api/deleteaccount",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
             "id": id

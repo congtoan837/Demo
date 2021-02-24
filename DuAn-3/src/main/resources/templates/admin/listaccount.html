@@ -101,7 +101,7 @@ body {
 			<div>
 				<h2 class="mb-4 float-left">DANH SÁCH TÀI KHOẢN</h2>
 				<button type="button" id="btnadd" class="btn btn-primary float-right"
-					data-toggle="modal" data-target="#Add">Thêm tài khoản</button>
+					data-toggle="modal" data-target="#Add" onclick="add()">Thêm tài khoản</button>
 			</div>
 			<table class="table table-striped">
 				<thead class="thead-dark">
@@ -112,25 +112,8 @@ body {
 						<th scope="col" style="width: 120px"></th>
 					</tr>
 				</thead>
-				<tbody id="tbl">
-					<tr th:each="item : ${Admins}">
-						<th th:text=${item.id}></th>
-						<td th:text=${item.name}></td>
-						<td th:text=${item.password}></td>
-						<td>
-							<form th:action="@{deleteacc/{id}(id = ${item.Id})}"
-								method="post">
-								<button type="button" class="btn btn-primary btn-sm"
-									id="btnedit" title="sửa" data-toggle="modal"
-									data-target="#Edit" th:data-id="${item.Id}">
-									Sửa
-								</button>
-								<button type="submit" class="btn btn-primary btn-sm" title="xoá">
-									Xóa
-								</button>
-							</form>
-						</td>
-					</tr>
+				<tbody id="datatable">
+					
 				</tbody>
 			</table>
 
@@ -143,6 +126,7 @@ body {
 	<script th:src="@{/js/popper.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/admin/account.js}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>
 
@@ -151,9 +135,8 @@ body {
 	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
-			<form th:action="@{/admin/newacc}" method="post">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Thêm tài
+					<h5 class="modal-title" id="Title-Popup">Thêm tài
 						khoản</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -172,75 +155,11 @@ body {
 							placeholder="Enter Password">
 					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Hủy</button>
-					<button type="submit" class="btn btn-primary">Lưu</button>
+				<div class="modal-footer" id="modal-footer">
+					
 				</div>
-			</form>
 		</div>
 	</div>
 </div>
 
-<!-- Modal Edit -->
-<div class="modal fade" id="Edit" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<form id="editform" th:action="@{/admin/editacc}" method="post">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Sửa tài
-						khoản</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label>Tên tài khoản</label> <input type="text" th:name="editname"
-							class="form-control" placeholder="Enter Name" id="name">
-					</div>
-					<div class="form-group">
-						<label>Mật khẩu</label> <input type="text" th:name="editpassword"
-							class="form-control" placeholder="Enter Password" id="password">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Hủy</button>
-					<button type="submit" class="btn btn-primary">Lưu</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<script th:inline="javascript">
-	window.onload = function() {
-		let message = /*[[(${message})]]*/ 'default';
-		let status = /*[[(${status})]]*/ 'default';
-		
-		if(message != null && status == "1"){
-			toastr.success(message)
-		}if(message != null && status == "0"){
-			toastr.error(message)
-		}
-	};
-	
-	document.querySelectorAll('#btnedit').forEach(item => {
-		item.addEventListener('click', e => {
-			let Id = e.target.dataset.id;
-			let pr = e.target.parentNode.parentNode.parentNode;
-			let name = pr.getElementsByTagName('td')[0].innerText;
-			let password = pr.getElementsByTagName('td')[1].innerText;
-			$("#name").val(name);
-			$("#password").val(password);
-			$("#editform").attr("action", "/admin/editacc/" + Id);
-		})
-	})
-	$("#btnadd").click(function() {
-		$("#1").val("");
-		$("#2").val("");
-});
-</script>
 </html>
