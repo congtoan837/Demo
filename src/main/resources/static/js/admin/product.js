@@ -9,6 +9,7 @@ $(".custom-file-input").on("change", function () {
 $( document ).ready(function() {
     loadComboBox();
     loadDataTable();
+    
 });
 
 function add() {
@@ -112,6 +113,9 @@ function deletecategory(id) {
     }
 
     function loadlistComboBox() {
+	    $("#Newbrand").click(function () {
+	        $('#buttonadd').attr("onclick","addbrand()");
+	    });
         $('#Brand2').val("");
         $.ajax({
             cache: false,
@@ -126,9 +130,7 @@ function deletecategory(id) {
                 $('#listcombobox').html("");
                 data.map((item, index) => {
                     var str = $(`<label class="col-7">${item.name}</label>
-                                <button type="submit" onclick="deletebrand(${item.id})" class="float-right">Xóa</button>`);
-                    var box = $(`<button type="submit" onclick="addbrand()" class="btn btn-info ml-2">OK</button>`);
-                    $('#addcombobox').html(box);			
+                                <button type="submit" onclick="deletebrand(${item.id})" class="float-right">Xóa</button>`);			
                     $('#listcombobox').append(str);
                 });
             }
@@ -136,6 +138,9 @@ function deletecategory(id) {
     }
     
     function loadlistComboBox2() {
+	    $("#newcategory").click(function () {
+	        $('#buttonadd').attr("onclick","addcategory()");
+	    });
         $('#Brand2').val("");
         $.ajax({
             cache: false,
