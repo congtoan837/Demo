@@ -31,7 +31,7 @@ function loadDataTable() {
             data.map((item, index) => {
                 var str = $(`<tr>
 						<th>${item.id}</th>	                       			
-                        <td>${item.percents}</td>
+                        <td>${item.percents}%</td>
 						<td>${item.timeStart}</td>
 						<td>${item.timeEnd}</td>
 						<td>${item.description}</td>
