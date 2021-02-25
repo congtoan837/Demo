@@ -1,0 +1,114 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thống kê</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
+	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<style>
+body {
+	padding-right: 0 !important
+}
+</style>
+<body>
+	<div class="wrapper d-flex align-items-stretch">
+		<nav id="sidebar">
+			<div class="custom-menu">
+				<button type="button" id="sidebarCollapse" class="btn btn-primary">
+					<i class="fa fa-bars"></i> <span class="sr-only">Toggle Menu</span>
+				</button>
+			</div>
+			<div class="p-4 pt-5">
+				<h1>
+					<a class="logo">ADMIN</a>
+				</h1>
+				<ul class="list-unstyled components mb-5">
+					<li><a th:href="@{/admin}"><i class="fas fa-chart-line"></i>
+							Thống kê</a></li>
+					<li><a href="#pageSubmenu1" data-toggle="collapse"
+						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-file-invoice-dollar"></i> 
+									Quản lý đơn hàng</a>
+						<ul class="collapse list-unstyled" id="pageSubmenu1">
+							<li><a th:href="@{/record/Add}"><i class="fa fa-plus-square"></i>
+									Danh sách đơn hàng</a></li>
+							<li><a th:href="@{/record/List}"><i class="fa fa-list-alt"></i>
+									Tạo đơn hàng</a></li>
+						</ul></li>
+					<li><a href="#pageSubmenu2" data-toggle="collapse"
+						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Quản lý sản phẩm</a>
+						<ul class="collapse list-unstyled" id="pageSubmenu2">						
+							<li><a th:href="@{/admin/product}"><i class="fa fa-list-alt"></i>
+									Danh sách sản phẩm</a></li>
+							<li><a th:href="@{/product/list2}"><i class="fa fa-list-alt"></i>
+									Danh mục sản phẩm</a></li>
+						</ul></li>
+					<li><a th:href="@{/admin/customer}"><i class="fas fa-user"></i>
+									Quản lý khách hàng</a></li>
+					<li><a th:href="@{/admin/promotion}"><i class="fas fa-gifts" aria-hidden="true"></i> Khuyến mãi</a></li>
+					<li><a href="#pageSubmenu4" data-toggle="collapse"
+						aria-expanded="false" class="dropdown-toggle"><i class="fab fa-blogger-b" aria-hidden="true"></i> Blog</a>
+						<ul class="collapse list-unstyled" id="pageSubmenu4">
+							<li><a th:href="@{/blog/list}"><i class="fa fa-plus-square"></i>
+									Danh sách Blog</a></li>
+							<li><a th:href="@{/blog/add}"><i class="fa fa-list-alt"></i>
+									Thêm Blog</a></li>
+						</ul></li>
+						<li><a th:href="@{/admin/account}">
+							<i class="fas fa-key"></i> Quản lý tài khoản</a>						
+						</li>
+				</ul>
+
+				<div class="mb-5">
+					<h3 class="h6 col text-center">Tiếng Việt | English</h3>
+					<form action="#" class="colorlib-subscribe-form">
+						<div class="form-group d-flex">
+							<div class="icon"></div>
+						</div>
+					</form>
+				</div>
+
+				<div class="footer">
+					<p>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;
+						<script>
+							document.write(new Date().getFullYear());
+						</script>
+						All rights reserved | FPT Polytechnic
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</p>
+				</div>
+				<form th:action="@{admin/logout}" method="Post">
+					<div class="col text-center" style="padding-top: 50px">
+						<button type="submit" class="btn btn-info btn-lg"> Đăng Xuất</button>
+					</div>
+				</form>
+
+			</div>
+		</nav>
+
+		<!-- Page Content  -->
+		<div id="content" class="p-4 p-md-5 pt-5">
+
+			<h2 class="mb-4">THỐNG KÊ</h2>
+			
+
+		</div>
+	</div>
+
+	<script src="https://kit.fontawesome.com/bc9d44c30b.js"></script>
+	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/js/popper.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
