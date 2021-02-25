@@ -30,7 +30,7 @@ function loadDataTable() {
                                     data-toggle="tooltip" data-placement="right" title="Chi tiết"><i
                                         class="fas fa-eye"></i></a></li>
                             </ul>
-                            <button type="submit" class="cart">Thêm vào giỏ</button>
+                            <button type="submit" class="cart" onclick="addtocart(${item.id})">Thêm vào giỏ</button>
                         </div>
                     </div>
                     <div class="why-text">
@@ -41,6 +41,35 @@ function loadDataTable() {
             </div>`);
             $('#listproduct').append(str);
             });
+
+        }
+
+    });
+
+}
+
+function addtocart(id) {
+
+    $.ajax({
+        cache: false,
+        type: "POST",
+        url: "http://localhost:8080/api/findproduct",
+        contentType: "application/json;charset=UTF-8",
+        data: JSON.stringify({
+            "id": id
+        }),
+        dataType: "json",
+        error: function (request) {
+        
+        },
+        success: function (data) {
+            let a = data.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+            var str = $(`<li>
+            <a href="#" class="photo"><img src="images/${data.image}" class="cart-thumb" alt="" /></a>
+            <h6><a href="#">${data.name}</a></h6>
+            <p>1x - <span class="price">${a}</span></p>
+        </li>	`);
+        $('#cart').append(str);
 
         }
 

@@ -10,14 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Admin")
+@Table(name = "Cart")
 public class Cart implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Id;
-	@Column(name = "Customer_Id")
+	@Column(name = "CustomerId")
     private int Customer_Id;
-	@Column(name = "Product_Id")
+	@Column(name = "ProductId")
     private int Product_Id;
 	@Column(name = "Quantity")
     private int Quantity;
@@ -26,12 +26,13 @@ public class Cart implements Serializable{
 		super();
 	}
 	
+	
+	
 	public Cart(Integer id, int customer_Id, int product_Id, int quantity) {
-		super();
-		Id = id;
-		Customer_Id = customer_Id;
-		Product_Id = product_Id;
-		Quantity = quantity;
+		this.Id = id;
+		this.Customer_Id = customer_Id;
+		this.Product_Id = product_Id;
+		this.Quantity = quantity;
 	}
 	
 	public Integer getId() {
