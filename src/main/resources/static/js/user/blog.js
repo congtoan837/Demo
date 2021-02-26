@@ -7,7 +7,7 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/listblog",
+        url: API_URL + "/api/listblog",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         error: function (request) {

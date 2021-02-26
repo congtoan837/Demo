@@ -30,7 +30,7 @@ function addbrand() {
         $.ajax({
             cache: true,
             type: "POST",
-            url: "http://localhost:8080/api/newbrand",
+            url: API_URL + "/api/newbrand",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "name": name              
@@ -52,7 +52,7 @@ function deletebrand(id) {
         $.ajax({
             cache: false,
             type: "POST",
-            url: "http://localhost:8080/api/deletebrand/",
+            url: API_URL + "/api/deletebrand/",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "id": id                
@@ -74,7 +74,7 @@ function addcategory() {
         $.ajax({
             cache: true,
             type: "POST",
-            url: "http://localhost:8080/api/newcategory",
+            url: API_URL + "/api/newcategory",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "name": name              
@@ -96,7 +96,7 @@ function deletecategory(id) {
         $.ajax({
             cache: false,
             type: "POST",
-            url: "http://localhost:8080/api/deletecategory/",
+            url: API_URL + "/api/deletecategory/",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "id": id                
@@ -120,7 +120,7 @@ function deletecategory(id) {
         $.ajax({
             cache: false,
             type: "POST",
-            url: "http://localhost:8080/api/listbrand",
+            url: API_URL + "/api/listbrand",
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
             error: function (request) {

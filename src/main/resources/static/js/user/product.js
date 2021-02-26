@@ -7,7 +7,7 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/listproduct",
+        url: API_URL + "/api/listproduct",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         error: function (request) {
@@ -53,7 +53,7 @@ function addtocart(id) {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/findproduct",
+        url: API_URL + "/api/findproduct",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
             "id": id

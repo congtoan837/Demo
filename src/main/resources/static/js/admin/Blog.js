@@ -27,7 +27,7 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/listblog",
+        url: API_URL + "/api/listblog",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         error: function(request) {
@@ -74,7 +74,7 @@ function insert() {
         $.ajax({
             cache: true,
             type: "POST",
-            url: "http://localhost:8080/api/newblog",
+            url: API_URL + "/api/newblog",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "content": content,
@@ -125,7 +125,7 @@ function edit(id) {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/editblog",
+        url: API_URL + "/api/editblog",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
             "id": id,
@@ -151,7 +151,7 @@ function delet(id) {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/deleteblog",
+        url: API_URL + "/api/deleteblog",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
             "id": id

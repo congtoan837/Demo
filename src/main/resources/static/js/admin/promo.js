@@ -19,7 +19,7 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/listpromo",
+        url: API_URL + "/api/listpromo",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         error: function(request) {
@@ -64,7 +64,7 @@ function insert() {
         $.ajax({
             cache: true,
             type: "POST",
-            url: "http://localhost:8080/api/newpromo",
+            url: API_URL + "/api/newpromo",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "percents": percents,
@@ -112,7 +112,7 @@ function edit(id) {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/editpromo",
+        url: API_URL + "/api/editpromo",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
             "id": id,
@@ -137,7 +137,7 @@ function delet(id) {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/deletepromo",
+        url: API_URL + "/api/deletepromo",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
             "id": id

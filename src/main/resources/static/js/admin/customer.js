@@ -28,7 +28,7 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/listcustomer",
+        url: API_URL + "/api/listcustomer",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         error: function(request) {
@@ -79,7 +79,7 @@ function insert() {
         $.ajax({
             cache: true,
             type: "POST",
-            url: "http://localhost:8080/api/newcustomer",
+            url: API_URL + "/api/newcustomer",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "name": name,
@@ -136,7 +136,7 @@ function edit(id) {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/editcustomer",
+        url: API_URL + "/api/editcustomer",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
             "id": id,
@@ -164,7 +164,7 @@ function delet(id) {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/deletecustomer",
+        url: API_URL + "/api/deletecustomer",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
             "id": id
