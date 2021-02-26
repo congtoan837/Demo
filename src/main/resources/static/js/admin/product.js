@@ -145,7 +145,7 @@ function deletecategory(id) {
         $.ajax({
             cache: false,
             type: "POST",
-            url: "http://localhost:8080/api/listcategory",
+            url:  API_URL + "/api/listcategory",
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
             error: function (request) {
@@ -171,7 +171,7 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/listproduct",
+        url:  API_URL + "/api/listproduct",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         error: function (request) {
@@ -225,7 +225,7 @@ function insert() {
         $.ajax({
             cache: true,
             type: "POST",
-            url: "http://localhost:8080/api/newproduct",
+            url:  API_URL + "/api/newproduct",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "name": name,
@@ -255,7 +255,7 @@ function loadComboBox() {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/listbrand",
+        url:  API_URL + "/api/listbrand",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         error: function (request) {
@@ -278,7 +278,7 @@ function loadComboBox2() {
     $.ajax({
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/listcategory",
+        url:  API_URL + "/api/listcategory",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         error: function (request) {
@@ -329,7 +329,7 @@ function edit(id) {
         $.ajax({
             cache: false,
             type: "POST",
-            url: "http://localhost:8080/api/editproduct",
+            url:  API_URL + "/api/editproduct",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "id": id,
@@ -358,7 +358,7 @@ function delet(id) {
         $.ajax({
             cache: false,
             type: "POST",
-            url: "http://localhost:8080/api/deleteproduct/",
+            url:  API_URL + "/api/deleteproduct/",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "id": id                
