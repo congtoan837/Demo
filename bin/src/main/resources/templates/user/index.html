@@ -36,111 +36,132 @@
 </head>
 
 <body>
-	<!-- Start Main Top -->
-	<div class="main-top">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="right-phone-box">
-						<p>
-							Call US :- <a href="#"> +11 900 800 100</a>
-						</p>
-					</div>
-					<div class="our-link">
-						<ul>
-							<li><a href="#"><i class="fa fa-user s_color"></i> Tài
-									khoản</a></li>
-							<li><a th:href="@{/contact}"><i class="fas fa-headset"></i>
-									Liên hệ</a></li>
-						</ul>
-					</div>
+<!-- Start Main Top -->
+<div class="main-top">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<div class="right-phone-box">
+					<p>
+						Call US :- <a href="#"> +11 900 800 100</a>
+					</p>
 				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="login-box">
-						<select id="basic" class="selectpicker show-tick form-control"
+				<div class="our-link">
+					<ul>
+						<li><a href="#"><i class="fa fa-user s_color"></i> Tài
+								khoản</a></li>
+						<li><a th:href="@{/contact}"><i class="fas fa-headset"></i>
+								Liên hệ</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<div class="login-box">
+					<select id="basic" class="selectpicker show-tick form-control"
 							data-placeholder="Sign In">
 							<option>Đăng ký</option>
 							<option>Đăng nhập</option>
-						</select>
-					</div>
-					<div class="text-slid-box">
-						<div id="offer-box" class="carouselTicker">
-							<ul class="offer-box">
-								<li><i class="fab fa-opencart"></i> 20% off Entire Purchase
-									Promo code: offT80</li>
-								<li><i class="fab fa-opencart"></i> 50% - 80% off on
-									Vegetables</li>
-								<li><i class="fab fa-opencart"></i> Off 10%! Shop
-									Vegetables</li>
-								<li><i class="fab fa-opencart"></i> Off 50%! Shop Now</li>
-								<li><i class="fab fa-opencart"></i> Off 10%! Shop
-									Vegetables</li>
-								<li><i class="fab fa-opencart"></i> 50% - 80% off on
-									Vegetables</li>
-								<li><i class="fab fa-opencart"></i> 20% off Entire Purchase
-									Promo code: offT30</li>
-								<li><i class="fab fa-opencart"></i> Off 50%! Shop Now</li>
-							</ul>
-						</div>
+					</select>
+				</div>
+				<div class="text-slid-box">
+					<div id="offer-box" class="carouselTicker">
+						<ul class="offer-box">
+							<li>
+								<i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
+							</li>
+							<li>
+								<i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+							</li>
+							<li>
+								<i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+							</li>
+							<li>
+								<i class="fab fa-opencart"></i> Off 50%! Shop Now
+							</li>
+							<li>
+								<i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+							</li>
+							<li>
+								<i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+							</li>
+							<li>
+								<i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
+							</li>
+							<li>
+								<i class="fab fa-opencart"></i> Off 50%! Shop Now 
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- End Main Top -->
+</div>
+<!-- End Main Top -->
 
-	<!-- Start Main Top -->
-	<header class="main-header">
-		<!-- Start Navigation -->
-		<nav
-			class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-			<div class="container">
-				<!-- Start Header Navigation -->
-				<div class="navbar-header">
-					<button class="navbar-toggler" type="button" data-toggle="collapse"
-						data-target="#navbar-menu" aria-controls="navbars-rs-food"
-						aria-expanded="false" aria-label="Toggle navigation">
-						<i class="fa fa-bars"></i>
-					</button>
-					<a class="navbar-brand" th:href="@{..}"><strong>FOX
-							Sneaker</strong></a>
-				</div>
-				<!-- End Header Navigation -->
-
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="navbar-menu">
-					<ul class="nav navbar-nav ml-auto" data-in="fadeInDown"
-						data-out="fadeOutUp">
-						<li class="nav-item active"><a class="nav-link"
-							th:href="@{..}">Trang chủ</a></li>
-						<li class="nav-item"><a class="nav-link" th:href="@{/about}">Giới
-								thiệu</a></li>
-						<li class="nav-item"><a class="nav-link" th:href="@{/shop}">Sản
-								phẩm</a></li>
-						<li class="nav-item"><a class="nav-link" th:href="@{/news}">Tin
-								tức</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Khuyến
-								mãi</a></li>
-					</ul>
-				</div>
-				<!-- /.navbar-collapse -->
-
-				<!-- Start Atribute Navigation -->
-				<div class="attr-nav">
-					<ul>
-						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-						<li class="side-menu"><a th:href="@{/cart}"> <i
-								class="fa fa-shopping-bag"></i>
-								GIỎ HÀNG
-						</a></li>
-					</ul>
-				</div>
-				<!-- End Atribute Navigation -->
+<!-- Start Main Top -->
+<header class="main-header">
+	<!-- Start Navigation -->
+	<nav
+		class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+		<div class="container">
+			<!-- Start Header Navigation -->
+			<div class="navbar-header">
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbar-menu" aria-controls="navbars-rs-food"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<i class="fa fa-bars"></i>
+				</button>
+				<a class="navbar-brand" th:href="@{..}"><strong>FOX
+						Sneaker</strong></a>
 			</div>
-		</nav>
-		<!-- End Navigation -->
-	</header>
-	<!-- End Main Top -->
+			<!-- End Header Navigation -->
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="navbar-menu">
+				<ul class="nav navbar-nav ml-auto" data-in="fadeInDown"
+					data-out="fadeOutUp">
+					<li class="nav-item active"><a class="nav-link"
+						th:href="@{..}">Trang chủ</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/about}">Giới
+							thiệu</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/shop}">Sản
+							phẩm</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/news}">Tin
+							tức</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Khuyến
+							mãi</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+
+			<!-- Start Atribute Navigation -->
+			<div class="attr-nav">
+				<ul>
+					<li class="side-menu">
+						<a href="#">
+							<i class="fa fa-shopping-bag"></i>
+							<p>GIỎ HÀNG</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<!-- End Atribute Navigation -->
+		</div>
+		<!-- Start Side Menu -->
+		<div class="side">
+			<a href="#" class="close-side"><i class="fa fa-times"></i></a>
+			<li class="cart-box">
+				<ul class="cart-list" id="cart">
+																	
+				</ul>
+			</li>
+		</div>
+		<!-- End Side Menu -->
+	</nav>
+	<!-- End Navigation -->
+</header>
+<!-- End Main Top -->	
 
 	<!-- Start Top Search -->
 	<div class="top-search">
@@ -195,35 +216,7 @@
 				</div>
 			</div>
 
-			<div class="row special-list">
-				<div th:each="item : ${Product}"
-					class="col-lg-3 col-md-6 special-grid"
-					th:classappend="${Product} ?  ${item.status} : userclass">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<div class="type-lb">
-								<p class="sale" th:text=${item.status}></p>
-							</div>
-							<img th:src="@{'../images/' + ${item.image}}" class="img-fluid"
-								alt="Image" style="height: 255px">
-							<div class="mask-icon">
-								<ul>
-									<li><a th:href="@{detail/{id}(id = ${item.id})}"
-										data-toggle="tooltip" data-placement="right" title="Chi tiết"><i
-											class="fas fa-eye"></i></a></li>
-								</ul>
-								<button type="submit" class="cart">Thêm vào giỏ</button>
-							</div>
-						</div>
-						<div class="why-text">
-							<h4 th:text=${item.name} style="text-transform: uppercase;"></h4>
-							<h5
-								th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')} + '₫'"></h5>
-						</div>
-					</div>
-				</div>
-
-			</div>
+			<div class="row" id="listproduct"></div>
 		</div>
 	</div>
 	<!-- End Products  -->
@@ -342,6 +335,8 @@
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="js/user/product.js"></script>
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -349,7 +344,7 @@
 	<script src="js/jquery.superslides.min.js"></script>
 	<script src="js/bootstrap-select.js"></script>
 	<script src="js/inewsticker.js"></script>
-	<script src="js/bootsnav.js."></script>
+	<script src="js/bootsnav.js"></script>
 	<script src="js/images-loded.min.js"></script>
 	<script src="js/isotope.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
