@@ -1,21 +1,16 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Danh sách nhân viên</title>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
-	rel="stylesheet">
-
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" th:href="@{/css/admin.css}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 <script th:src="@{/js/urlcomon.js}"></script>
-</head>
+<script th:src="@{/js/admin/customer.js}"></script>
+<head>
+	<title>Customer Manager</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" th:href="@{/css/font.css}">
+	<link rel="stylesheet" th:href="@{/css/admin.css}">
+	<link rel="stylesheet" th:href="@{/css/toastr.css}">
+	</head>
 <style>
 body {
 	padding-right: 0 !important
@@ -121,12 +116,11 @@ body {
 		<!-- End Page Content  -->
 	</div>
 
-	<script src="https://kit.fontawesome.com/bc9d44c30b.js"></script>
-	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/js/fontawesome.js}"></script>
 	<script th:src="@{/js/popper.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script th:src="@{/js/toastr.js}"></script>
 </body>
 <!-- Modal Add-->
 <div class="modal fade" id="Add" tabindex="-1" role="dialog"
@@ -194,5 +188,4 @@ body {
 		</div>
 	</div>
 </div>
-<script th:src="@{/js/admin/customer.js}"></script>
 </html>

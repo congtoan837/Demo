@@ -9,7 +9,7 @@ function add() {
     $("#1").val("");
     $("#2").val("");
     var str = $(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-			 <button type="submit" class="btn btn-primary" onclick="insert()">Lưu</button>`);
+			 <button type="submit" id="btn_insert" class="btn btn-primary" onclick="insert()">Lưu</button>`);
     $('#modal-footer').html(str);
 }
 
@@ -55,7 +55,8 @@ function loadDataTable() {
 function insert() {
     var name = $('#1').val().trim();
     var password = $("#2").val().trim();
-
+    $("#btn_insert").addClass( "disabled" );
+    $("#btn_insert").attr( 'onclick','' );
     {
         $.ajax({
             cache: true,
@@ -69,10 +70,14 @@ function insert() {
             dataType: "json",
             error: function() {
                 toastr.error("fail");
+                $("#btn_insert").removeClass( "disabled" );
+                $("#btn_insert").attr( 'onclick','insert()' );
             },
             success: function() {
                 $('#Add').modal('hide');
                 toastr.success("Success");
+                $("#btn_insert").removeClass( "disabled" );
+                $("#btn_insert").attr( 'onclick','insert()' );
                 loadDataTable();
             }
         });
@@ -88,7 +93,7 @@ function load_edit(id) {
             $("#2").val(item.password);
 
             var str = $(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-			 <button type="submit" class="btn btn-primary" onclick="edit(${item.id})">Lưu</button>`);
+			 <button type="submit" id="btn_insert" class="btn btn-primary" onclick="edit(${item.id})">Lưu</button>`);
             $('#modal-footer').html(str);;
         }
     });
@@ -98,7 +103,8 @@ function edit(id) {
 
     var name = $('#1').val();
     var password = $('#2').val();
-
+    $("#btn_insert").addClass( "disabled" );
+    $("#btn_insert").attr( 'onclick','' );
     $.ajax({
         cache: false,
         type: "POST",
@@ -112,10 +118,14 @@ function edit(id) {
         dataType: "json",
         error: function() {
             toastr.error("Fail");
+            $("#btn_insert").removeClass( "disabled" );
+            $("#btn_insert").attr( 'onclick','edit(${item.id})' );
         },
         success: function() {
             $('#Add').modal('hide')
             toastr.success("Edit success");
+            $("#btn_insert").removeClass( "disabled" );
+            $("#btn_insert").attr( 'onclick','edit(${item.id})' );
             loadDataTable();
         }
     });
