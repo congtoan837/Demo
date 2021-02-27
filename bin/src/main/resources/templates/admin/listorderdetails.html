@@ -1,0 +1,372 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Danh sách nhân viên</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
+	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" th:href="@{/css/admin.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
+<style>
+body {
+	padding-right: 0 !important
+}
+</style>
+<body>
+	<div class="wrapper d-flex align-items-stretch">
+		<nav id="sidebar">
+			<div class="custom-menu">
+				<button type="button" id="sidebarCollapse" class="btn btn-primary">
+					<i class="fa fa-bars"></i> <span class="sr-only">Toggle Menu</span>
+				</button>
+			</div>
+			<div class="p-4 pt-5">
+				<h1>
+					<a class="logo">ADMIN</a>
+				</h1>
+				<ul class="list-unstyled components mb-5">
+					<li><a th:href="@{/admin}"><i class="fas fa-chart-line"></i>
+							Thống kê</a></li>
+					<li><a href="#pageSubmenu1" data-toggle="collapse"
+						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-file-invoice-dollar"></i> 
+									Quản lý đơn hàng</a>
+						<ul class="collapse list-unstyled" id="pageSubmenu1">
+							<li><a th:href="@{/record/Add}"><i class="fa fa-plus-square"></i>
+									Danh sách đơn hàng</a></li>
+							<li><a th:href="@{/record/List}"><i class="fa fa-list-alt"></i>
+									Tạo đơn hàng</a></li>
+						</ul></li>
+					<li><a href="#pageSubmenu2" data-toggle="collapse"
+						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Quản lý sản phẩm</a>
+						<ul class="collapse list-unstyled" id="pageSubmenu2">						
+							<li><a th:href="@{/admin/product}"><i class="fa fa-list-alt"></i>
+									Danh sách sản phẩm</a></li>
+							<li><a th:href="@{/product/list2}"><i class="fa fa-list-alt"></i>
+									Danh mục sản phẩm</a></li>
+						</ul></li>
+					<li><a th:href="@{/admin/customer}"><i class="fas fa-user"></i>
+									Quản lý khách hàng</a></li>
+					<li><a th:href="@{/admin/promotion}"><i class="fas fa-gifts" aria-hidden="true"></i> Khuyến mãi</a></li>
+					<li><a href="#pageSubmenu4" data-toggle="collapse"
+						aria-expanded="false" class="dropdown-toggle"><i class="fab fa-blogger-b" aria-hidden="true"></i> Blog</a>
+						<ul class="collapse list-unstyled" id="pageSubmenu4">
+							<li><a th:href="@{/blog/list}"><i class="fa fa-plus-square"></i>
+									Danh sách Blog</a></li>
+							<li><a th:href="@{/blog/add}"><i class="fa fa-list-alt"></i>
+									Thêm Blog</a></li>
+						</ul></li>
+					<li><a th:href="@{/admin/account}">
+						<i class="fas fa-key"></i> Quản lý tài khoản</a>						
+						</li>
+				</ul>
+
+				<div class="mb-5">
+					<h3 class="h6 col text-center">Tiếng Việt | English</h3>
+					<form action="#" class="colorlib-subscribe-form">
+						<div class="form-group d-flex">
+							<div class="icon"></div>
+						</div>
+					</form>
+				</div>
+
+				<div class="footer">
+					<p>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;
+						<script>
+							document.write(new Date().getFullYear());
+						</script>
+						All rights reserved | FPT Polytechnic
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</p>
+				</div>
+				<form th:action="@{/admin/logout}" method="Post">
+					<div class="col text-center" style="padding-top: 50px">
+						<button type="submit" class="btn btn-info btn-lg"> Đăng Xuất</button>
+					</div>
+			</form>
+			</div>
+		</nav>
+
+		<!-- Page Content  -->
+		<div id="content" class="p-4 p-md-5 pt-5">
+			<div>
+				<h2 class="mb-4 float-left">DANH SÁCH ĐƠN HÀNG</h2>
+				<button type="button" id="btnadd" class="btn btn-primary float-right"
+					data-toggle="modal" data-target="#Add">Thêm Đơn Hàng</button>
+			</div>
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Date</th>
+						<th scope="col">Name</th>
+						<th scope="col">Quantity</th>
+						<th scope="col">TotalPrice</th>
+						<th scope="col">ProductId</th>
+						<th scope="col">PromotionId</th>
+						<th scope="col">OrderId</th>
+						<th scope="col">Status</th>
+						<th scope="col">PaymentId</th>
+						
+						<th scope="col" style="width: 120px"></th>
+					</tr>
+				</thead>
+				<tbody id="tbl">
+					<tr th:each="item : ${OrderDetails}">
+						<th th:text=${item.id}></th>
+						<td th:text=${item.Title}></td>
+						<th th:text=${item.id}></th>
+						<th><img th:src="@{'../images/' + ${item.image}}"
+							height="50px"></th>
+						<td th:text=${item.[Content]}></td>
+						<td th:text=${item.Description}></td>
+						<td th:text=${item.CreateBy}></td>
+						<td>
+							<form th:action="@{deleteacc/{id}(id = ${item.Id})}"
+								method="post">
+								<button type="button" class="btn btn-primary btn-sm"
+									id="btnedit" title="sửa" data-toggle="modal"
+									data-target="#Edit" th:data-id="${item.Id}">
+									Sửa
+								</button>
+								<button type="submit" class="btn btn-primary btn-sm" title="xoá">
+									Xóa
+								</button>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+	
+	<script src="//code.jquery.com/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/bc9d44c30b.js"></script>
+	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/js/popper.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</body>
+
+<!-- Modal Add-->
+<div class="modal fade" id="Add" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<form th:action="@{/admin/newacc}" method="post">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Thêm</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Date</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="1" th:name="Date" class="form-control" placeholder="Enter Date">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Name</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="2" th:name="Name" class="form-control" placeholder="Enter Name">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Quantity</label> 
+						<div class="col-sm-9">
+						<input type="number" id="3" th:name="Quantity" class="form-control"
+							placeholder="Enter Quantity">
+						</div>
+					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">TotalPrice</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="4" th:name="TotalPrice" class="form-control" placeholder="Enter Total Price">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">ProductId</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="5" th:name="ProductId" class="form-control" placeholder="Enter Product">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">PromotionId</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="6" th:name="Promotion" class="form-control" placeholder="Enter Promotion">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">OrderId</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="7" th:name="OrderId" class="form-control" placeholder="Enter OrderId">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Status</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="8" th:name="Status" class="form-control" placeholder="Enter Status">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">PaymentId</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="9" th:name="PaymentId" class="form-control" placeholder="Enter Payment">
+	    				</div>
+  					</div>
+  				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Hủy</button>
+					<button type="submit" class="btn btn-primary">Lưu</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="Edit" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<form id="editform" th:action="@{/admin/editacc}" method="post">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Sửa tài
+						khoản</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="exampleInputEmail1">Percent</label> <input
+							type="number" id="1" th:name="[Percent]" class="form-control"
+							placeholder="Enter Percent">
+					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Time Start</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="2" th:name="TimeStart" class="form-control" placeholder="Enter Time Start">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Time End</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="3" th:name="TimeEnd" class="form-control" placeholder="Enter Time End">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Description</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="4" th:name="Description" class="form-control" placeholder="Enter Description">
+	    				</div><div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Date</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="1" th:name="Date" class="form-control" placeholder="Enter Date">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Name</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="2" th:name="Name" class="form-control" placeholder="Enter Name">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Quantity</label> 
+						<div class="col-sm-9">
+						<input type="number" id="3" th:name="Quantity" class="form-control"
+							placeholder="Enter Quantity">
+						</div>
+					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">TotalPrice</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="4" th:name="TotalPrice" class="form-control" placeholder="Enter Total Price">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">ProductId</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="5" th:name="ProductId" class="form-control" placeholder="Enter Product">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">PromotionId</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="6" th:name="Promotion" class="form-control" placeholder="Enter Promotion">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">OrderId</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="7" th:name="OrderId" class="form-control" placeholder="Enter OrderId">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">Status</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="8" th:name="Status" class="form-control" placeholder="Enter Status">
+	    				</div>
+  					</div>
+  					<div class="form-group row">
+	    					<label class="col-sm-3 col-form-label">PaymentId</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="9" th:name="PaymentId" class="form-control" placeholder="Enter Payment">
+	    				</div>
+  					</div>
+  				</div>
+  				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Hủy</button>
+					<button type="submit" class="btn btn-primary">Lưu</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script th:inline="javascript">
+	window.onload = function() {
+		let message = /*[[(${message})]]*/ 'default';
+		let status = /*[[(${status})]]*/ 'default';
+		
+		if(message != null && status == "1"){
+			toastr.success(message)
+		}if(message != null && status == "0"){
+			toastr.error(message)
+		}
+	};
+	
+	document.querySelectorAll('#btnedit').forEach(item => {
+		item.addEventListener('click', e => {
+			let Id = e.target.dataset.id;
+			let pr = e.target.parentNode.parentNode.parentNode;
+			let name = pr.getElementsByTagName('td')[0].innerText;
+			let password = pr.getElementsByTagName('td')[1].innerText;
+			$("#name").val(name);
+			$("#password").val(password);
+			$("#editform").attr("action", "/admin/editacc/" + Id);
+		})
+	})
+	$("#btnadd").click(function() {
+		$("#1").val("");
+		$("#2").val("");
+});
+</script>
+</html>

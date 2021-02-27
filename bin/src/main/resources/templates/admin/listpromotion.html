@@ -101,44 +101,22 @@ body {
 			<div>
 				<h2 class="mb-4 float-left">DANH SÁCH KHUYẾN MÃI</h2>
 				<button type="button" id="btnadd" class="btn btn-primary float-right"
-					data-toggle="modal" data-target="#Add">Thêm Khuyến Mãi</button>
+					data-toggle="modal" data-target="#Add" onclick="add()">Thêm Khuyến Mãi</button>
 			</div>
 			<table class="table table-striped">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">Id</th>
-						<th scope="col">Percent</th>
-						<th scope="col">TimeStart</th>
-						<th scope="col">TimeEnd</th>
-						<th scope="col">Description</th>
+						<th scope="col">Khuyến mãi</th>
+						<th scope="col">Thời gian bắt đầu</th>
+						<th scope="col">Thời gian kết thúc</th>
+						<th scope="col">Mô tả</th>
 						
 						<th scope="col" style="width: 120px"></th>
 					</tr>
 				</thead>
-				<tbody id="tbl">
-					<tr th:each="item : ${Blog}">
-						<th th:text=${item.id}></th>
-						<td th:text=${item.Title}></td>
-						<th th:text=${item.id}></th>
-						<th><img th:src="@{'../images/' + ${item.image}}"
-							height="50px"></th>
-						<td th:text=${item.[Content]}></td>
-						<td th:text=${item.Description}></td>
-						<td th:text=${item.CreateBy}></td>
-						<td>
-							<form th:action="@{deleteacc/{id}(id = ${item.Id})}"
-								method="post">
-								<button type="button" class="btn btn-primary btn-sm"
-									id="btnedit" title="sửa" data-toggle="modal"
-									data-target="#Edit" th:data-id="${item.Id}">
-									Sửa
-								</button>
-								<button type="submit" class="btn btn-primary btn-sm" title="xoá">
-									Xóa
-								</button>
-							</form>
-						</td>
-					</tr>
+				<tbody id="datatable">
+					
 				</tbody>
 			</table>
 
@@ -159,123 +137,54 @@ body {
 	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
-			<form th:action="@{/admin/newacc}" method="post">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Thêm</h5>
+					<h5 class="modal-title" id="Title-Popup">Thêm</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
-						<label for="exampleInputEmail1">Percent</label> <input
-							type="number" id="1" th:name="[Percent]" class="form-control"
-							placeholder="Enter Percent">
-					</div>
 					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Time Start</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="2" th:name="TimeStart" class="form-control" placeholder="Enter Time Start">
+	    					<label class="col-sm-4 col-form-label">Khuyến mãi: <span id="demo" style="color: red"></span></label>
+	    				<div class="col-sm-8">
+	      					<input type="range" id="1" min="1" max="100" value="20" class="custom-range" name="points1">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+	    					<label class="col-sm-4 col-form-label">Ngày bắt đầu</label>
+	    				<div class="col-sm-8">
+	      					<input type="date" id="2" th:name="TimeStart" class="form-control" placeholder="Enter Time Start">
 	    				</div>
   					</div>
   					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Time End</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="3" th:name="TimeEnd" class="form-control" placeholder="Enter Time End">
+	    					<label class="col-sm-4 col-form-label">Ngày kết thúc</label>
+	    				<div class="col-sm-8">
+	      					<input type="date" id="3" th:name="TimeEnd" class="form-control" placeholder="Enter Time End">
 	    				</div>
   					</div>
   					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Description</label>
-	    				<div class="col-sm-9">
+	    					<label class="col-sm-4 col-form-label">Mô tả</label>
+	    				<div class="col-sm-8">
 	      					<input type="text" id="4" th:name="Description" class="form-control" placeholder="Enter Description">
 	    				</div>
   					</div>
-  					</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Hủy</button>
-					<button type="submit" class="btn btn-primary">Lưu</button>
+  				</div>
+				<div class="modal-footer" id="modal-footer">
+					
 				</div>
-			</form>
 		</div>
 	</div>
 </div>
-
-<!-- Modal Edit -->
-<div class="modal fade" id="Edit" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<form id="editform" th:action="@{/admin/editacc}" method="post">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Sửa tài
-						khoản</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="exampleInputEmail1">Percent</label> <input
-							type="number" id="1" th:name="[Percent]" class="form-control"
-							placeholder="Enter Percent">
-					</div>
-					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Time Start</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="2" th:name="TimeStart" class="form-control" placeholder="Enter Time Start">
-	    				</div>
-  					</div>
-  					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Time End</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="3" th:name="TimeEnd" class="form-control" placeholder="Enter Time End">
-	    				</div>
-  					</div>
-  					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Description</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="4" th:name="Description" class="form-control" placeholder="Enter Description">
-	    				</div>
-	    			</div>
-	    			</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Hủy</button>
-					<button type="submit" class="btn btn-primary">Lưu</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<script th:inline="javascript">
-	window.onload = function() {
-		let message = /*[[(${message})]]*/ 'default';
-		let status = /*[[(${status})]]*/ 'default';
-		
-		if(message != null && status == "1"){
-			toastr.success(message)
-		}if(message != null && status == "0"){
-			toastr.error(message)
-		}
-	};
+<script th:src="@{/js/admin/promo.js}"></script>
+<script>
+	var slider = document.getElementById("1");
+	var output = document.getElementById("demo");
+	output.innerHTML = slider.value + ' %';
 	
-	document.querySelectorAll('#btnedit').forEach(item => {
-		item.addEventListener('click', e => {
-			let Id = e.target.dataset.id;
-			let pr = e.target.parentNode.parentNode.parentNode;
-			let name = pr.getElementsByTagName('td')[0].innerText;
-			let password = pr.getElementsByTagName('td')[1].innerText;
-			$("#name").val(name);
-			$("#password").val(password);
-			$("#editform").attr("action", "/admin/editacc/" + Id);
-		})
-	})
-	$("#btnadd").click(function() {
-		$("#1").val("");
-		$("#2").val("");
-});
+	slider.oninput = function() {
+	  output.innerHTML = this.value + ' %';
+	}
 </script>
+
 </html>
