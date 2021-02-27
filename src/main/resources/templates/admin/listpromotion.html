@@ -3,6 +3,7 @@
 <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 <script th:src="@{/js/urlcomon.js}"></script>
 <script th:src="@{/js/admin/promo.js}"></script>
+
 <head>
 	<title>Promo Manager</title>
 	<meta charset="utf-8">
@@ -10,12 +11,13 @@
 	<link rel="stylesheet" th:href="@{/css/font.css}">
 	<link rel="stylesheet" th:href="@{/css/admin.css}">
 	<link rel="stylesheet" th:href="@{/css/toastr.css}">
-	</head>
+</head>
 <style>
-body {
-	padding-right: 0 !important
-}
+	body {
+		padding-right: 0 !important
+	}
 </style>
+
 <body>
 	<div class="wrapper d-flex align-items-stretch">
 		<nav id="sidebar">
@@ -31,31 +33,34 @@ body {
 				<ul class="list-unstyled components mb-5">
 					<li><a th:href="@{/admin}"><i class="fas fa-chart-line"></i>
 							Thống kê</a></li>
-					<li><a href="#pageSubmenu1" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-file-invoice-dollar"></i> 
-									Quản lý đơn hàng</a>
+					<li><a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+								class="fas fa-file-invoice-dollar"></i>
+							Quản lý đơn hàng</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu1">
 							<li><a th:href="@{/admin/order}"><i class="fa fa-plus-square"></i>
 									Danh sách đơn hàng</a></li>
 							<li><a th:href="@{/record/List}"><i class="fa fa-list-alt"></i>
 									Tạo đơn hàng</a></li>
-						</ul></li>
-					<li><a href="#pageSubmenu2" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Quản lý sản phẩm</a>
-						<ul class="collapse list-unstyled" id="pageSubmenu2">						
+						</ul>
+					</li>
+					<li><a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+								class="fas fa-archive"></i> Quản lý sản phẩm</a>
+						<ul class="collapse list-unstyled" id="pageSubmenu2">
 							<li><a th:href="@{/admin/product}"><i class="fa fa-list-alt"></i>
 									Danh sách sản phẩm</a></li>
 							<li><a th:href="@{/product/list2}"><i class="fa fa-list-alt"></i>
 									Danh mục sản phẩm</a></li>
-						</ul></li>
+						</ul>
+					</li>
 					<li><a th:href="@{/admin/customer}"><i class="fas fa-user"></i>
-									Quản lý khách hàng</a></li>
-					<li><a th:href="@{/admin/promotion}"><i class="fas fa-gifts" aria-hidden="true"></i> Khuyến mãi</a></li>
+							Quản lý khách hàng</a></li>
+					<li><a th:href="@{/admin/promotion}"><i class="fas fa-gifts" aria-hidden="true"></i> Khuyến mãi</a>
+					</li>
 					<li><a th:href="@{/admin/blog}"><i class="fab fa-blogger-b"></i> Blog</a>
-						</li>
+					</li>
 					<li><a th:href="@{/admin/account}">
-						<i class="fas fa-key"></i> Quản lý tài khoản</a>						
-						</li>
+							<i class="fas fa-key"></i> Quản lý tài khoản</a>
+					</li>
 				</ul>
 
 				<div class="mb-5">
@@ -82,7 +87,7 @@ body {
 					<div class="col text-center" style="padding-top: 50px">
 						<button type="submit" class="btn btn-info btn-lg"> Đăng Xuất</button>
 					</div>
-			</form>
+				</form>
 			</div>
 		</nav>
 
@@ -90,29 +95,31 @@ body {
 		<div id="content" class="p-4 p-md-5 pt-5">
 			<div>
 				<h2 class="mb-4 float-left">DANH SÁCH KHUYẾN MÃI</h2>
-				<button type="button" id="btnadd" class="btn btn-primary float-right"
-					data-toggle="modal" data-target="#Add" onclick="add()">Thêm Khuyến Mãi</button>
+				<button type="button" id="btnadd" class="btn btn-primary float-right" data-toggle="modal"
+					data-target="#Add" onclick="add()">Thêm Khuyến Mãi</button>
 			</div>
 			<table class="table table-striped">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">Id</th>
+						<th scope="col">Hình</th>
 						<th scope="col">Khuyến mãi</th>
 						<th scope="col">Thời gian bắt đầu</th>
 						<th scope="col">Thời gian kết thúc</th>
+						<th scope="col">Coupon</th>
 						<th scope="col">Mô tả</th>
-						
+
 						<th scope="col" style="width: 120px"></th>
 					</tr>
 				</thead>
 				<tbody id="datatable">
-					
+
 				</tbody>
 			</table>
 
 		</div>
 	</div>
-	
+
 	<script th:src="@{/js/fontawesome.js}"></script>
 	<script th:src="@{/js/popper.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
@@ -121,46 +128,64 @@ body {
 </body>
 
 <!-- Modal Add-->
-<div class="modal fade" id="Add" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="Title-Popup">Thêm</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+			<div class="modal-header">
+				<h5 class="modal-title" id="Title-Popup">Thêm</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group row">
+					<label class="col-sm-4 col-form-label">Khuyến mãi: <span id="demo"
+							style="color: red"></span></label>
+					<div class="col-sm-8">
+						<input type="range" id="1" min="1" max="100" value="20" class="custom-range" name="points1">
+					</div>
 				</div>
-				<div class="modal-body">
-					<div class="form-group row">
-	    					<label class="col-sm-4 col-form-label">Khuyến mãi: <span id="demo" style="color: red"></span></label>
-	    				<div class="col-sm-8">
-	      					<input type="range" id="1" min="1" max="100" value="20" class="custom-range" name="points1">
-	    				</div>
-  					</div>
-					<div class="form-group row">
-	    					<label class="col-sm-4 col-form-label">Ngày bắt đầu</label>
-	    				<div class="col-sm-8">
-	      					<input type="date" id="2" th:name="TimeStart" class="form-control" placeholder="Enter Time Start">
-	    				</div>
-  					</div>
-  					<div class="form-group row">
-	    					<label class="col-sm-4 col-form-label">Ngày kết thúc</label>
-	    				<div class="col-sm-8">
-	      					<input type="date" id="3" th:name="TimeEnd" class="form-control" placeholder="Enter Time End">
-	    				</div>
-  					</div>
-  					<div class="form-group row">
-	    					<label class="col-sm-4 col-form-label">Mô tả</label>
-	    				<div class="col-sm-8">
-	      					<input type="text" id="4" th:name="Description" class="form-control" placeholder="Enter Description">
-	    				</div>
-  					</div>
-  				</div>
-				<div class="modal-footer" id="modal-footer">
-					
+				<div class="form-group row">
+					<label class="col-sm-4 col-form-label">Ngày bắt đầu</label>
+					<div class="col-sm-8">
+						<input type="date" id="2" th:name="TimeStart" class="form-control"
+							placeholder="Enter Time Start">
+					</div>
 				</div>
+				<div class="form-group row">
+					<label class="col-sm-4 col-form-label">Ngày kết thúc</label>
+					<div class="col-sm-8">
+						<input type="date" id="3" th:name="TimeEnd" class="form-control" placeholder="Enter Time End">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-4 col-form-label">Copon</label>
+					<div class="col-sm-8">
+						<input type="text" id="4" th:name="Description" class="form-control float-left"
+							placeholder="Enter Copon" style="width: 85%;" rel="gp" data-size="10"
+							data-character-set="A-Z">
+						<button type="button" class="btn btn-primary float-right" id="getNewPass"><span
+								class="fa fa-refresh"></span></button>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-4 col-form-label">Hình ảnh</label>
+					<div class="custom-file col-sm-8">
+						<input type="file" th:name="image" class="custom-file-input" id="5">
+						<label class="custom-file-label" for="customFile">Chọn tệp</label>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-4 col-form-label">Mô tả</label>
+					<div class="col-sm-8">
+						<input type="text" id="6" class="form-control" placeholder="Enter Description">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer" id="modal-footer">
+
+			</div>
 		</div>
 	</div>
 </div>
@@ -168,9 +193,9 @@ body {
 	var slider = document.getElementById("1");
 	var output = document.getElementById("demo");
 	output.innerHTML = slider.value + ' %';
-	
-	slider.oninput = function() {
-	  output.innerHTML = this.value + ' %';
+
+	slider.oninput = function () {
+		output.innerHTML = this.value + ' %';
 	}
 </script>
 

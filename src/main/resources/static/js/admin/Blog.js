@@ -8,6 +8,7 @@ $(".custom-file-input").on("change", function() {
 
 $(document).ready(function() {
     loadDataTable();
+    loadComboBox();
 });
 
 function add() {
@@ -15,7 +16,6 @@ function add() {
     $("#1").val("");
     $("#2").val("");
     $("#3").val("");
-    $("#4").val("");
     $("#5").val("");
     var str = $(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
 			 <button type="submit" class="btn btn-primary" onclick="insert()">Lưu</button>`);
@@ -162,6 +162,27 @@ function delet(id) {
         success: function(data) {
             toastr.success("Delete success");
             loadDataTable();
+        }
+    });
+}
+
+function loadComboBox() {
+
+    $.ajax({
+        cache: false,
+        type: "POST",
+        url:  API_URL + "/api/listaccount",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        error: function (request) {
+            toastr.error("fail")
+        },
+        success: function (data) {
+        	$('#4').html("");
+            data.map((item, index) => {
+                var str = $(`<option value=${item.name}>${item.name}</option>`);
+                $('#4').append(str);
+            });
         }
     });
 }

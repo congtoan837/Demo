@@ -1,7 +1,42 @@
 var dataProduct = [];
 
+$(".custom-file-input").on("change", function () {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected")
+            .html(fileName);
+});
+
+function randString(id){
+    var dataSet = $(id).attr('data-character-set').split(',');  
+    var possible = '';
+    if($.inArray('a-z', dataSet) >= 0){
+      possible += 'abcdefghijklmnopqrstuvwxyz';
+    }
+    if($.inArray('A-Z', dataSet) >= 0){
+      possible += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    }
+    if($.inArray('0-9', dataSet) >= 0){
+      possible += '0123456789';
+    }
+    if($.inArray('#', dataSet) >= 0){
+      possible += '![]{}()%&*$#^<>~@|';
+    }
+    var text = '';
+    for(var i=0; i < $(id).attr('data-size'); i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  }
+
 $(document).ready(function() {
     loadDataTable();
+
+  // Create a new password
+  $("#getNewPass").click(function(){
+    var field = $(this).closest('div').find('input[rel="gp"]');
+    field.val(randString(field));
+  });
+
 });
 
 function add() {
@@ -30,10 +65,13 @@ function loadDataTable() {
             $('#datatable').html("");
             data.map((item, index) => {
                 var str = $(`<tr>
-						<th>${item.id}</th>	                       			
+						<th>${item.id}</th>	 
+                        <th><img src="../images/${item.image}"
+							height="50px"></th>                      			
                         <td>${item.percents}%</td>
 						<td>${item.timeStart}</td>
 						<td>${item.timeEnd}</td>
+                        <td>${item.coupon}</td>
 						<td>${item.description}</td>
 						<td>							
 							<button type="button" onclick="load_edit(${item.id})" class="btn btn-primary btn-sm" title="sửa"
@@ -58,7 +96,9 @@ function insert() {
     var percents = $('#1').val().trim();
     var timeStart = $("#2").val().trim();
     var timeEnd = $('#3').val().trim();
-    var description = $('#4').val().trim();
+    var coupon = $('#4').val().trim();
+    var description = $('#6').val().trim();
+    var image = $('#5').val().split('\\').pop();
 
     {
         $.ajax({
@@ -71,6 +111,8 @@ function insert() {
                 "timeStart": timeStart,
                 "timeEnd": timeEnd,
                 "description": description,
+                "coupon": coupon,
+                "image": image,
             }),
             dataType: "json",
             error: function(request) {
@@ -89,12 +131,15 @@ function insert() {
 function load_edit(id) {
     dataProduct.map((item, index) => {
         if (item.id === id) {
-            $("#Title-Popup").html('Sửa bài viết');
+            $("#Title-Popup").html('Sửa khuyến mãi');
             $("#demo").html(item.percents + ' %');
             $("#1").val(item.percents);
             $("#2").val(item.timeStart.split(' ', 1));
             $("#3").val(item.timeEnd.split(' ', 1));
-            $("#4").val(item.description);
+            $("#4").val(item.coupon);
+            $("#5").val("");
+            $(".custom-file-label").html("Chọn tệp, bỏ trống nếu muốn giữ");
+            $("#6").val(item.description);
             var str = $(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
 			 <button type="submit" class="btn btn-primary" onclick="edit(${item.id})">Lưu</button>`);
             $('#modal-footer').html(str);;
@@ -104,10 +149,12 @@ function load_edit(id) {
 
 function edit(id) {
 
-    var percents = $('#1').val();
-    var timeStart = $('#2').val();
-    var timeEnd = $('#3').val();
-    var description = $('#4').val();
+    var percents = $('#1').val().trim();
+    var timeStart = $("#2").val().trim();
+    var timeEnd = $('#3').val().trim();
+    var coupon = $('#4').val().trim();
+    var description = $('#6').val().trim();
+    var image = $('#5').val().split('\\').pop();
 
     $.ajax({
         cache: false,
@@ -117,9 +164,11 @@ function edit(id) {
         data: JSON.stringify({
             "id": id,
             "percents": percents,
-            "timeStart": timeStart,
-            "timeEnd": timeEnd,
-            "description": description
+                "timeStart": timeStart,
+                "timeEnd": timeEnd,
+                "description": description,
+                "coupon": coupon,
+                "image": image
         }),
         dataType: "json",
         error: function(request) {
@@ -151,3 +200,6 @@ function delet(id) {
         }
     });
 }
+
+  
+  

@@ -7,8 +7,8 @@ $(".custom-file-input").on("change", function () {
 });
 
 $( document ).ready(function() {
-    loadComboBox();
     loadDataTable();
+    loadComboBox();
     
 });
 
@@ -268,7 +268,6 @@ function loadComboBox() {
                 $('#3').append(str);
             });
             loadComboBox2();
-            loadDataTable();
         }
     });
 }

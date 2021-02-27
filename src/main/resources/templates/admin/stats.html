@@ -1,68 +1,13 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Thống kê</title>
-<!--link biểu đồ-->
-<script src = "https://code.highcharts.com"> </script>
-<!--link biểu đồ-->
-<meta charset="utf-8">
-
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
-	rel="stylesheet">
-
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="css/admin.css">
-<!-- Head Định thêm-->
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Highcharts Example</title>
-
-	<style type="text/css">
-.highcharts-figure, .highcharts-data-table table {
-min-width: 310px; 
-max-width: 800px;
-margin: 1em auto;
-}
-
-#container {
-height: 400px;
-}
-
-.highcharts-data-table table {
-font-family: Verdana, sans-serif;
-border-collapse: collapse;
-border: 1px solid #EBEBEB;
-margin: 10px auto;
-text-align: center;
-width: 100%;
-max-width: 500px;
-}
-.highcharts-data-table caption {
-padding: 1em 0;
-font-size: 1.2em;
-color: #555;
-}
-.highcharts-data-table th {
-font-weight: 600;
-padding: 0.5em;
-}
-.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-padding: 0.5em;
-}
-.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-background: #f8f8f8;
-}
-.highcharts-data-table tr:hover {
-background: #f1f7ff;
-}
-
-	</style>
-<!-- Head Định thêm-->
+	<title>Account Manager</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" th:href="@{/css/font.css}">
+	<link rel="stylesheet" th:href="@{/css/admin.css}">
+	<link rel="stylesheet" th:href="@{/css/toastr.css}">
+	<link rel="stylesheet" th:href="@{/css/char.css}">
 </head>
 <style>
 body {
@@ -88,7 +33,7 @@ body {
 						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-file-invoice-dollar"></i> 
 									Quản lý đơn hàng</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu1">
-							<li><a th:href="@{/record/Add}"><i class="fa fa-plus-square"></i>
+							<li><a th:href="@{/admin/order}"><i class="fa fa-plus-square"></i>
 									Danh sách đơn hàng</a></li>
 							<li><a th:href="@{/record/List}"><i class="fa fa-list-alt"></i>
 									Tạo đơn hàng</a></li>
@@ -104,16 +49,10 @@ body {
 					<li><a th:href="@{/admin/customer}"><i class="fas fa-user"></i>
 									Quản lý khách hàng</a></li>
 					<li><a th:href="@{/admin/promotion}"><i class="fas fa-gifts" aria-hidden="true"></i> Khuyến mãi</a></li>
-					<li><a href="#pageSubmenu4" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle"><i class="fab fa-blogger-b" aria-hidden="true"></i> Blog</a>
-						<ul class="collapse list-unstyled" id="pageSubmenu4">
-							<li><a th:href="@{/blog/list}"><i class="fa fa-plus-square"></i>
-									Danh sách Blog</a></li>
-							<li><a th:href="@{/blog/add}"><i class="fa fa-list-alt"></i>
-									Thêm Blog</a></li>
-						</ul></li>
-						<li><a th:href="@{/admin/account}">
-							<i class="fas fa-key"></i> Quản lý tài khoản</a>						
+					<li><a th:href="@{/admin/blog}"><i class="fab fa-blogger-b"></i> Blog</a>
+						</li>
+					<li><a th:href="@{/admin/account}">
+						<i class="fas fa-key"></i> Quản lý tài khoản</a>						
 						</li>
 				</ul>
 
@@ -148,100 +87,36 @@ body {
 
 		<!-- Page Content  -->
 		<!-- biểu đồ-->
-			<script src="/char/code/highcharts.js"></script>
-			<script src="/char/code/modules/exporting.js"></script>
-			<script src="/char/code/modules/export-data.js"></script>
-			<script src="/char/code/modules/accessibility.js"></script>
-			
-			<figure class="highcharts-figure">
-				<div id="container"></div>
-				<p class="highcharts-description">
-					A basic column chart compares rainfall values between four cities.
-					Tokyo has the overall highest amount of rainfall, followed by New York.
-					The chart is making use of the axis crosshair feature, to highlight
-					months as they are hovered over.
-				</p>
-			</figure>
-			
-			
-			
-					<script type="text/javascript">
-			Highcharts.chart('container', {
-				chart: {
-					type: 'column'
-				},
-				title: {
-					text: 'Monthly Average Rainfall'
-				},
-				subtitle: {
-					text: 'Source: WorldClimate.com'
-				},
-				xAxis: {
-					categories: [
-						'Jan',
-						'Feb',
-						'Mar',
-						'Apr',
-						'May',
-						'Jun',
-						'Jul',
-						'Aug',
-						'Sep',
-						'Oct',
-						'Nov',
-						'Dec'
-					],
-					crosshair: true
-				},
-				yAxis: {
-					min: 0,
-					title: {
-						text: 'Rainfall (mm)'
-					}
-				},
-				tooltip: {
-					headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-					pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-						'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-					footerFormat: '</table>',
-					shared: true,
-					useHTML: true
-				},
-				plotOptions: {
-					column: {
-						pointPadding: 0.2,
-						borderWidth: 0
-					}
-				},
-				series: [{
-					name: 'Tokyo',
-					data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-			
-				}, {
-					name: 'New York',
-					data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-			
-				}, {
-					name: 'London',
-					data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-			
-				}, {
-					name: 'Berlin',
-					data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-			
-				}]
-			});
-					</script>
+			<div id="content" class="p-4 p-md-5 pt-5">
+				<div>
+					<h2 class="mb-4">THỐNG KÊ DOANH THU</h2>					
+				</div>
+				<figure class="highcharts-figure">
+					<div id="container"></div>
+					<p class="highcharts-description">
+						A basic column chart compares rainfall values between four cities.
+						Tokyo has the overall highest amount of rainfall, followed by New York.
+						The chart is making use of the axis crosshair feature, to highlight
+						months as they are hovered over.
+					</p>
+				</figure>
+	
+			</div>								
 		<!-- biểu đồ-->
-
 	</div>
-	<script src="https://kit.fontawesome.com/bc9d44c30b.js"></script>
+	</div>
+	<script th:src="@{/js/fontawesome.js}"></script>
 	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 	<script th:src="@{/js/popper.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 	<!--Link Chart.js-->
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script th:src="@{/js/char.js}"></script>
+	<script src="/char/code/highcharts.js"></script>
+	<script src="/char/code/modules/exporting.js"></script>
+	<script src="/char/code/modules/export-data.js"></script>
+	<script src="/char/code/modules/accessibility.js"></script>
+	<script th:src="@{/js/char_setup.js}"></script>
 	<!--Link Chart.js-->
 </body>
 </html>
