@@ -266,7 +266,7 @@ public class RestfulAPI {
 
 	@PostMapping("/editaccount")
 	Admins editaccount(@RequestBody Admins admins) throws Exception {
-		Integer id = admins.getId();
+		Long id = admins.getId();
 			
 			return adminRepository.findById(id).<Admins>map(myadmin -> {
 				myadmin.setName(admins.getName());
@@ -277,7 +277,7 @@ public class RestfulAPI {
 
 	@PostMapping("/deleteaccount")
 	void deleteaccount(@RequestBody Admins admins) {
-		Integer id = admins.getId();
+		Long id = admins.getId();
 		adminRepository.deleteById(id);
 	}	
 	// API ACCOUNT //
