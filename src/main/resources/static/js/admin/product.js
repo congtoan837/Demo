@@ -107,7 +107,7 @@ function deletecategory(id) {
             success: function (data) {
                 toastr.success("Delete success");  
                 loadComboBox();
-                loadlistComboBox();
+                loadlistComboBox2();
             }
         });
     }
