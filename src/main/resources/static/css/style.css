@@ -2614,6 +2614,27 @@
 	border: none;
 }
 
+.coupon {
+  border: 5px dotted #bbb; /* Dotted border */
+  border-radius: 15px; /* Rounded border */
+  max-width: 100%;
+  float: left;
+}
+
+.coupon img {
+    width: 300px;
+}
+
+.promo {
+  background: #ccc;
+  padding: 3px;
+}
+
+.expire {
+  color: red;
+}
+
+
 
 
 
