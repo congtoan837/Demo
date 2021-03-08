@@ -47,9 +47,9 @@ function loadDataTable() {
     });
 
 }
-
+let b = 1;
 function addtocart(id) {
-
+	
     $.ajax({
         cache: false,
         type: "POST",
@@ -63,13 +63,21 @@ function addtocart(id) {
         
         },
         success: function (data) {
-            let a = data.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
-            var str = $(`<li>
-            <a href="#" class="photo"><img src="images/${data.image}" class="cart-thumb" alt="" /></a>
-            <h6><a href="#">${data.name}</a></h6>
-            <p>1x - <span class="price">${a}</span></p>
-        </li>	`);
-        $('#cart').append(str);
+			if(!$(`#item_${data.id}`).length){
+				
+				let a = data.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+	            var str = $(`<li id="item_${data.id}">
+	            <a href="#" class="photo"><img src="images/${data.image}" class="cart-thumb" alt="" /></a>
+	            <h6><a href="#">${data.name}</a></h6>
+	            <p id="quantity">${b}x - <span class="price">${a}</span></p>
+	        </li>	`);
+	        $('#cart').append(str);
+			}else{
+				b++;
+				let a = (data.price*b).toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+				$('#quantity').html('');
+				$('#quantity').append(`<span class="price">${b}x - ${a}</span>`);
+			}
 
         }
 

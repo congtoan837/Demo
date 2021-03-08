@@ -43,7 +43,7 @@ function loadDataTable() {
                         <td>${item.title}</td>
 						<td>${item.content}</td>
 						<td>${item.description}</td>
-						<td>${item.createBy}</td>
+						<td>${item.name}</td>
 						<td>							
 							<button type="button" onclick="load_edit(${item.id})" class="btn btn-primary btn-sm" title="sửa"
 								data-toggle="modal" data-target="#Add">
@@ -105,7 +105,7 @@ function load_edit(id) {
             $("#2").val(item.content);
             $(".custom-file-label").html("Chọn tệp, bỏ trống nếu muốn giữ");
             $("#3").val(item.description);
-            $("#4").val(item.createBy);
+            $("#4").val(item.idAmin);
             $("#5").val("");
             var str = $(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
 			 <button type="submit" class="btn btn-primary" onclick="edit(${item.id})">Lưu</button>`);
@@ -180,7 +180,7 @@ function loadComboBox() {
         success: function (data) {
         	$('#4').html("");
             data.map((item, index) => {
-                var str = $(`<option value=${item.name}>${item.name}</option>`);
+                var str = $(`<option value=${item.id}>${item.name}</option>`);
                 $('#4').append(str);
             });
         }

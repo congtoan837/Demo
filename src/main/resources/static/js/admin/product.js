@@ -8,8 +8,7 @@ $(".custom-file-input").on("change", function () {
 
 $( document ).ready(function() {
     loadDataTable();
-    loadComboBox();
-    
+    loadComboBox();   
 });
 
 function add() {
@@ -264,7 +263,7 @@ function loadComboBox() {
         success: function (data) {
         	$('#3').html("");
             data.map((item, index) => {
-                var str = $(`<option value=${item.name}>${item.name}</option>`);
+                var str = $(`<option value=${item.id}>${item.name}</option>`);
                 $('#3').append(str);
             });
             loadComboBox2();
@@ -286,7 +285,7 @@ function loadComboBox2() {
         success: function (data) {
         	$('#6').html("");
             data.map((item, index) => {
-                var str = $(`<option value=${item.name}>${item.name}</option>`);
+                var str = $(`<option value=${item.id}>${item.name}</option>`);
                 $('#6').append(str);
             });
         }
@@ -299,11 +298,11 @@ function load_edit(id) {
             $("#Title-Popup").html('Sửa sản phẩm');
             $("#1").val(item.name);
             $("#2").val(item.price);
-            $("#3").val(item.brand);
+            $("#3").val(item.idBrand);
             $("#4").val("");
             $(".custom-file-label").html("Chọn tệp, bỏ trống nếu muốn giữ");
             $("#5").val(item.quantity);
-            $("#6").val(item.category);
+            $("#6").val(item.idCategory);
             $("#7").val(item.status);
             $("#8").val(item.description);
             var str = $(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
