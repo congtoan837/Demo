@@ -1,6 +1,7 @@
 package com.poly.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,7 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.poly.model.Item;
 import com.poly.model.Product;
 import com.poly.repositories.ProductRepository;
 
@@ -69,5 +75,45 @@ public class UserController {
 		Product list = productRepository.findById(id).get();
 		model.addAttribute("Product", list);
 		return "user/shop-detail";
+	}
+	
+	@PostMapping("buy/{id}")
+	public String buy(@PathVariable("id") Integer id, HttpSession session, RedirectAttributes redirectAttributes) {
+		if (session.getAttribute("item") == null) {
+			List<Item> cart = new ArrayList<Item>();
+			cart.add(new Item(productRepository.getbyId(id), 1));
+			session.setAttribute("item", cart);
+		} else {
+			List<Item> cart = (List<Item>) session.getAttribute("item");
+			int index = this.exists(id, cart);
+			if (index == -1) {
+				cart.add(new Item(productRepository.getbyId(id), 1));
+			} else {
+				int quantity = cart.get(index).getQuantity() + 1;
+				cart.get(index).setQuantity(quantity);
+			}
+			session.setAttribute("item", cart);
+		}
+		redirectAttributes.addFlashAttribute("status", "1");
+		redirectAttributes.addFlashAttribute("message", "Thêm vào giỏ thành công !");
+		return "redirect:/";
+	}
+
+	@PostMapping("remove/{id}")
+	public String remove(@PathVariable("id") Integer id, HttpSession session) {
+		List<Item> cart = (List<Item>) session.getAttribute("item");
+		int index = this.exists(id, cart);
+		cart.remove(index);
+		session.setAttribute("item", cart);
+		return "redirect:/cart";
+	}
+
+	private int exists(Integer id, List<Item> cart) {
+		for (int i = 0; i < cart.size(); i++) {
+			if (cart.get(i).getProduct().getId() == id) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }

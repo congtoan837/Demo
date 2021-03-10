@@ -30,7 +30,9 @@ function loadDataTable() {
                                     data-toggle="tooltip" data-placement="right" title="Chi tiết"><i
                                         class="fas fa-eye"></i></a></li>
                             </ul>
-                            <button type="submit" class="cart" onclick="addtocart(${item.id})">Thêm vào giỏ</button>
+							<form action="buy/${item.id}" method="POST">
+                            	<button type="submit" class="cart">Thêm vào giỏ</button>
+							</form>
                         </div>
                     </div>
                     <div class="why-text">
@@ -47,41 +49,5 @@ function loadDataTable() {
     });
 
 }
-let b = 1;
-function addtocart(id) {
-	
-    $.ajax({
-        cache: false,
-        type: "POST",
-        url: API_URL + "/api/findproduct",
-        contentType: "application/json;charset=UTF-8",
-        data: JSON.stringify({
-            "id": id
-        }),
-        dataType: "json",
-        error: function (request) {
-        
-        },
-        success: function (data) {
-			if(!$(`#item_${data.id}`).length){
-				
-				let a = data.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
-	            var str = $(`<li id="item_${data.id}">
-	            <a href="#" class="photo"><img src="images/${data.image}" class="cart-thumb" alt="" /></a>
-	            <h6><a href="#">${data.name}</a></h6>
-	            <p id="quantity">${b}x - <span class="price">${a}</span></p>
-	        </li>	`);
-	        $('#cart').append(str);
-			}else{
-				b++;
-				let a = (data.price*b).toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
-				$('#quantity').html('');
-				$('#quantity').append(`<span class="price">${b}x - ${a}</span>`);
-			}
 
-        }
-
-    });
-
-}
 

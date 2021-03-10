@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="css/responsive.css">
 <!-- Custom CSS -->
 <link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="css/toastr.css">
 
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -141,7 +142,7 @@
 			<div class="attr-nav">
 				<ul>
 					<li class="side-menu">
-						<a href="#">
+						<a th:href="@{/cart}">
 							<i class="fa fa-shopping-bag"></i>
 							<p>GIỎ HÀNG</p>
 						</a>
@@ -150,16 +151,6 @@
 			</div>
 			<!-- End Atribute Navigation -->
 		</div>
-		<!-- Start Side Menu -->
-		<div class="side">
-			<a href="#" class="close-side"><i class="fa fa-times"></i></a>
-			<li class="cart-box">
-				<ul class="cart-list" id="cart">
-																	
-				</ul>
-			</li>
-		</div>
-		<!-- End Side Menu -->
 	</nav>
 	<!-- End Navigation -->
 </header>
@@ -203,17 +194,6 @@
 				<div class="col-lg-12">
 					<div class="title-all text-center">
 						<h1>Giày Thể Thao</h1>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="special-menu text-center">
-						<div class="button-group filter-button-group">
-							<button class="active" data-filter="*">Đề cử</button>
-							<button data-filter=".NEW">Mới</button>
-							<button data-filter=".SALE">Bán chạy</button>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -343,7 +323,6 @@
 	<script src="js/jquery.superslides.min.js"></script>
 	<script src="js/bootstrap-select.js"></script>
 	<script src="js/inewsticker.js"></script>
-	<script src="js/bootsnav.js"></script>
 	<script src="js/images-loded.min.js"></script>
 	<script src="js/isotope.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
@@ -351,6 +330,18 @@
 	<script src="js/form-validator.min.js"></script>
 	<script src="js/contact-form-script.js"></script>
 	<script src="js/custom.js"></script>
+	<script src="js/toastr.js"></script>
 </body>
-
+<script th:inline="javascript">
+	window.onload = function() {
+		let message = /*[[(${message})]]*/ 'default';
+		let status = /*[[(${status})]]*/ 'default';
+		
+		if(message != null && status == "1"){
+			toastr.success(message)
+		}if(message != null && status == "0"){
+			toastr.error(message)
+		}
+	};
+</script>
 </html>
