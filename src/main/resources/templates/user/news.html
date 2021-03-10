@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <!-- Basic -->
-
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/urlcomon.js}"></script>
+<script th:src="@{/js/user/blog.js}"></script>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +29,6 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
-    <script th:src="@{/js/urlcomon.js}"></script>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -116,7 +117,7 @@
                         <li class="nav-item"><a class="nav-link" th:href="@{/about}">Giới thiệu</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/shop}">Sản phẩm</a></li>
                         <li class="nav-item active"><a class="nav-link" th:href="@{/news}">Tin tức</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Khuyến mãi</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/coupon}">Khuyến mãi</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -177,30 +178,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="coupon">
-                <div class="coupon">
-                    <img src='https://thegioigiaythethao.vn/images/attachment/3691giay-the-thao-unisex-vans-old-skool-vn-0d3hy28.jpg' alt="Avatar">
-                    <div class="container" style="background-color:white">
-                      <h2><b>20% OFF YOUR PURCHASE</b></h2>
-                      <p>Lorem ipsum..</p>
-                    </div>
-                    <div class="container">
-                      <p>Use Promo Code: <span class="promo">BOH232</span></p>
-                      <p class="expire">Expires: Jan 03, 2021</p>
-                    </div>
-                  </div>
-            
-                <div class="coupon">
-                    <img src='https://thegioigiaythethao.vn/images/attachment/3691giay-the-thao-unisex-vans-old-skool-vn-0d3hy28.jpg' alt="Avatar">
-                    <div class="container" style="background-color:white">
-                      <h2><b>20% OFF YOUR PURCHASE</b></h2>
-                      <p>Lorem ipsum..</p>
-                    </div>
-                    <div class="container">
-                      <p>Use Promo Code: <span class="promo">BOH232</span></p>
-                      <p class="expire">Expires: Jan 03, 2021</p>
-                    </div>
-                  </div>
+            <div class="row" id="listblog">
+
             </div>
 
         </div>
@@ -318,7 +297,6 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
-    <script src="js/user/blog.js"></script>
 </body>
 
 </html>

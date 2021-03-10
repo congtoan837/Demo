@@ -70,6 +70,21 @@ public class UserController {
 		return "user/cart";
 	}
 	
+	@GetMapping("/coupon")
+	public String coupon() {
+		return "user/coupon";
+	}
+	
+	@GetMapping("/my-account")
+	public String account() {
+		return "user/my-account";
+	}
+	
+	@GetMapping("/checkout")
+	public String checkout() {
+		return "user/checkout";
+	}
+	
 	@GetMapping("/detail/{id}")
 	public String detais(ModelMap model, @PathVariable(name = "id") Integer id) {	
 		Product list = productRepository.findById(id).get();

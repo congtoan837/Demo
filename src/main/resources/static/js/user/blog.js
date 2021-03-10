@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 function loadDataTable() {
-
+	$('#listblog').html('');
     $.ajax({
         cache: false,
         type: "POST",
@@ -19,14 +19,14 @@ function loadDataTable() {
                 var str = $(`<div class="col-md-6 col-lg-4 col-xl-4">
                 <div class="blog-box">
                     <div class="blog-img">
-                        <img class="img-fluid" src="images/${item.image}" alt="" style="height: 300px;"/>
+                        <img class="img-fluid imgfix" src="images/${item.image}"/>
                     </div>
                     <div class="blog-content">
                         <div class="title-blog">
                             <h3>${item.title}</h3>
                             <p>${item.content}</p>
                             <br>
-                            <p>Người viết: <span>${item.createBy}<span></p>
+                            <p>Người tạo: <span>${item.name}<span></p>
                         </div>
                     </div>
                 </div>
