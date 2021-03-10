@@ -8,7 +8,7 @@ function loadDataTable() {
 	$.ajax({
 		cache: false,
 		type: "POST",
-		url: "http://localhost:8080/api/cartSession",
+		url: "https://webdemodoan.herokuapp.com/api/cartSession",
 		contentType: "application/json;charset=UTF-8",
 		dataType: "json",
 		error: function(request) {
@@ -46,7 +46,7 @@ function removetocart(id) {
 	$.ajax({
 		cache: false,
 		type: "POST",
-		url: "http://localhost:8080/api/remove/" + id,
+		url: "https://webdemodoan.herokuapp.com/api/remove/" + id,
 		contentType: "application/json;charset=UTF-8",
 		data: JSON.stringify({
 			"id": id

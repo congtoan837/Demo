@@ -55,7 +55,7 @@ function addtocart(id) {
 	$.ajax({	
         cache: false,
         type: "POST",
-        url: "http://localhost:8080/api/buy",
+        url: "https://webdemodoan.herokuapp.com/api/buy",
         contentType: "application/json;charset=UTF-8",
 		data: JSON.stringify({
                 "product":
