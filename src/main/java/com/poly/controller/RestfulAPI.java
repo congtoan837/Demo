@@ -2,13 +2,18 @@ package com.poly.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poly.model.*;
 import com.poly.repositories.*;
@@ -283,6 +288,52 @@ public class RestfulAPI {
 	// API ACCOUNT //
 	
 	// API CART //
+	@PostMapping("cartSession")
+	public List<Item> cartItem(HttpSession session) {
+		List<Item> cart = (List<Item>) session.getAttribute("item");
+		session.setAttribute("item", cart);
+		return cart;
+	}
+	
+	@PostMapping("buy")
+	public List<Item> buy(@RequestBody Item item, HttpSession session) {
+		Product product = productRepository.getbyId(item.getProduct().getId());
+		if (session.getAttribute("item") == null) {
+			List<Item> cart = new ArrayList<Item>();
+			cart.add(new Item(product, item.getQuantity()));
+			session.setAttribute("item", cart);
+			return cart;
+		} else {
+			List<Item> cart = (List<Item>) session.getAttribute("item");
+			int index = this.exists(item.getProduct().getId(), cart);
+			if (index == -1) {
+				cart.add(new Item(product, item.getQuantity()));
+			} else {
+				int quantity = cart.get(index).getQuantity() + item.getQuantity();
+				cart.get(index).setQuantity(quantity);
+			}
+			session.setAttribute("item", cart);
+			return cart;
+		}
+	}
+	
+	@PostMapping("remove/{id}")
+	public List<Item> remove(@PathVariable("id") Integer id, HttpSession session) {
+		List<Item> cart = (List<Item>) session.getAttribute("item");
+		int index = this.exists(id, cart);
+		cart.remove(index);
+		session.setAttribute("item", cart);
+		return cart;
+	}
+
+	private int exists(Integer id, List<Item> cart) {
+		for (int i = 0; i < cart.size(); i++) {
+			if (cart.get(i).getProduct().getId() == id) {
+				return i;
+			}
+		}
+		return -1;
+	}
 	
 	@PostMapping("/cart")
 	public List<String> cart() {

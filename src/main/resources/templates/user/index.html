@@ -332,16 +332,4 @@
 	<script src="js/custom.js"></script>
 	<script src="js/toastr.js"></script>
 </body>
-<script th:inline="javascript">
-	window.onload = function() {
-		let message = /*[[(${message})]]*/ 'default';
-		let status = /*[[(${status})]]*/ 'default';
-		
-		if(message != null && status == "1"){
-			toastr.success(message)
-		}if(message != null && status == "0"){
-			toastr.error(message)
-		}
-	};
-</script>
 </html>

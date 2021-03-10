@@ -30,9 +30,9 @@ function loadDataTable() {
                                     data-toggle="tooltip" data-placement="right" title="Chi tiết"><i
                                         class="fas fa-eye"></i></a></li>
                             </ul>
-							<form action="buy/${item.id}" method="POST">
-                            	<button type="submit" class="cart">Thêm vào giỏ</button>
-							</form>
+
+                            	<button type="submit" onclick="addtocart(${item.id})" class="cart">Thêm vào giỏ</button>
+
                         </div>
                     </div>
                     <div class="why-text">
@@ -50,4 +50,28 @@ function loadDataTable() {
 
 }
 
+function addtocart(id) {
 
+	$.ajax({	
+        cache: false,
+        type: "POST",
+        url: "http://localhost:8080/api/buy",
+        contentType: "application/json;charset=UTF-8",
+		data: JSON.stringify({
+                "product":
+				{
+					"id":id
+				},
+                "quantity": 1,
+        }),
+        dataType: "json",
+        error: function (request) {
+			toastr.error("fail");
+        },
+        success: function (data) {
+			toastr.success("Thêm vào giỏ thành công !");
+        }
+
+    });
+
+}

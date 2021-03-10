@@ -1,5 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/user/cart.js}"></script>
 <!-- Basic -->
 
 <head>
@@ -27,6 +29,7 @@
     <link rel="stylesheet" th:href="@{/css/responsive.css}">
     <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/custom.css}">
+    <link rel="stylesheet" th:href="@{/css/toastr.css}">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -203,18 +206,8 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr th:each="item : ${session.item}">
-                                	<td th:text=${item.product.id}></td>
-                                	<th><img th:src="@{'../images/' + ${item.product.image}}" height="50px"></th>
-									<td th:text=${item.product.name}></td>
-									<td th:text="${#numbers.formatDecimal(item.product.price, 0, 'COMMA', 0, 'POINT')} + ' VND'"></td>
-									<td th:text=${item.quantity}></td>
-									<td th:text="${#numbers.formatDecimal(item.product.price*item.quantity, 0, 'COMMA', 0, 'POINT')} + ' VND'"></td>
-									<form th:action="@{'remove/'+${item.product.id}}" method="POST">
-										<td><button type="submit" class="btn btn-info">Xoá</button></td>
-									</form>
-                                </tr>
+                            <tbody id="datatable">
+                               
                             </tbody>
                         </table>
                     </div>
@@ -243,10 +236,10 @@
                 <div class="col-lg-8 col-sm-12"></div>
                 <div class="col-lg-4 col-sm-12">
                     <div class="order-box">
-                        <h3>Tổng Tiền</h3>
+                        <h3>Thanh Toán</h3>
                         <div class="d-flex">
                             <h4>Tổng Tiền</h4>
-                            <div class="ml-auto font-weight-bold"> - </div>
+                            <div class="ml-auto font-weight-bold" id=totalPrice> - </div>
                         </div>
                         <hr class="my-1">
                         <div class="d-flex">
@@ -476,6 +469,7 @@
     <script th:src="@{/js/form-validator.min.js}"></script>
     <script th:src="@{/js/contact-form-script.js}"></script>
     <script th:src="@{/js/custom.js}"></script>
+    <script th:src="@{/js/toastr.js}"></script>
 </body>
 
 </html>

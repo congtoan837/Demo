@@ -76,28 +76,6 @@ public class UserController {
 		model.addAttribute("Product", list);
 		return "user/shop-detail";
 	}
-	
-	@PostMapping("buy/{id}")
-	public String buy(@PathVariable("id") Integer id, HttpSession session, RedirectAttributes redirectAttributes) {
-		if (session.getAttribute("item") == null) {
-			List<Item> cart = new ArrayList<Item>();
-			cart.add(new Item(productRepository.getbyId(id), 1));
-			session.setAttribute("item", cart);
-		} else {
-			List<Item> cart = (List<Item>) session.getAttribute("item");
-			int index = this.exists(id, cart);
-			if (index == -1) {
-				cart.add(new Item(productRepository.getbyId(id), 1));
-			} else {
-				int quantity = cart.get(index).getQuantity() + 1;
-				cart.get(index).setQuantity(quantity);
-			}
-			session.setAttribute("item", cart);
-		}
-		redirectAttributes.addFlashAttribute("status", "1");
-		redirectAttributes.addFlashAttribute("message", "Thêm vào giỏ thành công !");
-		return "redirect:/";
-	}
 
 	@PostMapping("remove/{id}")
 	public String remove(@PathVariable("id") Integer id, HttpSession session) {
