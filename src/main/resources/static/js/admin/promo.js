@@ -1,11 +1,5 @@
 var dataProduct = [];
 
-$(".custom-file-input").on("change", function () {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected")
-            .html(fileName);
-});
-
 function randString(id){
     var dataSet = $(id).attr('data-character-set').split(',');  
     var possible = '';
@@ -54,6 +48,9 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url: API_URL + "/api/listpromo",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
@@ -104,6 +101,9 @@ function insert() {
         $.ajax({
             cache: true,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url: API_URL + "/api/newpromo",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
@@ -159,6 +159,9 @@ function edit(id) {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url: API_URL + "/api/editpromo",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
@@ -186,6 +189,9 @@ function delet(id) {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url: API_URL + "/api/deletepromo",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({

@@ -14,18 +14,20 @@ function add() {
 }
 
 function loadDataTable() {
-    encodedData = "Basic " + window.btoa('admin:admin123');
+
     $.ajax({
         cache: false,
         type: "POST",
-        headers: {"Authorization": encodedData},
         url: API_URL + "/api/listaccount",
         contentType: "application/json;charset=UTF-8",
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         dataType: "json",
         error: function() {
-
+			toastr.error("fail");
         },
-        success: function(data) {
+        success: function(data) {	
             dataProduct = data;
             $('#datatable').html("");
             data.map((item, index) => {
@@ -61,6 +63,9 @@ function insert() {
         $.ajax({
             cache: true,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url: API_URL + "/api/newaccount",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
@@ -108,6 +113,9 @@ function edit(id) {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url: API_URL + "/api/editaccount",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
@@ -135,6 +143,9 @@ function delet(id) {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url: API_URL + "/api/deleteaccount",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({

@@ -1,6 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
 <script th:src="@{/js/urlcomon.js}"></script>
 <script th:src="@{/js/admin/promo.js}"></script>
 
@@ -31,7 +32,7 @@
 					<a class="logo">ADMIN</a>
 				</h1>
 				<ul class="list-unstyled components mb-5">
-					<li><a th:href="@{/admin}"><i class="fas fa-chart-line"></i>
+					<li><a th:href="@{/admin/stats}"><i class="fas fa-chart-line"></i>
 							Thống kê</a></li>
 					<li><a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
 								class="fas fa-file-invoice-dollar"></i>
@@ -83,11 +84,9 @@
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</p>
 				</div>
-				<form th:action="@{/admin/logout}" method="Post">
 					<div class="col text-center" style="padding-top: 50px">
-						<button type="submit" class="btn btn-info btn-lg"> Đăng Xuất</button>
+						<button type="submit" class="btn btn-info btn-lg" onclick="logout()"> Đăng Xuất</button>
 					</div>
-				</form>
 			</div>
 		</nav>
 
@@ -163,8 +162,7 @@
 					<label class="col-sm-4 col-form-label">Copon</label>
 					<div class="col-sm-8">
 						<input type="text" id="4" th:name="Description" class="form-control float-left"
-							placeholder="Enter Copon" style="width: 85%;" data-size="10"
-							data-character-set="A-Z">
+							placeholder="Enter Copon" style="width: 85%;" rel="gp" data-size="10" data-character-set="A-Z">
 						<button type="button" class="btn btn-primary float-right" id="getNewPass"><span
 								class="fa fa-refresh"></span></button>
 					</div>
@@ -197,6 +195,12 @@
 	slider.oninput = function () {
 		output.innerHTML = this.value + ' %';
 	}
+	
+	$(".custom-file-input").on("change", function () {
+	    var fileName = $(this).val().split("\\").pop();
+	    $(this).siblings(".custom-file-label").addClass("selected")
+	            .html(fileName);
+	});
 </script>
 
 </html>

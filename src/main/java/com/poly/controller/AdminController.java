@@ -6,9 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+	// LOGIN CONTROLLER
+	@RequestMapping("")
+	public String login() {
+		return "admin/login";
+	}
+	// LOGIN CONTROLLER
 	
 	// STATS CONTROLLER
-	@RequestMapping("")
+	@RequestMapping("/stats")
 	public String stats() {
 		return "admin/stats";
 	}

@@ -1,6 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/jquerycookie.js}"></script>
+<script th:src="@{/js/urlcomon.js}"></script>
+<script th:src="@{/js/admin/login.js}"></script>
     <head>
         <title>Login</title>
         <link rel="icon" href="images/favicon.png">
@@ -31,6 +34,8 @@
         <!-- web-fonts -->
         <link href="//fonts.googleapis.com/css?family=Magra:400,700&amp;subset=latin-ext" rel="stylesheet">
         <!-- //web-fonts -->
+        <link rel="stylesheet" th:href="@{/css/toastr.css}">
+        <script th:src="@{/js/toastr.js}"></script>
     </head>
 
     <body>
@@ -45,21 +50,21 @@
             <div class="formBox level-login">              
                 <div class="box loginBox">
                     <h3>Đăng nhập</h3>
-                   <form th:action="@{/login}" th:object="${loginForm}" method=POST>
+                   <div class="formBox">
                         <div th:if="${param.error}" style="text-align: center; margin-bottom: 20px;color: red">
                           	Tài khoản hoặc mật khẩu không đúng
                         </div>
                         <div class="f_row-2">
-                            <input type="text" class="input-field" placeholder="Tên đăng nhập" name="username"value=""  required>
+                            <input type="text" class="input-field" placeholder="Tên đăng nhập" id="username" value=""  required>
                         </div>
                         <div class="f_row-2 last">
-                            <input type="password" name="password" placeholder="Mật khẩu" class="input-field" value="" required>
+                            <input type="password" id="password" placeholder="Mật khẩu" class="input-field" value="" required>
                         </div>
                         <div class="f_row-2 last">
-                            <input type="checkbox" class="checkbox" name="remember" checked> Nhớ mật khẩu
+                            <input type="checkbox" class="checkbox" id="remember"> Nhớ mật khẩu
                         </div>
-                        <input class="submit-w3" type="submit" name="action" value="Đăng nhập">
-                    </form>
+                        <input class="submit-w3" type="submit" onclick="login()" value="Đăng nhập">
+                    </div>
                 </div>              
             </div>    
         </div>
@@ -71,11 +76,6 @@
         </div>
         <!-- //copyright -->
 
-
-        <!-- js files -->
-        <!-- Jquery -->
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <!-- //Jquery -->
         <!-- input fields js -->
         <script src="js/input-field.js"></script>
         <!-- //input fields js -->

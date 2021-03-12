@@ -7,6 +7,9 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url: API_URL + "/api/listproduct",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
@@ -55,7 +58,10 @@ function addtocart(id) {
 	$.ajax({	
         cache: false,
         type: "POST",
-        url: "https://webdemodoan.herokuapp.com/api/buy",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
+        url: API_URL_LOCAL + "/api/buy",
         contentType: "application/json;charset=UTF-8",
 		data: JSON.stringify({
                 "product":

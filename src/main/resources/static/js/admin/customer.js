@@ -1,11 +1,5 @@
 var dataProduct = [];
 
-$(".custom-file-input").on("change", function() {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected")
-        .html(fileName);
-});
-
 $(document).ready(function() {
     loadDataTable();
 });
@@ -28,6 +22,9 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url: API_URL + "/api/listcustomer",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
@@ -79,6 +76,9 @@ function insert() {
         $.ajax({
             cache: true,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url: API_URL + "/api/newcustomer",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
@@ -137,6 +137,9 @@ function edit(id) {
         cache: false,
         type: "POST",
         url: API_URL + "/api/editcustomer",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
             "id": id,
@@ -164,6 +167,9 @@ function delet(id) {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url: API_URL + "/api/deletecustomer",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({

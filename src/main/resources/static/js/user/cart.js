@@ -8,7 +8,10 @@ function loadDataTable() {
 	$.ajax({
 		cache: false,
 		type: "POST",
-		url: "https://webdemodoan.herokuapp.com/api/cartSession",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
+		url: API_URL_LOCAL + "/api/cartSession",
 		contentType: "application/json;charset=UTF-8",
 		dataType: "json",
 		error: function(request) {
@@ -46,7 +49,10 @@ function removetocart(id) {
 	$.ajax({
 		cache: false,
 		type: "POST",
-		url: "https://webdemodoan.herokuapp.com/api/remove/" + id,
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
+		url: API_URL_LOCAL + "/api/remove/" + id,
 		contentType: "application/json;charset=UTF-8",
 		data: JSON.stringify({
 			"id": id

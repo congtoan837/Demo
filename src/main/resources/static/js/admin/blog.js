@@ -1,4 +1,5 @@
 var dataProduct = [];
+var loginpage = false;
 
 $(".custom-file-input").on("change", function() {
     var fileName = $(this).val().split("\\").pop();
@@ -27,6 +28,9 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url: API_URL + "/api/listblog",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
@@ -74,6 +78,9 @@ function insert() {
         $.ajax({
             cache: true,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url: API_URL + "/api/newblog",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
@@ -125,6 +132,9 @@ function edit(id) {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url: API_URL + "/api/editblog",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
@@ -151,6 +161,9 @@ function delet(id) {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url: API_URL + "/api/deleteblog",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
@@ -171,6 +184,9 @@ function loadComboBox() {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url:  API_URL + "/api/listaccount",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",

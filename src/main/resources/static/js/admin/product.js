@@ -1,11 +1,5 @@
 var dataProduct = [];
 
-$(".custom-file-input").on("change", function () {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected")
-            .html(fileName);
-});
-
 $( document ).ready(function() {
     loadDataTable();
     loadComboBox();   
@@ -29,6 +23,9 @@ function addbrand() {
         $.ajax({
             cache: true,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url: API_URL + "/api/newbrand",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
@@ -51,6 +48,9 @@ function deletebrand(id) {
         $.ajax({
             cache: false,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url: API_URL + "/api/deletebrand/",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
@@ -73,6 +73,9 @@ function addcategory() {
         $.ajax({
             cache: true,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url: API_URL + "/api/newcategory",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
@@ -95,6 +98,9 @@ function deletecategory(id) {
         $.ajax({
             cache: false,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url: API_URL + "/api/deletecategory/",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
@@ -119,6 +125,9 @@ function deletecategory(id) {
         $.ajax({
             cache: false,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url: API_URL + "/api/listbrand",
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
@@ -144,6 +153,9 @@ function deletecategory(id) {
         $.ajax({
             cache: false,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url:  API_URL + "/api/listcategory",
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
@@ -170,6 +182,9 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url:  API_URL + "/api/listproduct",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
@@ -224,6 +239,9 @@ function insert() {
         $.ajax({
             cache: true,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url:  API_URL + "/api/newproduct",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
@@ -254,6 +272,9 @@ function loadComboBox() {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url:  API_URL + "/api/listbrand",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
@@ -276,6 +297,9 @@ function loadComboBox2() {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url:  API_URL + "/api/listcategory",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
@@ -327,6 +351,9 @@ function edit(id) {
         $.ajax({
             cache: false,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url:  API_URL + "/api/editproduct",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
@@ -356,6 +383,9 @@ function delet(id) {
         $.ajax({
             cache: false,
             type: "POST",
+			headers: {
+            	Authorization: 'Bearer ' + localStorage.getItem("token")
+        	},
             url:  API_URL + "/api/deleteproduct/",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({

@@ -7,6 +7,9 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
         url: API_URL + "/api/listblog",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
