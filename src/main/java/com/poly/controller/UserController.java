@@ -1,51 +1,19 @@
 package com.poly.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.poly.model.Item;
-import com.poly.model.Product;
-import com.poly.repositories.ProductRepository;
 
 @Controller
 public class UserController {
-	@Autowired
-	private ProductRepository productRepository;
 	
 	@GetMapping("/")
-	public String process(Model model, HttpSession session) {
+	public String process() {
 		return "user/index";
 	}
 
 	@GetMapping("/about")
-	public String about(HttpServletRequest request) {
-		ArrayList<String> list = new ArrayList<String>();
-		list.add("a");
-		list.add("b");
-		list.add("c");
-		@SuppressWarnings("unchecked")
-		ArrayList<String> messages = (ArrayList<String>) request.getSession().getAttribute("MY_SESSION_MESSAGES");
-		if (messages == null) {
-			messages = new ArrayList<>();
-			request.getSession().setAttribute("MY_SESSION_MESSAGES", messages);
-		}
-		messages.addAll(list);
-		request.getSession().setAttribute("MY_SESSION_MESSAGES", messages);
-		System.out.print(messages);
+	public String about() {
 		return "user/about";
 	}
 	
@@ -55,8 +23,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/contact")
-	public String contact(HttpServletRequest request) {
-		request.getSession().invalidate();
+	public String contact() {
 		return "user/contact-us";
 	}
 	
@@ -86,27 +53,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/detail/{id}")
-	public String detais(ModelMap model, @PathVariable(name = "id") Integer id) {	
-		Product list = productRepository.findById(id).get();
-		model.addAttribute("Product", list);
+	public String detais(@PathVariable(name = "id") Integer id) {	
 		return "user/shop-detail";
-	}
-
-	@PostMapping("remove/{id}")
-	public String remove(@PathVariable("id") Integer id, HttpSession session) {
-		List<Item> cart = (List<Item>) session.getAttribute("item");
-		int index = this.exists(id, cart);
-		cart.remove(index);
-		session.setAttribute("item", cart);
-		return "redirect:/cart";
-	}
-
-	private int exists(Integer id, List<Item> cart) {
-		for (int i = 0; i < cart.size(); i++) {
-			if (cart.get(i).getProduct().getId() == id) {
-				return i;
-			}
-		}
-		return -1;
 	}
 }

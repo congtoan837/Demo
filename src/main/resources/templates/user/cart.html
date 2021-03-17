@@ -51,7 +51,7 @@
                 <div class="our-link">
                     <ul>
                         <li><a href="#"><i class="fa fa-user s_color"></i> Tài khoản</a></li>                        
-                        <li><a href="#"><i class="fas fa-headset"></i> Liên hệ</a></li>
+                        <li><a th:href="@{/contact-us}"><i class="fas fa-headset"></i> Liên hệ</a></li>
                     </ul>
                 </div>
             </div>
@@ -110,7 +110,7 @@
 					aria-expanded="false" aria-label="Toggle navigation">
 					<i class="fa fa-bars"></i>
 				</button>
-				<a class="navbar-brand" th:href="@{..}"><strong>FOX
+				<a class="navbar-brand" th:href="@{/}"><strong>FOX
 						Sneaker</strong></a>
 			</div>
 			<!-- End Header Navigation -->
@@ -120,7 +120,7 @@
 				<ul class="nav navbar-nav ml-auto" data-in="fadeInDown"
 					data-out="fadeOutUp">
 					<li class="nav-item active"><a class="nav-link"
-						th:href="@{..}">Trang chủ</a></li>
+						th:href="@{/}">Trang chủ</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/about}">Giới
 							thiệu</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/shop}">Sản
@@ -136,7 +136,7 @@
 			<div class="attr-nav">
 				<ul>
 					<li class="side-menu">
-						<a href="#">
+						<a th:href="@{/cart}">
 							<i class="fa fa-shopping-bag"></i>
 							<p>GIỎ HÀNG</p>
 						</a>
@@ -217,7 +217,7 @@
                 </div>
                 <div class="col-lg-6 col-sm-6">
                     <div class="update-box">
-                        <input value="Tiếp tục mua sắm" type="submit">
+                        <a class="button" th:href="@{/shop}" id="continues" type="button">Tiếp tục mua sắm</a>
                     </div>
                 </div>
             </div>
@@ -252,7 +252,7 @@
                         <hr> 
                      </div>
                 </div>
-                <div class="col-12 d-flex shopping-box"><a href="checkout.html" class="ml-auto btn hvr-hover">Thanh Toán</a> </div>
+                <div class="col-12 d-flex shopping-box"><a th:href="@{/checkout}" class="ml-auto btn hvr-hover">Thanh Toán</a> </div>
             </div>
 
         </div>
@@ -365,7 +365,6 @@
     <script th:src="@{/js/jquery.superslides.min.js}"></script>
     <script th:src="@{/js/bootstrap-select.js}"></script>
     <script th:src="@{/js/inewsticker.js}"></script>
-    <script th:src="@{/js/bootsnav.js}"></script>
     <script th:src="@{/js/images-loded.min.js}"></script>
     <script th:src="@{/js/isotope.min.js}"></script>
     <script th:src="@{/js/owl.carousel.min.js}"></script>

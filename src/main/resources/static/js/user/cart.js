@@ -9,11 +9,14 @@ function loadDataTable() {
 		cache: false,
 		type: "POST",
 		headers: {
-            Authorization: 'Bearer ' + localStorage.getItem("token")
-        },
+			Authorization: 'Bearer ' + localStorage.getItem("token")
+		},
 		url: API_URL_LOCAL + "/api/cartSession",
 		contentType: "application/json;charset=UTF-8",
 		dataType: "json",
+		xhrFields: {
+			withCredentials: true
+		},
 		error: function(request) {
 
 		},
@@ -34,7 +37,7 @@ function loadDataTable() {
 					$('#datatable').append(str);
 					$('.my-5').addClass('display');
 				});
-			} else {			
+			} else {
 				$('#datatable').html(`<td colspan="6" style="text-align: center; font-weight: 600; font-size: 30px;">Cart Empty<td>`);
 				$('.my-5').removeClass('display');
 			}
@@ -50,14 +53,17 @@ function removetocart(id) {
 		cache: false,
 		type: "POST",
 		headers: {
-            Authorization: 'Bearer ' + localStorage.getItem("token")
-        },
+			Authorization: 'Bearer ' + localStorage.getItem("token")
+		},
 		url: API_URL_LOCAL + "/api/remove/" + id,
 		contentType: "application/json;charset=UTF-8",
 		data: JSON.stringify({
 			"id": id
 		}),
 		dataType: "json",
+		xhrFields: {
+			withCredentials: true
+		},
 		error: function(request) {
 			toastr.error("fail");
 		},

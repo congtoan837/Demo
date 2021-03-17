@@ -19,7 +19,7 @@ function login() {
 			success: function(data) {
 				rememberme();
 				localStorage.setItem("token", data.data.token);
-				sessionStorage.setItem("username", data.data.username);
+				localStorage.setItem("username", data.data.username);
 				window.location.href = "/admin/stats";
 			}
 		});
