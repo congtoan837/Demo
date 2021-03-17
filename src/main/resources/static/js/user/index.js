@@ -61,7 +61,7 @@ function addtocart(id) {
 		headers: {
 			Authorization: 'Bearer ' + localStorage.getItem("token")
 		},
-		url: API_URL_LOCAL + "/api/buy",
+		url: API_URL + "/api/buy",
 		contentType: "application/json;charset=UTF-8",
 		data: JSON.stringify({
 			"product":

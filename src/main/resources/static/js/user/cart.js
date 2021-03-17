@@ -11,7 +11,7 @@ function loadDataTable() {
 		headers: {
 			Authorization: 'Bearer ' + localStorage.getItem("token")
 		},
-		url: API_URL_LOCAL + "/api/cartSession",
+		url: API_URL + "/api/cartSession",
 		contentType: "application/json;charset=UTF-8",
 		dataType: "json",
 		xhrFields: {
@@ -55,7 +55,7 @@ function removetocart(id) {
 		headers: {
 			Authorization: 'Bearer ' + localStorage.getItem("token")
 		},
-		url: API_URL_LOCAL + "/api/remove/" + id,
+		url: API_URL + "/api/remove/" + id,
 		contentType: "application/json;charset=UTF-8",
 		data: JSON.stringify({
 			"id": id
