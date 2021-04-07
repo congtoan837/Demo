@@ -187,7 +187,7 @@ function loadComboBox() {
 		headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token")
         },
-        url:  API_URL + "/api/listaccount",
+        url:  API_URL + "/api/listcustomer",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         error: function (request) {
@@ -196,7 +196,7 @@ function loadComboBox() {
         success: function (data) {
         	$('#4').html("");
             data.map((item, index) => {
-                var str = $(`<option value=${item.id}>${item.name}</option>`);
+                var str = $(`<option value=${item.id}>${item.username}</option>`);
                 $('#4').append(str);
             });
         }

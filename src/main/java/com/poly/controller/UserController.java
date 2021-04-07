@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class UserController {
 	
 	@GetMapping("/")
-	public String process() {
+	public String index() {
 		return "user/index";
 	}
 

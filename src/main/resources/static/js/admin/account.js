@@ -18,7 +18,7 @@ function loadDataTable() {
     $.ajax({
         cache: false,
         type: "POST",
-        url: API_URL + "/api/listaccount",
+        url: API_URL + "/api/listcustomer",
         contentType: "application/json;charset=UTF-8",
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token")
@@ -33,8 +33,9 @@ function loadDataTable() {
             data.map((item, index) => {
                 var str = $(`<tr>
 						<th>${item.id}</th>	                       			
-                        <td>${item.name}</td>
+                        <td>${item.username}</td>
 						<td>${item.password}</td>
+						<td>${item.role}</td>
 						<td>							
 							<button type="button" onclick="load_edit(${item.id})" class="btn btn-primary btn-sm" title="sửa"
 								data-toggle="modal" data-target="#Add">
@@ -53,42 +54,6 @@ function loadDataTable() {
     });
 
 }
-
-function insert() {
-    var name = $('#1').val().trim();
-    var password = $("#2").val().trim();
-    $("#btn_insert").addClass( "disabled" );
-    $("#btn_insert").attr( 'onclick','' );
-    {
-        $.ajax({
-            cache: true,
-            type: "POST",
-			headers: {
-            	Authorization: 'Bearer ' + localStorage.getItem("token")
-        	},
-            url: API_URL + "/api/newaccount",
-            contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify({
-                "name": name,
-                "password": password,
-            }),
-            dataType: "json",
-            error: function() {
-                toastr.error("fail");
-                $("#btn_insert").removeClass( "disabled" );
-                $("#btn_insert").attr( 'onclick','insert()' );
-            },
-            success: function() {
-                $('#Add').modal('hide');
-                toastr.success("Success");
-                $("#btn_insert").removeClass( "disabled" );
-                $("#btn_insert").attr( 'onclick','insert()' );
-                loadDataTable();
-            }
-        });
-    }
-}
-
 
 function load_edit(id) {
     dataProduct.map((item, index) => {

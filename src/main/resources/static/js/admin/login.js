@@ -17,10 +17,14 @@ function login() {
 				toastr.error("Login fail !! input correct username & password and try again !");
 			},
 			success: function(data) {
-				rememberme();
-				localStorage.setItem("token", data.data.token);
-				localStorage.setItem("username", data.data.username);
-				window.location.href = "/admin/stats";
+				if(data.data.roles == "ADMIN") {
+					rememberme();
+					localStorage.setItem("token", data.data.token);
+					localStorage.setItem("cart", data.data.cartId);
+					window.location.href = "/admin/stats";
+				} else {
+					toastr.error("Login fail !! you are not an administrator !");
+				}
 			}
 		});
 	}
@@ -71,4 +75,3 @@ function hadlogin() {
 		window.location.href = "/admin/stats";
 	}	
 }
-

@@ -1,3 +1,5 @@
+var a;
+
 $(document).ready(function() {
 	loadDataTable();
 });
@@ -18,7 +20,12 @@ function loadDataTable() {
 		},
 		success: function(data) {
 			data.map((item, index) => {
-				let a = item.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+				if(localStorage.getItem("token") !== null){
+					a = `newitem(${item.id})`;
+				}else{
+					a = `addtocart(${item.id})`;
+				}
+				let b = item.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
 				var str = $(`<div class="col-lg-3 col-md-6 special-grid ${item.status}">
                 <div class="products-single fix">
                     <div class="box-img-hover">
@@ -34,13 +41,13 @@ function loadDataTable() {
                                         class="fas fa-eye"></i></a></li>
                             </ul>
 
-                            	<button type="submit" onclick="addtocart(${item.id})" class="cart">Thêm vào giỏ</button>
+                            	<button type="submit" onclick="${a}" class="cart">Thêm vào giỏ</button>
 
                         </div>
                     </div>
                     <div class="why-text">
                         <h4 style="text-transform: uppercase;">${item.name}</h4>
-                        <h5>${a}</h5>
+                        <h5>${b}</h5>
                     </div>
                 </div>
             </div>`);
@@ -69,6 +76,36 @@ function addtocart(id) {
 				"id": id
 			},
 			"quantity": 1,
+		}),
+		dataType: "json",
+		xhrFields: {
+			withCredentials: true
+		},
+		error: function(request) {
+			toastr.error("fail");
+		},
+		success: function(data) {
+			toastr.success("Thêm vào giỏ thành công !");
+		}
+
+	});
+
+}
+
+function newitem(id) {
+
+	$.ajax({
+		cache: false,
+		type: "POST",
+		headers: {
+			Authorization: 'Bearer ' + localStorage.getItem("token")
+		},
+		url: API_URL + "/api/newitem",
+		contentType: "application/json;charset=UTF-8",
+		data: JSON.stringify({
+			"productId": id,
+			"quantity": 1,
+			"cartId": parseInt(localStorage.getItem("cart"))
 		}),
 		dataType: "json",
 		xhrFields: {

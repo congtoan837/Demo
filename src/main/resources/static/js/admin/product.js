@@ -2,7 +2,7 @@ var dataProduct = [];
 
 $( document ).ready(function() {
     loadDataTable();
-    loadComboBox();   
+    loadComboBox();
 });
 
 function add() {
@@ -118,10 +118,10 @@ function deletecategory(id) {
     }
 
     function loadlistComboBox() {
-	    $("#Newbrand").click(function () {
-	        $('#buttonadd').attr("onclick","addbrand()");
-	    });
         $('#Brand2').val("");
+        $("#Newbrand").click(function () {
+            $('#buttonadd').attr("onclick","addbrand()");
+        });
         $.ajax({
             cache: false,
             type: "POST",
@@ -146,10 +146,10 @@ function deletecategory(id) {
     }
     
     function loadlistComboBox2() {
-	    $("#newcategory").click(function () {
-	        $('#buttonadd').attr("onclick","addcategory()");
-	    });
         $('#Brand2').val("");
+        $("#newcategory").click(function () {
+            $('#buttonadd').attr("onclick","addcategory()");
+        });
         $.ajax({
             cache: false,
             type: "POST",

@@ -1,6 +1,6 @@
 $(document).ready(function() {
     loadgroupBrand();
-    loadbyBrand(21);
+    loadbyBrand(1);
 });
 
 function loadgroupBrand() {
