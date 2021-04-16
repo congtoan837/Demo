@@ -46,8 +46,7 @@
                     </div>
                     <div class="our-link">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user s_color"></i> Tài khoản</a></li>                        
-                            <li><a href="#"><i class="fas fa-headset"></i> Liên hệ</a></li>
+                            <li><a th:href="@{/contact}"><i class="fas fa-headset"></i> Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -95,48 +94,46 @@
     <!-- End Main Top -->
 
     <!-- Start Main Top -->
-    <header class="main-header">
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-            <div class="container">
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/logo.png" class="logo" alt=""></a>
-                </div>
-                <!-- End Header Navigation -->
+      <header class="main-header">
+          <!-- Start Navigation -->
+          <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+              <div class="container">
+                  <!-- Start Header Navigation -->
+                  <div class="navbar-header">
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                          <i class="fa fa-bars"></i>
+                      </button>
+                      <a class="navbar-brand" href="index.html"><strong>FOX Sneaker</strong></a>
+                  </div>
+                  <!-- End Header Navigation -->
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-					<ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-						<li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">Giói thiệu</a></li>
-                        <li class="nav-item"><a class="nav-link" href="shop.html">Sản phẩm</a></li>
-						<li class="nav-item"><a class="nav-link" href="gallery.html">Tin tức</a></li>
-						<li class="nav-item"><a class="nav-link" href="contact-us.html">Khuyến mãi</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" id="navbar-menu">
+                      <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                          <li class="nav-item"><a class="nav-link" th:href="@{/}">Trang chủ</a></li>
+                          <li class="nav-item"><a class="nav-link" th:href="@{/about}">Giới thiệu</a></li>
+                          <li class="nav-item"><a class="nav-link" th:href="@{/shop}">Sản phẩm</a></li>
+                          <li class="nav-item"><a class="nav-link" th:href="@{/news}">Tin tức</a></li>
+                          <li class="nav-item"><a class="nav-link" th:href="@{/coupon}">Khuyến mãi</a></li>
+                      </ul>
+                  </div>
+                  <!-- /.navbar-collapse -->
 
-                <!-- Start Atribute Navigation -->
-                <div class="attr-nav">
-                    <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li class="side-menu"><a href="#">
-						<i class="fa fa-shopping-bag"></i>
-                            <span class="badge">3</span>
-							My Cart
-					</a></li>
-                    </ul>
-                </div>
-                <!-- End Atribute Navigation -->
-            </div>
-            
-        </nav>
-        <!-- End Navigation -->
-    </header>
+                  <!-- Start Atribute Navigation -->
+                  <div class="attr-nav">
+                      <ul>
+                          <li class="side-menu">
+                              <a th:href="@{/cart}">
+                                  <i class="fa fa-shopping-bag"></i> GIỎ HÀNG
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
+                  <!-- End Atribute Navigation -->
+              </div>
+          </nav>
+          <!-- End Navigation -->
+      </header>
     <!-- End Main Top -->
 
     <!-- Start Top Search -->
@@ -156,7 +153,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>My Account</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Shop</a></li>
                         <li class="breadcrumb-item active">My Account</li>
@@ -179,8 +175,7 @@
                                     <a href="#"> <i class="fa fa-gift"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>Your Orders</h4>
-                                    <p>Track, return, or buy things again</p>
+                                    <h4>Đơn hàng của bạn</h4>
                                 </div>
                             </div>
                         </div>
@@ -192,245 +187,17 @@
                                     <a href="#"><i class="fa fa-lock"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>Login &amp; security</h4>
-                                    <p>Edit login, name, and mobile number</p>
+                                    <h4>Thông tin tài khoản</h4>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-location-arrow"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>Your Addresses</h4>
-                                    <p>Edit addresses for orders and gifts</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-credit-card"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>Payment options</h4>
-                                    <p>Edit or add payment methods</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fab fa-paypal"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>PayPal</h4>
-                                    <p>View benefits and payment settings</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fab fa-amazon"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>Amazon Pay balance</h4>
-                                    <p>Add money to your balance</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bottom-box">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-12">
-                            <div class="account-box">
-                                <div class="service-box">
-                                    <div class="service-desc">
-                                        <h4>Gold &amp; Diamond Jewellery</h4>
-                                        <ul>
-                                            <li> <a href="#">Apps and more</a> </li>
-                                            <li> <a href="#">Content and devices</a> </li>
-                                            <li> <a href="#">Music settings</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="account-box">
-                                <div class="service-box">
-                                    <div class="service-desc">
-                                        <h4>Handloom &amp; Handicraft Store</h4>
-                                        <ul>
-                                            <li> <a href="#">Advertising preferences </a> </li>
-                                            <li> <a href="#">Communication preferences</a> </li>
-                                            <li> <a href="#">SMS alert preferences</a> </li>
-                                            <li> <a href="#">Message center</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="account-box">
-                                <div class="service-box">
-                                    <div class="service-desc">
-                                        <h4>The Designer Boutique</h4>
-                                        <ul>
-                                            <li> <a href="#">Amazon Pay</a> </li>
-                                            <li> <a href="#">Bank accounts for refunds</a> </li>
-                                            <li> <a href="#">Coupons</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="account-box">
-                                <div class="service-box">
-                                    <div class="service-desc">
-                                        <h4>Gift Boxes, Gift Tags, Greeting Cards</h4>
-                                        <ul>
-                                            <li> <a href="#">Leave delivery feedback</a> </li>
-                                            <li> <a href="#">Lists</a> </li>
-                                            <li> <a href="#">Photo ID proofs</a> </li>
-                                            <li> <a href="#">Profile</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="account-box">
-                                <div class="service-box">
-                                    <div class="service-desc">
-                                        <h4>Other accounts</h4>
-                                        <ul>
-                                            <li> <a href="#">Amazon Business registration</a> </li>
-                                            <li> <a href="#">Seller account</a> </li>
-                                            <li> <a href="#">Amazon Web Services</a> </li>
-                                            <li> <a href="#">Login with Amazon</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="account-box">
-                                <div class="service-box">
-                                    <div class="service-desc">
-                                        <h4>Shopping programs and rentals</h4>
-                                        <ul>
-                                            <li> <a href="#">Subscribe &amp; Save</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
     <!-- End My Account -->
-
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
 
 
       <!-- Start Footer  -->
@@ -536,7 +303,6 @@
     <script src="js/jquery.superslides.min.js"></script>
     <script src="js/bootstrap-select.js"></script>
     <script src="js/inewsticker.js"></script>
-    <script src="js/bootsnav.js."></script>
     <script src="js/images-loded.min.js"></script>
     <script src="js/isotope.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>

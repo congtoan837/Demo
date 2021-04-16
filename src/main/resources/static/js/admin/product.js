@@ -209,10 +209,10 @@ function loadDataTable() {
 						<td>							
 							<button type="button" onclick="load_edit(${item.id})" class="btn btn-primary btn-sm" title="sửa"
 								data-toggle="modal" data-target="#Add">
-									Sửa
+									<i class="far fa-edit"></i>
 								</button>
 								<button type="button" onclick="delet(${item.id})" class="btn btn-primary btn-sm" title="xoá">
-									Xóa
+									<i class="far fa-trash-alt"></i>
 								</button>
 						</td>
 					</tr>`);

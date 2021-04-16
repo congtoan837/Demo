@@ -31,32 +31,29 @@ body {
 				</h1>
 				<ul class="list-unstyled components mb-5">
 					<li><a th:href="@{/admin/stats}"><i class="fas fa-chart-line"></i>
-							Thống kê</a></li>
+						Thống kê</a></li>
 					<li><a href="#pageSubmenu1" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-file-invoice-dollar"></i> 
-									Quản lý đơn hàng</a>
+						   aria-expanded="false" class="dropdown-toggle"><i class="fas fa-file-invoice-dollar"></i>
+						Quản lý đơn hàng</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu1">
 							<li><a th:href="@{/admin/order}"><i class="fa fa-plus-square"></i>
-									Danh sách đơn hàng</a></li>
+								Danh sách đơn hàng</a></li>
 							<li><a th:href="@{/record/List}"><i class="fa fa-list-alt"></i>
-									Tạo đơn hàng</a></li>
+								Tạo đơn hàng</a></li>
 						</ul></li>
 					<li><a href="#pageSubmenu2" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Quản lý sản phẩm</a>
-						<ul class="collapse list-unstyled" id="pageSubmenu2">						
+						   aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Quản lý sản phẩm</a>
+						<ul class="collapse list-unstyled" id="pageSubmenu2">
 							<li><a th:href="@{/admin/product}"><i class="fa fa-list-alt"></i>
-									Danh sách sản phẩm</a></li>
-							<li><a th:href="@{/product/list2}"><i class="fa fa-list-alt"></i>
-									Danh mục sản phẩm</a></li>
+								Danh sách sản phẩm</a></li>
+							<li><a href="#"><i class="fa fa-list-alt"></i>
+								Danh mục sản phẩm</a></li>
 						</ul></li>
 					<li><a th:href="@{/admin/customer}"><i class="fas fa-user"></i>
-									Quản lý khách hàng</a></li>
+						Quản lý khách hàng</a></li>
 					<li><a th:href="@{/admin/promotion}"><i class="fas fa-gifts" aria-hidden="true"></i> Khuyến mãi</a></li>
 					<li><a th:href="@{/admin/blog}"><i class="fab fa-blogger-b"></i> Blog</a>
-						</li>
-					<li><a th:href="@{/admin/account}">
-						<i class="fas fa-key"></i> Quản lý tài khoản</a>						
-						</li>
+					</li>
 				</ul>
 
 				<div class="mb-5">
@@ -79,9 +76,9 @@ body {
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</p>
 				</div>
-					<div class="col text-center" style="padding-top: 50px">
-						<button type="submit" class="btn btn-info btn-lg" onclick="logout()"> Đăng Xuất</button>
-					</div>
+				<div class="col text-center" style="padding-top: 50px">
+					<button type="submit" class="btn btn-info btn-lg" onclick="logout()"> Đăng Xuất</button>
+				</div>
 
 			</div>
 		</nav>
@@ -89,9 +86,9 @@ body {
 		<!-- Page Content  -->
 		<div id="content" class="p-4 p-md-5 pt-5">
 			<div>
-				<h2 class="mb-4 float-left">DANH SÁCH KHÁCH HÀNG</h2>
+				<h2 class="mb-4 float-left">DANH SÁCH USERS</h2>
 				<button type="button" class="btn btn-primary float-right"
-					data-toggle="modal" id="btnadd" data-target="#Add" onclick="add()">Thêm khách hàng</button>
+					data-toggle="modal" id="btnadd" data-target="#Add" onclick="add()"><i class="fas fa-plus"></i> Thêm user</button>
 			</div>
 			<table class="table table-striped">
 				<thead class="thead-dark">
@@ -102,6 +99,9 @@ body {
 						<th scope="col">Email</th>
 						<th scope="col">SĐT</th>
 						<th scope="col">Địa chỉ</th>
+						<th scope="col">Tài khoản</th>
+						<th scope="col">Mật khẩu</th>
+						<th scope="col">Quyền</th>
 						<th scope="col">Trạng thái</th>
 						<th scope="col" style="width: 120px"></th>
 					</tr>
@@ -154,26 +154,41 @@ body {
   					<div class="form-group row">
   							<label class="col-sm-3 col-form-label">Hình ảnh</label>
 					<div class="custom-file col-sm-9">
-					    <input type="file" th:name="image" class="custom-file-input" id="6">
+					    <input type="file" th:name="image" class="custom-file-input" id="4">
 					    <label class="custom-file-label" for="customFile">Chọn tệp</label>
 				  	</div>
 				  	</div>
-					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Mật khẩu</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="4" th:name="password" class="form-control" placeholder="Enter password">
-	    				</div>
-  					</div>
 					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Địa chỉ</label>
 	    				<div class="col-sm-9">
 	      					<input type="text" id="5" th:name="address" class="form-control" placeholder="Enter address">
 	    				</div>
   					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Tài khoản</label>
+						<div class="col-sm-9">
+							<input type="text" id="6" th:name="username" class="form-control" placeholder="Enter user">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Mật khẩu</label>
+						<div class="col-sm-9">
+							<input type="text" id="7" th:name="address" class="form-control" placeholder="Enter password">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Quyền</label>
+						<div class="col-sm-9">
+							<select class="form-control" id="8" th:name="role">
+								<option>ADMIN</option>
+								<option>USER</option>
+							</select>
+						</div>
+					</div>
   					<div class="form-group row">
 	    					<label class="col-sm-3 col-form-label">Trạng thái</label>
 	    				<div class="col-sm-9">
-	      					<select class="form-control" id="7" th:name="status">
+	      					<select class="form-control" id="9" th:name="status">
 						      <option>Activated</option>
 						      <option>Not Activated</option>
 				    		</select>

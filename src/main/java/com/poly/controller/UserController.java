@@ -51,6 +51,16 @@ public class UserController {
 	public String checkout() {
 		return "user/checkout";
 	}
+
+	@GetMapping("/order")
+	public String order() {
+		return "user/order";
+	}
+
+	@GetMapping("/account-detail")
+	public String accountdetais() {
+		return "user/account-detail";
+	}
 	
 	@GetMapping("/detail/{id}")
 	public String detais(@PathVariable(name = "id") Integer id) {	

@@ -42,14 +42,17 @@ function loadDataTable() {
 						<td>${item.email}</td>
 						<td>${item.phone}</td>
 						<td>${item.address}</td>
+						<td>${item.username}</td>
+						<td>${item.password}</td>
+						<td>${item.role}</td>
 						<td>${item.status}</td>
 						<td>							
 							<button type="button" onclick="load_edit(${item.id})" class="btn btn-primary btn-sm" title="sửa"
 								data-toggle="modal" data-target="#Add">
-									Sửa
+									<i class="far fa-edit"></i>
 								</button>
 								<button type="button" onclick="delet(${item.id})" class="btn btn-primary btn-sm" title="xoá">
-									Xóa
+									<i class="far fa-trash-alt"></i>
 								</button>
 						</td>
 					</tr>`);
@@ -66,10 +69,12 @@ function insert() {
     var name = $('#1').val();
     var email = $('#2').val();
     var phone = $('#3').val();
-    var image = $('#6').val().split('\\').pop();
-    var password = $('#4').val();
+    var image = $('#4').val().split('\\').pop();
 	var address = $('#5').val();
-	var status = $('#7').val();
+    var user = $('#6').val();
+	var pass = $('#7').val();
+    var role = $('#8').val();
+    var status = $('#9').val();
 
     {
         $.ajax({
@@ -85,8 +90,10 @@ function insert() {
                 "email": email,
                 "phone": phone,
 				"image": image,
-                "password": password,
                 "address": address,
+                "username": user,
+                "password": pass,
+                "role": role,
 				"status": status
             }),
             dataType: "json",
@@ -111,10 +118,11 @@ function load_edit(id) {
             $("#2").val(item.email);
             $(".custom-file-label").html("Chọn tệp, bỏ trống nếu muốn giữ");
             $("#3").val(item.phone);
-            $("#4").val(item.password);
 			$("#5").val(item.address);
-			$("#7").val(item.status);
-            $("#6").val("");
+            $("#6").val(item.username);
+            $("#7").val(item.password);
+			$("#8").val(item.role);
+            $("#9").val(item.status);
             var str = $(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
 			 <button type="submit" class="btn btn-primary" onclick="edit(${item.id})">Lưu</button>`);
             $('#modal-footer').html(str);;
@@ -127,10 +135,12 @@ function edit(id) {
     var name = $('#1').val();
     var email = $('#2').val();
     var phone = $('#3').val();
-    var image = $('#6').val().split('\\').pop();
-    var password = $('#4').val();
-	var address = $('#5').val();
-	var status = $('#7').val();
+    var image = $('#4').val().split('\\').pop();
+    var address = $('#5').val();
+    var user = $('#6').val();
+    var pass = $('#7').val();
+    var role = $('#8').val();
+    var status = $('#9').val();
 
     $.ajax({
         cache: false,
@@ -146,8 +156,10 @@ function edit(id) {
             "email": email,
             "image": image,
             "phone": phone,
-            "password": password,
 			"address": address,
+            "username": user,
+            "password": pass,
+            "role": role,
 			"status": status
         }),
         dataType: "json",

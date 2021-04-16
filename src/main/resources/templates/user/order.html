@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <!-- Basic -->
-<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
-<script th:src="@{/js/urlcomon.js}"></script>
-<script src="js/all.js"></script>
-<script th:src="@{/js/user/blog.js}"></script>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>FOX Sneaker</title>
+    <title>ThewayShop - Ecommerce Bootstrap 4 HTML Template</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -40,18 +37,17 @@
 
 <body>
       <!-- Start Main Top -->
-    <div class="main-top">
+      <div class="main-top">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="right-phone-box">
-                        <p>Call US :- <a href="#"> +11 900 800 100</a></p>
+                        <p>Call US :- <a href="#"> +84818006570</a></p>
                     </div>
                     <div class="our-link">
                         <ul>
-                            <li id="account"></li>
-                            <li><a th:href="@{/contact}"><i class="fas fa-headset"></i>
-                                Liên hệ</a></li>
+                            <li><a th:href="@{/my-account}"><i class="fa fa-user s_color"></i> Tài khoản</a></li>
+                            <li><a th:href="@{/contact}"><i class="fas fa-headset"></i> Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -69,19 +65,19 @@
                                     <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+                                    <i class="fab fa-opencart"></i> 50% - 80% off on Tee
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+                                    <i class="fab fa-opencart"></i> Off 10%! Shop sneaker
                                 </li>
                                 <li>
                                     <i class="fab fa-opencart"></i> Off 50%! Shop Now
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+                                    <i class="fab fa-opencart"></i> Off 10%! Shop Hat
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+                                    <i class="fab fa-opencart"></i> 50% - 80% off on Sneaker
                                 </li>
                                 <li>
                                     <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
@@ -118,7 +114,7 @@
                           <li class="nav-item"><a class="nav-link" th:href="@{/}">Trang chủ</a></li>
                           <li class="nav-item"><a class="nav-link" th:href="@{/about}">Giới thiệu</a></li>
                           <li class="nav-item"><a class="nav-link" th:href="@{/shop}">Sản phẩm</a></li>
-                          <li class="nav-item active"><a class="nav-link" th:href="@{/news}">Tin tức</a></li>
+                          <li class="nav-item"><a class="nav-link" th:href="@{/news}">Tin tức</a></li>
                           <li class="nav-item"><a class="nav-link" th:href="@{/coupon}">Khuyến mãi</a></li>
                       </ul>
                   </div>
@@ -159,8 +155,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Tin tức</li>
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active">My Account</li>
                     </ul>
                 </div>
             </div>
@@ -168,24 +164,43 @@
     </div>
     <!-- End All Title Box -->
 
-        <!-- Start Blog  -->
-    <div class="latest-blog">
+    <!-- Start My Account  -->
+    <div class="my-account-box-main">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="title-all text-center">
-                        <h1>Blog mới<i></i></h1>
+            <div class="my-account-page">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="account-box">
+                            <div class="service-box">
+                                <div class="service-icon">
+                                    <a href="#"> <i class="fa fa-gift"></i> </a>
+                                </div>
+                                <div class="service-desc">
+                                    <h4>Đơn hàng của bạn</h4>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="account-box">
+                            <div class="service-box">
+                                <div class="service-icon">
+                                    <a href="#"><i class="fa fa-lock"></i> </a>
+                                </div>
+                                <div class="service-desc">
+                                    <h4>Thông tin tài khoản</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="row" id="listblog">
-
-            </div>
-
         </div>
     </div>
-    <!-- End Blog  -->
-    
+    <!-- End My Account -->
+
+
       <!-- Start Footer  -->
       <footer>
         <div class="footer-main">

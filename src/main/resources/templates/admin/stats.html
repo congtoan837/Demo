@@ -1,6 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
 <script th:src="@{/js/urlcomon.js}"></script>
 <head>
 	<title>Account Manager</title>
@@ -30,32 +31,29 @@ body {
 				</h1>
 				<ul class="list-unstyled components mb-5">
 					<li><a th:href="@{/admin/stats}"><i class="fas fa-chart-line"></i>
-							Thống kê</a></li>
+						Thống kê</a></li>
 					<li><a href="#pageSubmenu1" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-file-invoice-dollar"></i> 
-									Quản lý đơn hàng</a>
+						   aria-expanded="false" class="dropdown-toggle"><i class="fas fa-file-invoice-dollar"></i>
+						Quản lý đơn hàng</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu1">
 							<li><a th:href="@{/admin/order}"><i class="fa fa-plus-square"></i>
-									Danh sách đơn hàng</a></li>
+								Danh sách đơn hàng</a></li>
 							<li><a th:href="@{/record/List}"><i class="fa fa-list-alt"></i>
-									Tạo đơn hàng</a></li>
+								Tạo đơn hàng</a></li>
 						</ul></li>
 					<li><a href="#pageSubmenu2" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Quản lý sản phẩm</a>
-						<ul class="collapse list-unstyled" id="pageSubmenu2">						
+						   aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Quản lý sản phẩm</a>
+						<ul class="collapse list-unstyled" id="pageSubmenu2">
 							<li><a th:href="@{/admin/product}"><i class="fa fa-list-alt"></i>
-									Danh sách sản phẩm</a></li>
-							<li><a th:href="@{/product/list2}"><i class="fa fa-list-alt"></i>
-									Danh mục sản phẩm</a></li>
+								Danh sách sản phẩm</a></li>
+							<li><a href="#"><i class="fa fa-list-alt"></i>
+								Danh mục sản phẩm</a></li>
 						</ul></li>
 					<li><a th:href="@{/admin/customer}"><i class="fas fa-user"></i>
-									Quản lý khách hàng</a></li>
+						Quản lý khách hàng</a></li>
 					<li><a th:href="@{/admin/promotion}"><i class="fas fa-gifts" aria-hidden="true"></i> Khuyến mãi</a></li>
 					<li><a th:href="@{/admin/blog}"><i class="fab fa-blogger-b"></i> Blog</a>
-						</li>
-					<li><a th:href="@{/admin/account}">
-						<i class="fas fa-key"></i> Quản lý tài khoản</a>						
-						</li>
+					</li>
 				</ul>
 
 				<div class="mb-5">
@@ -78,9 +76,10 @@ body {
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</p>
 				</div>
-					<div class="col text-center" style="padding-top: 50px">
-						<button type="submit" class="btn btn-info btn-lg" onclick="logout()"> Đăng Xuất</button>
-					</div>
+				<div class="col text-center" style="padding-top: 50px">
+					<button type="submit" class="btn btn-info btn-lg" onclick="logout()"> Đăng Xuất</button>
+				</div>
+
 			</div>
 		</nav>
 

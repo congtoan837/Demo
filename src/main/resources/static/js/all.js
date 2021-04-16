@@ -1,14 +1,8 @@
-if(localStorage.getItem("token") == null){
-	window.location.href = "/admin";
-}else{
-    loadname();
-}
-
-function logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('cart');
-    window.location.href = '/admin';
-}
+$(document).ready(function() {
+    if(localStorage.getItem("token")){
+        loadname();
+    }
+});
 
 function loadname() {
 

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/urlcomon.js"></script>
+<script src="js/all.js"></script>
 <!-- Basic -->
 
 <head>
@@ -46,8 +49,9 @@
                     </div>
                     <div class="our-link">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user s_color"></i> Tài khoản</a></li>                        
-                            <li><a th:href="@{/contact}"><i class="fas fa-headset"></i> Liên hệ</a></li>
+                            <li id="account"></li>
+                            <li><a th:href="@{/contact}"><i class="fas fa-headset"></i>
+                                Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>

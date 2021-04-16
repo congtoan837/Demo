@@ -29,33 +29,30 @@ body {
 					<a class="logo">ADMIN</a>
 				</h1>
 				<ul class="list-unstyled components mb-5">
-					<li><a th:href="@{/admin}"><i class="fas fa-chart-line"></i>
-							Thống kê</a></li>
+					<li><a th:href="@{/admin/stats}"><i class="fas fa-chart-line"></i>
+						Thống kê</a></li>
 					<li><a href="#pageSubmenu1" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-file-invoice-dollar"></i> 
-									Quản lý đơn hàng</a>
+						   aria-expanded="false" class="dropdown-toggle"><i class="fas fa-file-invoice-dollar"></i>
+						Quản lý đơn hàng</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu1">
 							<li><a th:href="@{/admin/order}"><i class="fa fa-plus-square"></i>
-									Danh sách đơn hàng</a></li>
+								Danh sách đơn hàng</a></li>
 							<li><a th:href="@{/record/List}"><i class="fa fa-list-alt"></i>
-									Tạo đơn hàng</a></li>
+								Tạo đơn hàng</a></li>
 						</ul></li>
 					<li><a href="#pageSubmenu2" data-toggle="collapse"
-						aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Quản lý sản phẩm</a>
-						<ul class="collapse list-unstyled" id="pageSubmenu2">						
+						   aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Quản lý sản phẩm</a>
+						<ul class="collapse list-unstyled" id="pageSubmenu2">
 							<li><a th:href="@{/admin/product}"><i class="fa fa-list-alt"></i>
-									Danh sách sản phẩm</a></li>
-							<li><a th:href="@{/product/list2}"><i class="fa fa-list-alt"></i>
-									Danh mục sản phẩm</a></li>
+								Danh sách sản phẩm</a></li>
+							<li><a href="#"><i class="fa fa-list-alt"></i>
+								Danh mục sản phẩm</a></li>
 						</ul></li>
 					<li><a th:href="@{/admin/customer}"><i class="fas fa-user"></i>
-									Quản lý khách hàng</a></li>
+						Quản lý khách hàng</a></li>
 					<li><a th:href="@{/admin/promotion}"><i class="fas fa-gifts" aria-hidden="true"></i> Khuyến mãi</a></li>
 					<li><a th:href="@{/admin/blog}"><i class="fab fa-blogger-b"></i> Blog</a>
-						</li>
-					<li><a th:href="@{/admin/account}">
-						<i class="fas fa-key"></i> Quản lý tài khoản</a>						
-						</li>
+					</li>
 				</ul>
 
 				<div class="mb-5">
@@ -78,11 +75,10 @@ body {
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</p>
 				</div>
-				<form th:action="@{/admin/logout}" method="Post">
-					<div class="col text-center" style="padding-top: 50px">
-						<button type="submit" class="btn btn-info btn-lg"> Đăng Xuất</button>
-					</div>
-			</form>
+				<div class="col text-center" style="padding-top: 50px">
+					<button type="submit" class="btn btn-info btn-lg" onclick="logout()"> Đăng Xuất</button>
+				</div>
+
 			</div>
 		</nav>
 
@@ -90,22 +86,16 @@ body {
 		<div id="content" class="p-4 p-md-5 pt-5">
 			<div>
 				<h2 class="mb-4 float-left">DANH SÁCH ĐƠN HÀNG</h2>
-				<button type="button" id="btnadd" class="btn btn-primary float-right"
-					data-toggle="modal" data-target="#Add" onclick="add()">Thêm Đơn Hàng</button>
 			</div>
 			<table class="table table-striped">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">Id</th>
-						<th scope="col">Số lượng</th>
-						<th scope="col">Tổng tiền</th>
-						<th scope="col">Sản phẩm</th>
-						<th scope="col">Coupon</th>
 						<th scope="col">Khách hàng</th>
+						<th scope="col">Coupon</th>
 						<th scope="col">Trạng thái</th>
 						<th scope="col">Thanh toán</th>
-						<th scope="col">Thời gian</th>
-						<th scope="col" style="width: 120px"></th>
+						<th scope="col" style="width: 150px"></th>
 					</tr>
 				</thead>
 				<tbody id="datatable">
@@ -121,6 +111,7 @@ body {
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/toastr.js}"></script>
+	<script th:src="@{/js/table-edits.js}"></script>
 </body>
 
 <!-- Modal Add-->
@@ -136,65 +127,75 @@ body {
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Date</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="1" th:name="Date" class="form-control" placeholder="Enter Date">
-	    				</div>
-  					</div>
   					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Name</label>
+	    					<label class="col-sm-3 col-form-label">Khách hàng</label>
 	    				<div class="col-sm-9">
-	      					<input type="text" id="2" th:name="Name" class="form-control" placeholder="Enter Name">
+	      					<input type="text" id="users" th:name="Name" class="form-control" placeholder="Enter Name">
 	    				</div>
   					</div>
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label">Quantity</label> 
+	    					<label class="col-sm-3 col-form-label">Coupon</label>
+	    				<div class="col-sm-9">
+	      					<input type="text" id="promotion" th:name="Coupon" class="form-control" placeholder="Enter Total Price">
+	    				</div>
+  					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Trạng thái</label>
 						<div class="col-sm-9">
-						<input type="number" id="3" th:name="Quantity" class="form-control"
-							placeholder="Enter Quantity">
+							<select class="form-control" id="status" th:name="status">
+								<option>Pending</option>
+								<option>Shipping</option>
+								<option>Success</option>
+								<option>Failer</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">TotalPrice</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="4" th:name="TotalPrice" class="form-control" placeholder="Enter Total Price">
-	    				</div>
-  					</div>
-  					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">ProductId</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="5" th:name="ProductId" class="form-control" placeholder="Enter Product">
-	    				</div>
-  					</div>
-  					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">PromotionId</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="6" th:name="Promotion" class="form-control" placeholder="Enter Promotion">
-	    				</div>
-  					</div>
-  					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">OrderId</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="7" th:name="OrderId" class="form-control" placeholder="Enter OrderId">
-	    				</div>
-  					</div>
-  					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">Status</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="8" th:name="Status" class="form-control" placeholder="Enter Status">
-	    				</div>
-  					</div>
-  					<div class="form-group row">
-	    					<label class="col-sm-3 col-form-label">PaymentId</label>
-	    				<div class="col-sm-9">
-	      					<input type="text" id="9" th:name="PaymentId" class="form-control" placeholder="Enter Payment">
-	    				</div>
-  					</div>
+						<label class="col-sm-3 col-form-label">Thanh toán</label>
+						<div class="col-sm-9">
+							<select class="form-control" id="payment" th:name="status">
+
+							</select>
+						</div>
+					</div>
   				</div>
 				<div class="modal-footer" id="modal-footer">
 					
 				</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Add-->
+<div class="modal fade" id="Detail" tabindex="-1" role="dialog"
+	 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="Title">Chi tiết</h5>
+				<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped">
+					<thead class="thead-dark">
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Hình</th>
+						<th scope="col">Tên sản phẩm</th>
+						<th scope="col">Giá</th>
+						<th scope="col">Thương hiệu</th>
+						<th scope="col">Số lượng</th>
+						<th scope="col">Tổng tiền</th>
+					</tr>
+					</thead>
+					<tbody id="data">
+
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

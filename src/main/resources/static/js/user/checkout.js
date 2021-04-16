@@ -176,7 +176,10 @@ function insert() {
                     });
                 });
                 clearCart();
-                toastr.success("Success");
+                toastr.success("Đặt hàng thành công !, đang trở về trang chủ");
+                setTimeout(() => {
+                    window.location.href = "/";
+                }, 3000);
             }
         });
     }
