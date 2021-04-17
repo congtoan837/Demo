@@ -57,9 +57,14 @@ public class UserController {
 		return "user/order";
 	}
 
-	@GetMapping("/account-detail")
+	@GetMapping("/account-setting")
 	public String accountdetais() {
 		return "user/account-detail";
+	}
+
+	@GetMapping("/myorder")
+	public String myorder() {
+		return "user/my-order";
 	}
 	
 	@GetMapping("/detail/{id}")

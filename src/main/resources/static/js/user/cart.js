@@ -2,7 +2,9 @@ var a;
 var c;
 $(document).ready(function() {
 	if(localStorage.getItem("token") !== null){
-		loaditem();
+		setTimeout(() => {
+			loaditem();
+		}, 100);
 	}else{
 		loadDataTable();
 	}
@@ -19,9 +21,6 @@ function loadDataTable() {
 		},
 		url: API_URL + "/api/cartSession",
 		contentType: "application/json;charset=UTF-8",
-		data: JSON.stringify({
-			"id": parseInt(localStorage.getItem("cart"))
-		}),
 		dataType: "json",
 		xhrFields: {
 			withCredentials: true
@@ -68,7 +67,7 @@ function loaditem() {
 		url: API_URL + "/api/listitem",
 		contentType: "application/json;charset=UTF-8",
 		data: JSON.stringify({
-			"cartId": parseInt(localStorage.getItem("cart"))
+			"cartId": cardId
 		}),
 		dataType: "json",
 		xhrFields: {

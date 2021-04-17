@@ -20,7 +20,6 @@ function login() {
 				if(data.data.roles == "ADMIN") {
 					rememberme();
 					localStorage.setItem("token", data.data.token);
-					localStorage.setItem("cart", data.data.cartId);
 					window.location.href = "/admin/stats";
 				} else {
 					toastr.error("Login fail !! you are not an administrator !");

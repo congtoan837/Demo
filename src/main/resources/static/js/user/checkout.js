@@ -2,9 +2,12 @@ var total = 0;
 var a = 0;
 var listItem = [];
 $(document).ready(function() {
-	loadradio()
+	loadradio();
     if(localStorage.getItem("token") !== null){
-        loaditem();
+        setTimeout(() => {
+            loaditem();
+        }, 100);
+        loaddetail();
     }else{
         loadDataTable();
     }
@@ -59,7 +62,7 @@ function loaditem() {
         url: API_URL + "/api/listitem",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
-            "cartId": parseInt(localStorage.getItem("cart"))
+            "cartId": cardId
         }),
         dataType: "json",
         xhrFields: {
@@ -130,6 +133,7 @@ function insert() {
     var promotion = $('#coupon').val();
     var status = "Pending"
     var paymentId = $("#radio input[name= 'paymentMethod']:checked").val();
+    var address = $('#address').val();
 
     {
         $.ajax({
@@ -145,6 +149,7 @@ function insert() {
                 "promotion": promotion,
                 "status": status,
                 "paymentId": paymentId,
+                "address": address,
             }),
             dataType: "json",
             error: function(request) {
@@ -238,4 +243,26 @@ function clearCart() {
             }
         });
     }
+}
+
+function loaddetail() {
+
+    $.ajax({
+        cache: false,
+        type: "POST",
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
+        url: API_URL + "/username",
+        contentType: "application/json;charset=UTF-8",
+        error: function(request) {
+
+        },
+        success: function(data) {
+            $('#name').val(data.name);
+            $('#phone').val(data.phone);
+            $('#address').val(data.address);
+        }
+    });
+
 }

@@ -106,7 +106,7 @@ function newitem(id) {
 		data: JSON.stringify({
 			"productId": id,
 			"quantity": 1,
-			"cartId": parseInt(localStorage.getItem("cart"))
+			"cartId": cardId
 		}),
 		dataType: "json",
 		xhrFields: {

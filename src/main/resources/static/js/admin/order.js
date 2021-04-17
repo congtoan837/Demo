@@ -36,6 +36,8 @@ function loadDataTable() {
                 var str = $(`<tr>
 						<th>${item.id}</th>	                       			
                         <td>${item.users}</td>
+                        <td>${item.phone}</td>
+                        <td>${item.address}</td>
                         <td>${item.promotion}%</td>
                         <td data-field="name">${item.status}</td>
                         <td>${item.payment}</td>
@@ -167,7 +169,7 @@ function load_detail(id) {
                 var price = (item.product.price).toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
                 var total = (item.totalPrice).toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
                 var str = $(`<tr>
-						<th>${item.id}</th>	                       			
+						<th>${item.product.id}</th>	                       			
                         <th><img src="../images/${item.product.image}" height="50px"></th>	
                         <td>${item.product.name}</td>
                         <td>${price}</td>
