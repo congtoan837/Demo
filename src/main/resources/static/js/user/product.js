@@ -18,7 +18,7 @@ function loadgroupBrand() {
 
         },
         success: function (data) {
-            data.map((item, index) => {
+            data.data.map((item, index) => {
                 var str = $(`<div class="list-group-collapse sub-men">
                                   <a class="list-group-item list-group-item-action" onclick="loadbyBrand(${item.id})" style="cursor: pointer;">- ${item.name} <small class="text-muted">(0)</small></a>
                              </div>`);
@@ -32,19 +32,17 @@ function loadbyBrand(id){
     $('#dataProduct').html('');
     $('#list-view').html('');
     $.ajax({
-        cache: false,
-        type: "POST",
+        type: "GET",
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token")
         },
-        url: API_URL + "/api/ProductByBrand/"+id,
-        contentType: "application/json;charset=UTF-8",
+        url: API_URL + "/api/ProductByBrand?id="+id,
         dataType: "json",
         error: function (request) {
 
         },
         success: function (data) {
-            data.map((item, index) => {
+            data.data.map((item, index) => {
                 let price = item.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
                 var str = $(`<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <div class="products-single fix">
@@ -52,7 +50,7 @@ function loadbyBrand(id){
                                                     <div class="type-lb">
                                                         <p class="new">${item.status}</p>
                                                     </div>
-                                                    <img src="../images/${item.image}" class="img-fluid" alt="Image">
+                                                    <img src="../images/${item.image}" class="img-fluid rounded" alt="Image" style="height: 300px; width: 300px;">
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <li><a href="detail/${item.id}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>

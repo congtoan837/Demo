@@ -23,27 +23,6 @@ function loadname() {
             var str = $(`<a href="/my-account"><i class="fa fa-user s_color"></i> Chào, ${data.name}</a>`);
             $('#account').html(str)
             var id = data.id;
-
-            $.ajax({
-                cache: false,
-                type: "POST",
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem("token")
-                },
-                url: API_URL + "/api/listcart",
-                contentType: "application/json;charset=UTF-8",
-                data: JSON.stringify({
-                    "customerId": id,
-                }),
-                dataType: "json",
-                error: function(request) {
-
-                },
-                success: function(data) {
-                    cardId = data.id
-                }
-
-            });
         }
 
     });

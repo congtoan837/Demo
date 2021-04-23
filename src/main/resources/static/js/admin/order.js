@@ -3,6 +3,9 @@ var dataProduct = [];
 $(document).ready(function () {
     loadDataTable();
     loadcombobox();
+    setTimeout(() => {
+        $('#mytable').DataTable();
+    }, 100);
 });
 
 
@@ -30,17 +33,19 @@ function loadDataTable() {
 
         },
         success: function (data) {
-            dataProduct = data;
+            dataProduct = data.data;
             $('#datatable').html("");
-            data.map((item, index) => {
+            data.data.map((item, index) => {
+                let total = item.total.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
                 var str = $(`<tr>
 						<th>${item.id}</th>	                       			
                         <td>${item.users}</td>
                         <td>${item.phone}</td>
                         <td>${item.address}</td>
                         <td>${item.promotion}%</td>
-                        <td data-field="name">${item.status}</td>
+                        <td>${item.status}</td>
                         <td>${item.payment}</td>
+                        <td>${total}</td>
 						<td>	
 						    <button type="button" onclick="load_detail(${item.id})" class="btn btn-primary btn-sm" title="Chi tiết"
 								data-toggle="modal" data-target="#Detail">
@@ -135,7 +140,7 @@ function loadcombobox() {
         },
         success: function (data) {
             $('#payment').html("");
-            data.map((item, index) => {
+            data.data.map((item, index) => {
                 var str = $(`<option>${item.name}</option>`);
                 $('#payment').append(str);
             });
@@ -148,16 +153,11 @@ function loadcombobox() {
 function load_detail(id) {
 
     $.ajax({
-        cache: false,
-        type: "POST",
+        type: "GET",
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token")
         },
-        url: API_URL + "/api/listorderdetail",
-        contentType: "application/json;charset=UTF-8",
-        data: JSON.stringify({
-            "orderId": id,
-        }),
+        url: API_URL + "/api/listorderdetail?id="+id,
         dataType: "json",
         error: function () {
 
@@ -165,15 +165,15 @@ function load_detail(id) {
         success: function (data) {
             $('#data').html("");
             $('#Title').html('Chi tiết ' + id);
-            data.map((item, index) => {
+            data.data.map((item, index) => {
                 var price = (item.product.price).toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
-                var total = (item.totalPrice).toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
+                var total = (item.quantity*item.product.price).toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
                 var str = $(`<tr>
 						<th>${item.product.id}</th>	                       			
                         <th><img src="../images/${item.product.image}" height="50px"></th>	
                         <td>${item.product.name}</td>
                         <td>${price}</td>
-                        <td>${item.product.brand}</td>
+                        <td>${item.product.brand.name}</td>
                         <td>${item.quantity}</td>
                         <td>${total}</td>
 					</tr>`);
@@ -186,10 +186,7 @@ function load_detail(id) {
 
 function edit(id) {
 
-    var users = $('#users').val();
-    var promotion = $('#promotion').val();
     var status = $('#status').val();
-    var payment = $('#payment').val();
 
     $("#btn_insert").addClass("disabled");
     $("#btn_insert").attr('onclick', '');
@@ -200,13 +197,11 @@ function edit(id) {
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token")
         },
-        url: API_URL + "/api/editaccount",
+        url: API_URL + "/api/editorder",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
-            "users": users,
-            "promotion": promotion,
+            "id": id,
             "status": status,
-            "payment": payment
         }),
         dataType: "json",
         error: function () {
@@ -234,7 +229,8 @@ function delet(id) {
         url: API_URL + "/api/deleteorder",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
-            "id": id
+            "id": id,
+            "delete": false
         }),
         error: function () {
             toastr.error("Delete fail");

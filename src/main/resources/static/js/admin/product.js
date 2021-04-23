@@ -136,7 +136,7 @@ function deletecategory(id) {
             },
             success: function (data) {
                 $('#listcombobox').html("");
-                data.map((item, index) => {
+                data.data.map((item, index) => {
                     var str = $(`<label class="col-7">${item.name}</label>
                                 <button type="submit" onclick="deletebrand(${item.id})" class="float-right">Xóa</button>`);			
                     $('#listcombobox').append(str);
@@ -164,7 +164,7 @@ function deletecategory(id) {
             },
             success: function (data) {
                 $('#listcombobox').html("");
-                data.map((item, index) => {
+                data.data.map((item, index) => {
                     var str = $(`<label class="col-7">${item.name}</label>
                                 <button type="submit" onclick="deletecategory(${item.id})" class="float-right">Xóa</button>`);
                     var box = $(`<button type="submit" onclick="addcategory()" class="btn btn-info ml-2">OK</button>`);
@@ -192,18 +192,18 @@ function loadDataTable() {
 
         },
         success: function (data) {
-        	dataProduct = data;
+        	dataProduct = data.data;
             $('#datatable').html("");
-            data.map((item, index) => {
+            data.data.map((item, index) => {
                 var str = $(`<tr>
 						<th>${item.id}</th>
 						<th><img src="../images/${item.image}"
 							height="50px"></th>
 						<td>${item.name}</td>
 						<td>${item.price}</td>
-						<td>${item.brand}</td>
+						<td>${item.brand.name}</td>
 						<td>${item.quantity}</td>
-						<td>${item.category}</td>
+						<td>${item.category.name}</td>
 						<td>${item.status}</td>
 						<td>${item.description}</td>
 						<td>							
@@ -249,10 +249,14 @@ function insert() {
                 "description": description,
                 "status": status,
                 "price": price,
-                "brand": brand,
+                "brand": {
+                    "id": brand
+                },
                 "quantity": quantity,
                 "image": image,
-                "category": category
+                "category": {
+                    "id": category
+                }
             }),
             dataType: "json",
             error: function (request) {
@@ -283,7 +287,7 @@ function loadComboBox() {
         },
         success: function (data) {
         	$('#3').html("");
-            data.map((item, index) => {
+            data.data.map((item, index) => {
                 var str = $(`<option value=${item.id}>${item.name}</option>`);
                 $('#3').append(str);
             });
@@ -308,7 +312,7 @@ function loadComboBox2() {
         },
         success: function (data) {
         	$('#6').html("");
-            data.map((item, index) => {
+            data.data.map((item, index) => {
                 var str = $(`<option value=${item.id}>${item.name}</option>`);
                 $('#6').append(str);
             });
@@ -322,11 +326,11 @@ function load_edit(id) {
             $("#Title-Popup").html('Sửa sản phẩm');
             $("#1").val(item.name);
             $("#2").val(item.price);
-            $("#3").val(item.idBrand);
+            $("#3").val(item.brand.id);
             $("#4").val("");
             $(".custom-file-label").html("Chọn tệp, bỏ trống nếu muốn giữ");
             $("#5").val(item.quantity);
-            $("#6").val(item.idCategory);
+            $("#6").val(item.category.id);
             $("#7").val(item.status);
             $("#8").val(item.description);
             var str = $(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -362,10 +366,14 @@ function edit(id) {
                 "description": description,
                 "status": status,
                 "price": price,
-                "brand": brand,
+                "brand": {
+                    "id": brand
+                },
                 "quantity": quantity,
                 "image": image,
-                "category": category
+                "category": {
+                    "id": category
+                }
             }),
             dataType: "json",
             error: function (request) {

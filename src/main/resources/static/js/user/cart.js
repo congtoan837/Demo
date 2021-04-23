@@ -4,7 +4,7 @@ $(document).ready(function() {
 	if(localStorage.getItem("token") !== null){
 		setTimeout(() => {
 			loaditem();
-		}, 100);
+		}, 500);
 	}else{
 		loadDataTable();
 	}
@@ -59,26 +59,19 @@ function loaditem() {
 	$('#datatable').html('');
 
 	$.ajax({
-		cache: false,
-		type: "POST",
+		type: "GET",
 		headers: {
 			Authorization: 'Bearer ' + localStorage.getItem("token")
 		},
 		url: API_URL + "/api/listitem",
 		contentType: "application/json;charset=UTF-8",
-		data: JSON.stringify({
-			"cartId": cardId
-		}),
 		dataType: "json",
-		xhrFields: {
-			withCredentials: true
-		},
 		error: function(request) {
 
 		},
 		success: function(data) {
-			if (data.length > 0) {
-				data.map((item, index) => {
+			if (data.data.length > 0) {
+				data.data.map((item, index) => {
 					let price = item.product.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
 					let totalPrice = (item.product.price * item.quantity).toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
 					var str = $(` 	<tr>

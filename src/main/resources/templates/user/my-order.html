@@ -5,6 +5,8 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/user/myorder.js"></script>
 <script src="js/all.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,6 +32,9 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" th:href="@{/css/toastr.css}">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -179,9 +184,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
 
-                    <table class="table">
+                    <table class="table" id="mytable">
                         <thead>
                         <tr style="text-align: center">
                             <th scope="col">Id</th>
@@ -191,6 +195,7 @@
                             <th scope="col">Coupon</th>
                             <th scope="col">Thanh toán</th>
                             <th scope="col">Trạng thái</th>
+                            <th scope="col">Tổng thanh toán</th>
                             <th scope="col">Huỷ</th>
                         </tr>
                         </thead>
@@ -199,7 +204,6 @@
                         </tbody>
                     </table>
 
-                </div>
             </div>
         </div>
     </div>
@@ -315,6 +319,7 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+      <script th:src="@{/js/toastr.js}"></script>
 </body>
 <!-- Modal Add-->
 <div class="modal fade" id="Detail" tabindex="-1" role="dialog"

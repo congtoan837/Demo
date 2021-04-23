@@ -17,7 +17,7 @@ function loadDataTable() {
 
         },
         success: function (data) {
-            data.map((item, index) => {
+            data.data.map((item, index) => {
                 var str = $(`<div class="coupon" id="${item.id}">
                     <img src="../images/${item.image}" alt="Avatar">
                     <div class="container" style="background-color:white">

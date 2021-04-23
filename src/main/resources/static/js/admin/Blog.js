@@ -38,9 +38,9 @@ function loadDataTable() {
 
         },
         success: function(data) {
-            dataProduct = data;
+            dataProduct = data.data;
             $('#datatable').html("");
-            data.map((item, index) => {
+            data.data.map((item, index) => {
                 var str = $(`<tr>
 						<th>${item.id}</th>	
                         <th><img src="../images/${item.image}" height="50px"></th>					
@@ -195,7 +195,7 @@ function loadComboBox() {
         },
         success: function (data) {
         	$('#4').html("");
-            data.map((item, index) => {
+            data.data.map((item, index) => {
                 var str = $(`<option value=${item.id}>${item.username}</option>`);
                 $('#4').append(str);
             });

@@ -6,9 +6,9 @@ $(document).ready(function() {
     if(localStorage.getItem("token") !== null){
         setTimeout(() => {
             loaditem();
-        }, 100);
+        }, 500);
         loaddetail();
-    }else{
+    }else {
         loadDataTable();
     }
 });
@@ -22,7 +22,7 @@ function loadDataTable() {
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token")
         },
-        url: API_URL_LOCAL + "/api/cartSession",
+        url: API_URL + "/api/cartSession",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         xhrFields: {
@@ -36,12 +36,16 @@ function loadDataTable() {
                 data.map((item, index) => {
                     let price = item.product.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
                     let totalPrice = (item.product.price * item.quantity).toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+                    total += item.product.price * item.quantity;
                     var str = $(` 	<div class="media mb-2 border-bottom">
                                         <div class="media-body"> <a href="detail/${item.product.id}"> ${item.product.name}</a>
                                             <div class="small text-muted">Giá: ${price} <span class="mx-2">|</span> Số lượng: ${item.quantity} <span class="mx-2">|</span> Tổng tiền: ${totalPrice}</div>
                                         </div>
                                     </div>`);
                     $('#dataTable').append(str);
+                    $('#totalprice').html(total.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }));
+                    $('#thanhtien').html(total.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }));
+
                 });
             }
         }
@@ -54,27 +58,19 @@ function loaditem() {
     $('#datatable').html('');
 
     $.ajax({
-        cache: false,
-        type: "POST",
+        type: "GET",
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token")
         },
         url: API_URL + "/api/listitem",
-        contentType: "application/json;charset=UTF-8",
-        data: JSON.stringify({
-            "cartId": cardId
-        }),
         dataType: "json",
-        xhrFields: {
-            withCredentials: true
-        },
         error: function(request) {
 
         },
         success: function(data) {
-            if (data.length > 0) {
-                listItem = data;
-                data.map((item, index) => {
+            if (data.data.length > 0) {
+                listItem = data.data;
+                data.data.map((item, index) => {
                     let price = item.product.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
                     let totalPrice = (item.product.price * item.quantity).toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
                     total += item.product.price * item.quantity;
@@ -111,7 +107,7 @@ function loadradio() {
 		success: function (data) {
 			dataProduct = data;
 			$('#datatable').html("");
-			data.map((item, index) => {
+			data.data.map((item, index) => {
 				if(index = 1){
 					a = "checked";
 				}
@@ -145,18 +141,17 @@ function insert() {
             url: API_URL + "/api/neworder",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
-                "customerId": customerId,
                 "promotion": promotion,
                 "status": status,
                 "paymentId": paymentId,
-                "address": address,
+                "address": address
             }),
             dataType: "json",
             error: function(request) {
-                toastr.error("fail");
+                toastr.error("Vui lòng đăng nhập để tiếp tục");
             },
             success: function(data) {
-                let id = data.id;
+                let id = data.data.id;
                 listItem.map((item, index) => {
                     $.ajax({
                         cache: true,
@@ -167,9 +162,13 @@ function insert() {
                         url: API_URL + "/api/neworderdetail",
                         contentType: "application/json;charset=UTF-8",
                         data: JSON.stringify({
-                            "productId": item.product.id,
+                            "product": {
+                                "id": item.product.id
+                            },
                             "quantity": item.quantity,
-                            "orderId": id
+                            "orders": {
+                                "id": id
+                            }
                         }),
                         dataType: "json",
                         error: function(request) {
@@ -220,7 +219,6 @@ function couponCheck() {
 }
 
 function clearCart() {
-    var cartId = localStorage.getItem("cart")
 
     {
         $.ajax({
@@ -232,7 +230,7 @@ function clearCart() {
             url: API_URL + "/api/removeall",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
-                "cartId": cartId
+                "cartId": cardId
             }),
             dataType: "json",
             error: function(request) {
