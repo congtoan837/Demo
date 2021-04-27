@@ -151,13 +151,11 @@ function deletecategory(id) {
             $('#buttonadd').attr("onclick","addcategory()");
         });
         $.ajax({
-            cache: false,
-            type: "POST",
+            type: "GET",
 			headers: {
             	Authorization: 'Bearer ' + localStorage.getItem("token")
         	},
             url:  API_URL + "/api/listcategory",
-            contentType: "application/json;charset=UTF-8",
             dataType: "json",
             error: function (request) {
                 toastr.error("fail")
@@ -300,7 +298,7 @@ function loadComboBox2() {
 
     $.ajax({
         cache: false,
-        type: "POST",
+        type: "GET",
 		headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token")
         },

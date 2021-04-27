@@ -39,12 +39,12 @@ function loadDataTable() {
                 let total = item.total.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
                 var str = $(`<tr>
 						<th>${item.id}</th>	                       			
-                        <td>${item.users}</td>
-                        <td>${item.phone}</td>
+                        <td>${item.users.name}</td>
+                        <td>${item.users.phone}</td>
                         <td>${item.address}</td>
-                        <td>${item.promotion}%</td>
+                        <td>${item.promotion.percents}%</td>
                         <td>${item.status}</td>
-                        <td>${item.payment}</td>
+                        <td>${item.payment.name}</td>
                         <td>${total}</td>
 						<td>	
 						    <button type="button" onclick="load_detail(${item.id})" class="btn btn-primary btn-sm" title="Chi tiết"

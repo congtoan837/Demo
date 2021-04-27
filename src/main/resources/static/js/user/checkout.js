@@ -141,9 +141,13 @@ function insert() {
             url: API_URL + "/api/neworder",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
-                "promotion": promotion,
+                "promotion": {
+                    "coupon": promotion
+                },
                 "status": status,
-                "paymentId": paymentId,
+                "payment": {
+                    "id": paymentId
+                },
                 "address": address
             }),
             dataType: "json",
