@@ -2,6 +2,8 @@ $(document).ready(function() {
     loadgroupBrand();
     loadbyBrand(1);
     $('#search_btn').click(function(){
+        $('#list-view').html('');
+        $('#dataProduct').html('');
 
         var search = $("#txtsearch").val();
 
