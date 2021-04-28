@@ -1,3 +1,6 @@
+var a = 0;
+var b = 0;
+
 (function($) {
     "use strict";
 
@@ -193,15 +196,19 @@
     $(function() {
         $("#slider-range").slider({
             range: true,
-            min: 0,
-            max: 10000000,
+            min: 500000,
+            max: 50000000,
             values: [1000000, 3000000],
             slide: function(event, ui) {
                 $("#amount").val(ui.values[0] + "Đ - " + ui.values[1] + " Đ");
+                a = ui.values[0];
+                b = ui.values[1];
             }
         });
         $("#amount").val($("#slider-range").slider("values", 0) + "Đ -" +
             $("#slider-range").slider("values", 1) + " Đ");
+        a = $("#slider-range").slider("values", 0);
+        b = $("#slider-range").slider("values", 1);
     });
 
     /* ..............................................
