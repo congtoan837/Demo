@@ -1,34 +1,7 @@
 $(document).ready(function() {
     loadgroupBrand();
     loadbyBrand(1);
-});
-
-function loadgroupBrand() {
-	$('#groupBrand').html('');
-    $.ajax({
-        cache: false,
-        type: "POST",
-		headers: {
-            Authorization: 'Bearer ' + localStorage.getItem("token")
-        },
-        url: API_URL + "/api/listbrand",
-        contentType: "application/json;charset=UTF-8",
-        dataType: "json",
-        error: function (request) {
-
-        },
-        success: function (data) {
-            data.data.map((item, index) => {
-                var str = $(`<div class="list-group-collapse sub-men">
-                                  <a class="list-group-item list-group-item-action" onclick="loadbyBrand(${item.id})" style="cursor: pointer;">- ${item.name} <small class="text-muted">(0)</small></a>
-                             </div>`);
-            $('#groupBrand').append(str);
-            });
-        }
-    });
-}
-
-$('#search_btn').click(function(){
+    $('#search_btn').click(function(){
 
         var search = $("#txtsearch").val();
 
@@ -98,7 +71,33 @@ $('#search_btn').click(function(){
                 });
             }
         });
+    });
 });
+
+function loadgroupBrand() {
+	$('#groupBrand').html('');
+    $.ajax({
+        cache: false,
+        type: "POST",
+		headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+        },
+        url: API_URL + "/api/listbrand",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        error: function (request) {
+
+        },
+        success: function (data) {
+            data.data.map((item, index) => {
+                var str = $(`<div class="list-group-collapse sub-men">
+                                  <a class="list-group-item list-group-item-action" onclick="loadbyBrand(${item.id})" style="cursor: pointer;">- ${item.name} <small class="text-muted">(0)</small></a>
+                             </div>`);
+            $('#groupBrand').append(str);
+            });
+        }
+    });
+}
 
 function loadbyBrand(id){
     $('#dataProduct').html('');
