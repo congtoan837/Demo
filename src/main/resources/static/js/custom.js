@@ -1,5 +1,5 @@
-var a = 0;
-var b = 0;
+var lower = 0;
+var higher = 0;
 
 (function($) {
     "use strict";

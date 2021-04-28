@@ -80,8 +80,8 @@ $(document).ready(function() {
         $('#list-view').html('');
         $('#dataProduct').html('');
 
-        var lower = a;
-        var higher = b;
+        var lower = lower;
+        var higher = higher;
 
         $.ajax({
             type: "GET",
