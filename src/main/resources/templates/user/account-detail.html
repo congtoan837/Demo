@@ -169,31 +169,76 @@
         <div class="container">
             <div class="my-account-page">
                 <div class="row">
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-gift"></i> </a>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title " id="Title-Popup">Thông tin tài khoản</h2>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Họ Tên</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="1" name="name" class="form-control" placeholder="Enter full name">
                                 </div>
-                                <div class="service-desc">
-                                    <h4>Đơn hàng của bạn</h4>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="2" name="email" class="form-control" placeholder="Enter email">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">SĐT</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="3" name="phone" class="form-control" placeholder="Enter Phone">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Hình ảnh</label>
+                                <div class="custom-file col-sm-7">
+                                    <input type="file" name="image" class="custom-file-input" id="4">
+                                    <label class="custom-file-label" for="customFile">Chọn tệp</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Địa chỉ</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="5" name="address" class="form-control" placeholder="Enter address">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Tài khoản</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="6" name="username" class="form-control" placeholder="Enter user">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Mật khẩu</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="7" name="address" class="form-control" placeholder="Enter password">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Quyền</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" id="8" name="role">
+                                        <option>ADMIN</option>
+                                        <option>USER</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Trạng thái</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" id="9" name="status">
+                                        <option>Activated</option>
+                                        <option>Not Activated</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"><i class="fa fa-lock"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>Thông tin tài khoản</h4>
-                                </div>
-                            </div>
+                        <div class="modal-footer" id="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-primary" onclick="insert()">Lưu</button>
                         </div>
-                    </div>
-
                 </div>
             </div>
         </div>
