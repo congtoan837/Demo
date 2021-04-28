@@ -28,24 +28,24 @@ function loadgroupBrand() {
     });
 }
 
-function search() {
+$('#search_btn').click(function(){
 
-    var search = $("#txtsearch").val();
+        var search = $("#txtsearch").val();
 
-    $.ajax({
-        type: "GET",
-        headers: {
-            Authorization: 'Bearer ' + localStorage.getItem("token")
-        },
-        url: API_URL + "/api/searchproduct?search="+search,
-        dataType: "json",
-        error: function (request) {
+        $.ajax({
+            type: "GET",
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem("token")
+            },
+            url: API_URL + "/api/searchproduct?search="+search,
+            dataType: "json",
+            error: function (request) {
 
-        },
-        success: function (data) {
-            data.data.map((item, index) => {
-                let price = item.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
-                var str = $(`<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+            },
+            success: function (data) {
+                data.data.map((item, index) => {
+                    let price = item.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+                    var str = $(`<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <div class="products-single fix">
                                                 <div class="box-img-hover">
                                                     <div class="type-lb">
@@ -66,7 +66,7 @@ function search() {
                                             </div>
                                         </div>`);
 
-                var str2 = $(`<div class="list-view-box">
+                    var str2 = $(`<div class="list-view-box">
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                                 <div class="products-single fix">
@@ -93,12 +93,12 @@ function search() {
                                             </div>
                                         </div>
                                     </div>`);
-                $('#list-view').append(str2);
-                $('#dataProduct').append(str);
-            });
-        }
-    });
-}
+                    $('#list-view').append(str2);
+                    $('#dataProduct').append(str);
+                });
+            }
+        });
+});
 
 function loadbyBrand(id){
     $('#dataProduct').html('');
