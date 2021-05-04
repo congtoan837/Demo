@@ -12,6 +12,11 @@ public class UserController {
 		return "user/index";
 	}
 
+	@GetMapping("/login")
+	public String login() {
+		return "user/login";
+	}
+
 	@GetMapping("/about")
 	public String about() {
 		return "user/about";

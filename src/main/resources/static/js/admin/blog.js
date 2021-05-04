@@ -47,7 +47,7 @@ function loadDataTable() {
                         <td>${item.title}</td>
 						<td>${item.content}</td>
 						<td>${item.description}</td>
-						<td>${item.name}</td>
+						<td>${item.user.username}</td>
 						<td>							
 							<button type="button" onclick="load_edit(${item.id})" class="btn btn-primary btn-sm" title="sửa"
 								data-toggle="modal" data-target="#Add">
@@ -87,7 +87,9 @@ function insert() {
                 "content": content,
                 "description": description,
                 "image": image,
-                "createBy": createBy,
+                "user": {
+                    "id": createBy
+                },
                 "title": title,
             }),
             dataType: "json",
@@ -112,7 +114,7 @@ function load_edit(id) {
             $("#2").val(item.content);
             $(".custom-file-label").html("Chọn tệp, bỏ trống nếu muốn giữ");
             $("#3").val(item.description);
-            $("#4").val(item.idAmin);
+            $("#4").val(item.user.id);
             $("#5").val("");
             var str = $(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
 			 <button type="submit" class="btn btn-primary" onclick="edit(${item.id})">Lưu</button>`);
@@ -142,7 +144,9 @@ function edit(id) {
             "content": content,
             "description": description,
             "image": image,
-            "createBy": createBy,
+            "user": {
+                "id": createBy
+            },
             "title": title,
         }),
         dataType: "json",

@@ -119,3 +119,31 @@ function addtocart(id) {
 		}
 	});
 }
+
+function newitem(id) {
+
+	$.ajax({
+		cache: false,
+		type: "POST",
+		headers: {
+			Authorization: 'Bearer ' + localStorage.getItem("token")
+		},
+		url: API_URL + "/api/newitem",
+		contentType: "application/json;charset=UTF-8",
+		data: JSON.stringify({
+			"product": {
+				"id": id
+			},
+			"quantity": 1
+		}),
+		dataType: "json",
+		error: function (request) {
+			toastr.error("fail");
+		},
+		success: function (data) {
+			toastr.success("Thêm vào giỏ thành công !");
+		}
+
+	});
+
+}

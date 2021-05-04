@@ -18,7 +18,8 @@ function loadDataTable() {
         },
         success: function (data) {
             data.data.map((item, index) => {
-                var str = $(`<div class="coupon" id="${item.id}">
+                if(item.coupon != "") {
+                    var str = $(`<div class="coupon" id="${item.id}">
                     <img src="../images/${item.image}" alt="Avatar">
                     <div class="container" style="background-color:white">
                       <h2><b>Giảm giá ${item.percents}% hoá đơn</b></h2>
@@ -29,6 +30,7 @@ function loadDataTable() {
                       <p class="expire">Kết thúc: ${item.timeEnd}</p>
                     </div>
                   </div>`);
+                }
             $('#coupon').append(str);
             });
 

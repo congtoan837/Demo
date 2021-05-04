@@ -71,6 +71,24 @@ function loadremember() {
 
 function hadlogin() {
 	if(localStorage.getItem("token") !== null){
-		window.location.href = "/admin/stats";
+
+			$.ajax({
+				cache: false,
+				type: "POST",
+				headers: {
+					Authorization: 'Bearer ' + localStorage.getItem("token")
+				},
+				url: API_URL + "/username",
+				contentType: "application/json;charset=UTF-8",
+				error: function(request) {
+
+				},
+				success: function(data) {
+					if(data.role == "ADMIN"){
+						window.location.href = "/admin/stats";
+					}
+				}
+
+			});
 	}	
 }

@@ -233,9 +233,6 @@ function clearCart() {
             },
             url: API_URL + "/api/removeall",
             contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify({
-                "cartId": cardId
-            }),
             dataType: "json",
             error: function(request) {
 

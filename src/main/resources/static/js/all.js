@@ -1,4 +1,3 @@
-var cardId = 0;
 
 $(document).ready(function() {
     if(localStorage.getItem("token")){
@@ -23,6 +22,7 @@ function loadname() {
             var str = $(`<a href="/my-account"><i class="fa fa-user s_color"></i> Chào, ${data.name}</a>`);
             $('#account').html(str)
             var id = data.id;
+            roles = data.role;
         }
 
     });

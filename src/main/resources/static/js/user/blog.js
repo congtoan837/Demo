@@ -17,7 +17,7 @@ function loadDataTable() {
 
         },
         success: function (data) {
-            data.map((item, index) => {
+            data.data.map((item, index) => {
                 
                 var str = $(`<div class="col-md-6 col-lg-4 col-xl-4">
                 <div class="blog-box">
@@ -29,7 +29,7 @@ function loadDataTable() {
                             <h3>${item.title}</h3>
                             <p>${item.content}</p>
                             <br>
-                            <p>Người tạo: <span>${item.name}<span></p>
+                            <p>Người tạo: <span>${item.user.name}<span></p>
                         </div>
                     </div>
                 </div>

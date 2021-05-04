@@ -4,6 +4,10 @@ $(document).ready(function () {
     loadDataTable();
 });
 
+function logout() {
+    localStorage.removeItem('token');
+    window.location.href = '/admin';
+}
 
 function loadDataTable() {
     $.ajax({
