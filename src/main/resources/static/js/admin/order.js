@@ -3,9 +3,6 @@ var dataProduct = [];
 $(document).ready(function () {
     loadDataTable();
     loadcombobox();
-    setTimeout(() => {
-        $('#mytable').DataTable();
-    }, 100);
 });
 
 
@@ -62,7 +59,7 @@ function loadDataTable() {
 					</tr>`);
                 $('#datatable').append(str);
             });
-
+            $('#mytable').DataTable();
         }
 
     });

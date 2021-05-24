@@ -91,36 +91,7 @@ function loadData() {
 }
 
 function addtocart(id) {
-	var quantity = $('#quantity').val();
-	$.ajax({
-		cache: false,
-		type: "POST",
-		headers: {
-			Authorization: 'Bearer ' + localStorage.getItem("token")
-		},
-		url: API_URL + "/api/buy",
-		contentType: "application/json;charset=UTF-8",
-		data: JSON.stringify({
-			"product":
-			{
-				"id": id
-			},
-			"quantity": quantity,
-		}),
-		dataType: "json",
-		xhrFields: {
-			withCredentials: true
-		},
-		error: function(request) {
-			toastr.error("fail");
-		},
-		success: function(data) {
-			toastr.success("Thêm vào giỏ thành công !");
-		}
-	});
-}
-
-function newitem(id) {
+	var quantity = $("#quantity").val();
 
 	$.ajax({
 		cache: false,
@@ -134,7 +105,7 @@ function newitem(id) {
 			"product": {
 				"id": id
 			},
-			"quantity": 1
+			"quantity": quantity
 		}),
 		dataType: "json",
 		error: function (request) {
