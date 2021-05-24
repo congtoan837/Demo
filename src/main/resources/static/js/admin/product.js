@@ -5,6 +5,7 @@ $( document ).ready(function() {
     loadComboBox();
 });
 
+//---------------------------- clear form them san pham ------------------------------------------------//
 function add() {
     $("#Title-Popup").html('Thêm sản phẩm');
     $("#1").val("");
@@ -16,7 +17,9 @@ function add() {
 			 <button type="submit" class="btn btn-primary" onclick="insert()">Lưu</button>`);
     $('#modal-footer').html(str);
 }
+//---------------------------- clear form them san pham ------------------------------------------------//
 
+//---------------------------- them thuong hieu ------------------------------------------------//
 function addbrand() {
     var name = $('#Brand2').val();
     {
@@ -43,7 +46,9 @@ function addbrand() {
         });
     }
 }
+//---------------------------- them thuong hieu ------------------------------------------------//
 
+//---------------------------- xoa thuong hieu ------------------------------------------------//
 function deletebrand(id) {
         $.ajax({
             cache: false,
@@ -66,7 +71,9 @@ function deletebrand(id) {
             }
         });
     }
+//---------------------------- xoa thuong hieu ------------------------------------------------//
 
+//---------------------------- them loai san pham ------------------------------------------------//
 function addcategory() {
     var name = $('#Brand2').val();
     {
@@ -93,7 +100,9 @@ function addcategory() {
         });
     }
 }
+//---------------------------- them loai san pham ------------------------------------------------//
 
+//---------------------------- xoa loai san pham ------------------------------------------------//
 function deletecategory(id) {
         $.ajax({
             cache: false,
@@ -116,7 +125,9 @@ function deletecategory(id) {
             }
         });
     }
+//---------------------------- xoa loai san pham ------------------------------------------------//
 
+//---------------------------- load danh sach thuong hieu  ------------------------------------------------//
     function loadlistComboBox() {
         $('#Brand2').val("");
         $("#Newbrand").click(function () {
@@ -144,7 +155,9 @@ function deletecategory(id) {
             }
         });
     }
-    
+//---------------------------- load danh sach thuong hieu  ------------------------------------------------//
+
+//---------------------------- load danh sach loai san pham  ------------------------------------------------//
     function loadlistComboBox2() {
         $('#Brand2').val("");
         $("#newcategory").click(function () {
@@ -172,8 +185,10 @@ function deletecategory(id) {
             }
         });
     }
+//---------------------------- load danh sach loai san pham  ------------------------------------------------//
     
 
+//---------------------------- hien thi san pham ------------------------------------------------//
 
 function loadDataTable() {
 
@@ -187,7 +202,7 @@ function loadDataTable() {
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         error: function (request) {
-
+            
         },
         success: function (data) {
         	dataProduct = data.data;
@@ -222,6 +237,10 @@ function loadDataTable() {
     });
 
 }
+
+//---------------------------- hien thi san pham ------------------------------------------------//
+
+//---------------------------- them san pham ------------------------------------------------//
 
 function insert() {
     var name = $('#1').val();
@@ -268,7 +287,9 @@ function insert() {
         });
     }
 }
+//---------------------------- them san pham ------------------------------------------------//
 
+//---------------------------- show tuy chon thuong hieu ------------------------------------------------//
 function loadComboBox() {
 
     $.ajax({
@@ -293,7 +314,9 @@ function loadComboBox() {
         }
     });
 }
+//---------------------------- show tuy chon thuong hieu ------------------------------------------------//
 
+//---------------------------- show tuy chon loai san pham ------------------------------------------------//
 function loadComboBox2() {
 
     $.ajax({
@@ -317,7 +340,9 @@ function loadComboBox2() {
         }
     });
 }
+//---------------------------- show tuy chon loai san pham ------------------------------------------------//
 
+//---------------------------- load du lieu chinh sua ------------------------------------------------//
 function load_edit(id) {
     dataProduct.map((item, index) => {
         if (item.id === id) {
@@ -338,7 +363,9 @@ function load_edit(id) {
         }
     });
 }
+//---------------------------- load du lieu chinh sua ------------------------------------------------//
 
+//---------------------------- sua san pham ------------------------------------------------//
 function edit(id) {
 
     var name = $('#1').val();
@@ -384,7 +411,9 @@ function edit(id) {
             }
         });
     }
+//---------------------------- sua san pham ------------------------------------------------//
 
+//---------------------------- xoa san pham ------------------------------------------------//
 function delet(id) {
         $.ajax({
             cache: false,

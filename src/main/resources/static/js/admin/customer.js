@@ -4,6 +4,7 @@ $(document).ready(function() {
     loadDataTable();
 });
 
+//---------------------------- lam trong them moi  ------------------------------------------------//
 function add() {
     $("#Title-Popup").html('Thêm khách hàng');
     $("#1").val("");
@@ -16,7 +17,9 @@ function add() {
 			 <button type="submit" class="btn btn-primary" onclick="insert()">Lưu</button>`);
     $('#modal-footer').html(str);
 }
+//---------------------------- lam trong them moi  ------------------------------------------------//
 
+//---------------------------- hien thi danh sach  ------------------------------------------------//
 function loadDataTable() {
 
     $.ajax({
@@ -64,7 +67,9 @@ function loadDataTable() {
     });
 
 }
+//---------------------------- hien thi danh sach  ------------------------------------------------//
 
+//---------------------------- them khach hang  ------------------------------------------------//
 function insert() {
     var name = $('#1').val();
     var email = $('#2').val();
@@ -108,8 +113,9 @@ function insert() {
         });
     }
 }
+//---------------------------- them khach hang  ------------------------------------------------//
 
-
+//---------------------------- load chinh sua khach hang  ------------------------------------------------//
 function load_edit(id) {
     dataProduct.map((item, index) => {
         if (item.id === id) {
@@ -129,7 +135,9 @@ function load_edit(id) {
         }
     });
 }
+//---------------------------- load chinh sua khach hang  ------------------------------------------------//
 
+//---------------------------- chinh sua khach hang  ------------------------------------------------//
 function edit(id) {
 
     var name = $('#1').val();
@@ -173,7 +181,9 @@ function edit(id) {
         }
     });
 }
+//---------------------------- chinh sua khach hang  ------------------------------------------------//
 
+//---------------------------- xoa khach hang  ------------------------------------------------//
 function delet(id) {
     $.ajax({
         cache: false,
@@ -195,3 +205,4 @@ function delet(id) {
         }
     });
 }
+//---------------------------- xoa khach hang  ------------------------------------------------//

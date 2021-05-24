@@ -62,11 +62,11 @@ function loadDataTable() {
                                var str = $(`
                             <tr style="text-align: center">
                                 <th scope="row">${item.id}</th>
-                                <td>${item.users}</td>
-                                <td>${item.phone}</td>
+                                <td>${item.users.name}</td>
+                                <td>${item.users.phone}</td>
                                 <td>${item.address}</td>
-                                <td>${item.coupon}</td>
-                                <td>${item.payment}</td>
+                                <td>${item.promotion.coupon}</td>
+                                <td>${item.payment.name}</td>
                                 <td style="color: red; font-weight: bold">${item.status}</td>
                                 <td>${total}</td>
                                 <td>
